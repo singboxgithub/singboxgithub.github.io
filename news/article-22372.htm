@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-22372.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Go_error处理及panic、recover使用的正确姿势</title>
+        <meta name="description" content="异常 异常就是程序出现了不正常的情况，会导致程序非正常停止，而异常处理就是针对非正常停止的情况，给出异常时的处理方式。语法错误不算异常体系中  error：   error是一个接口，作用是返回程序异" />
+        <link rel="icon" href="__ADDON__/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Go_error处理及panic、recover使用的正确姿势</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                          				  				  				<div id="content_views" class="markdown_views prism-dracula"> <h2> <a id="_0" rel="nofollow"></a>异常</h2> <p>异常就是程序出现了不正常的情况，会导致程序非正常停止，而异常处理就是针对非正常停止的情况，给出异常时的处理方式。语法错误不算异常体系中</p> <h2> <a id="error_4" rel="nofollow"></a>error：</h2> <blockquote> <ul> <li>error是一个接口，作用是返回程序异常的信息，errors实现了error</li> <li>创建error使用errors.New()可以定义异常信息</li> <li>如果将error作为返回值的话，要放在返回值列表的最后</li> </ul> </blockquote> <p>演示：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">TestError</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span> num2 <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>result <span class="token builtin">int</span><span class="token punctuation">,</span> err <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	err <span class="token operator">=</span> <span class="token boolean">nil</span> 	<span class="token keyword">if</span> num1 <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> num2 <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"除数不能为0"</span><span class="token punctuation">)</span> 		<span class="token keyword">return</span> 	<span class="token punctuation">}</span> 	result <span class="token operator">=</span> num1 <span class="token operator">/</span> num2 	<span class="token keyword">return</span> <span class="token punctuation">}</span>  <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	num<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">TestError</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 		err <span class="token operator">=</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"除数不能为0"</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> </code></pre> <p>标准库将error定义为接口类型，以便于实现自定义错误类型</p> <pre><code class="prism language-go"><span class="token keyword">type</span> <span class="token builtin">error</span> <span class="token keyword">interface</span> <span class="token punctuation">{<!-- --></span>   <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span>  <span class="token punctuation">}</span> </code></pre> <p>error是最后一个返回参数。标准库提供了相关创建函数， 含简单错误文本的error对象</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	z<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">div</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">==</span> errDivByZero <span class="token punctuation">{<!-- --></span> 		log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> 	<span class="token punctuation">}</span> 	<span class="token function">println</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token punctuation">}</span>  <span class="token keyword">var</span> errDivByZero <span class="token operator">=</span> errors<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span><span class="token string">"division by zero"</span><span class="token punctuation">)</span>  <span class="token keyword">func</span> <span class="token function">div</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">if</span> y <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> errDivByZero 	<span class="token punctuation">}</span> 	<span class="token keyword">return</span> x <span class="token operator">/</span> y<span class="token punctuation">,</span> <span class="token boolean">nil</span> <span class="token punctuation">}</span> </code></pre> <p>错误变量通常以err作为前缀，且字符串内容全部小写，没有结束标点，以便于嵌入到其他格式化字符串中输出。与errors.New类似的还有fmt.Errorf，它返回一个格式化内容的错误对象。某些时候，我们需要自定义错误类型，以便容纳更多上下文状态信息。如此，还可基于类型做出判断</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	z<span class="token punctuation">,</span> err <span class="token operator">:=</span> <span class="token function">div</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">switch</span> e <span class="token operator">:=</span> err<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> <span class="token comment">// 根据类型匹配</span> 		<span class="token keyword">case</span> DivError<span class="token punctuation">:</span> 			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> e<span class="token punctuation">.</span>x<span class="token punctuation">,</span> e<span class="token punctuation">.</span>y<span class="token punctuation">)</span> 		<span class="token keyword">default</span><span class="token punctuation">:</span> 			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> 		<span class="token punctuation">}</span> 		log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> 	<span class="token punctuation">}</span> 	<span class="token function">println</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span> <span class="token punctuation">}</span>  <span class="token keyword">type</span> DivError <span class="token keyword">struct</span> <span class="token punctuation">{<!-- --></span> 	x<span class="token punctuation">,</span> y <span class="token builtin">int</span> <span class="token punctuation">}</span>  <span class="token comment">//自定义错误类型。</span> <span class="token keyword">func</span> <span class="token punctuation">(</span>DivError<span class="token punctuation">)</span> <span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">return</span> <span class="token string">"division by zero"</span> <span class="token punctuation">}</span>  <span class="token comment">//实现error接口方法。</span> <span class="token keyword">func</span> <span class="token function">div</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">if</span> y <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">,</span> DivError<span class="token punctuation">{<!-- --></span>x<span class="token punctuation">,</span> y<span class="token punctuation">}</span> 	<span class="token punctuation">}</span> 	<span class="token comment">//返回自定义错误类型。</span> 	<span class="token keyword">return</span> x <span class="token operator">/</span> y<span class="token punctuation">,</span> <span class="token boolean">nil</span> <span class="token punctuation">}</span> </code></pre> <ul> <li>自定义错误类型通常以Error为后缀。在用switch按类型匹配时，注意case顺序。应将自定义类型放在前面，优先匹配具体错误类型</li> <li>在写代码中，我们不能忽略error返回值，应做严格检查，否则可能会导致错误的逻辑状态。调用多返回值函数时，除error外，其他返回值同样需要关注。以os.File.Read方法为例，它会同时返回剩余内容和EOF。</li> </ul> <h2> <a id="panicrecover_109" rel="nofollow"></a>panic与recover：</h2> <blockquote> <p>panic是内置函数，可以终止程序，会立即中断当前函数流程，触发执行延迟调用<br /> recover可以拦截panic异常信息，但是recover不可以直接调用，只有在defer调用的函数中有效</p> </blockquote> <p>如果是放在循环中了，连续调用panic，仅最后一个会被recover捕耕</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		<span class="token keyword">if</span> err <span class="token operator">:=</span> <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> <span class="token comment">// 捕捉错误</span> 			log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"我挂了"</span><span class="token punctuation">)</span>          <span class="token comment">// 引发错误</span> 	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"会走这一步吗"</span><span class="token punctuation">)</span> <span class="token comment">// 不会执行，编译器也会提示这是一个永远不会执行的代码</span> <span class="token punctuation">}</span> </code></pre> <p>除非是不可恢复性，导致系统无法正常工作的错误，否则不建议使用Panic</p> <p>例如：文件系统没有操作权限，服务端口被占用，数据库未启动等情况</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21919.htm">动物疫苗注射方法视频讲解 动物疫苗注射方法视频讲解教程</a></p>
+                                        <p>下一个：<a href="/news/article-22374.htm">python中利用正则表达式匹配ip地址</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-latest-sing-box-node.htm" title="11月5日 | SingBox Github每天更新20.1M/S免费节点订阅链接">11月5日 | SingBox Github每天更新20.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-sing-box-node-share.htm" title="8月24日 | SingBox Github每天更新21.4M/S免费节点订阅链接">8月24日 | SingBox Github每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-latest-sing-box-node.htm" title="9月6日 | SingBox Github每天更新22.9M/S免费节点订阅链接">9月6日 | SingBox Github每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-node-share-links.htm" title="10月29日 | SingBox Github每天更新18.2M/S免费节点订阅链接">10月29日 | SingBox Github每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-subscribe-node.htm" title="12月6日 | SingBox Github每天更新22.6M/S免费节点订阅链接">12月6日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-8-free-sing-box-node.htm" title="8月8日 | SingBox Github每天更新18.4M/S免费节点订阅链接">8月8日 | SingBox Github每天更新18.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-2-surge-node.htm" title="8月2日 | SingBox Github每天更新18.1M/S免费节点订阅链接">8月2日 | SingBox Github每天更新18.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-sing-box-node.htm" title="8月29日 | SingBox Github每天更新21.1M/S免费节点订阅链接">8月29日 | SingBox Github每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-26-node-share.htm" title="9月26日 | SingBox Github每天更新19.8M/S免费节点订阅链接">9月26日 | SingBox Github每天更新19.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-node-share-links.htm" title="10月16日 | SingBox Github每天更新21.8M/S免费节点订阅链接">10月16日 | SingBox Github每天更新21.8M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
