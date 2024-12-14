@@ -2,11 +2,12 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://singboxgithub.github.io/news/article-25150.htm" />
+        <link rel="canonical" href="https://singboxgithub.github.io" />
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>PHP对象序列化</title>
-        <meta name="description" content="介绍 通过PHP中的serialze()函数可以获得字节流形式的任何对象的字符串表示形式。对象的所有属性变量都包含在字符串中，并且方法不保存。该字符串可以存储在任何文件中。 要从字节流中检索对象，有u" />
+    <title>2024-12归档 - SingBox Github免费节点分享站</title>
+        <meta name="keywords" content="2024-12归档" />
+        <meta name="description" content="2024-12归档" />
         <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -34,7 +35,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="detail">
+<body data-page="category">
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
@@ -60,10 +61,9 @@
             <div class="container">
                 <ol>
                     <li><a href="/">首页</a></li>
-                    <li><a href="/news/">新闻资讯</a></li>
-                    <li>正文</li>
+                    <li>2024-12 归档</li>
                 </ol>
-                <h1>PHP对象序列化</h1>
+                <h1>2024-12 归档</h1>
             </div>
         </section><!-- End Breadcrumbs -->
         <!-- ======= Tabs Section ======= -->
@@ -71,12 +71,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<h2>介绍</h2> <p>通过PHP中的<strong>serialze()</strong>函数可以获得字节流形式的任何对象的字符串表示形式。对象的所有属性变量都包含在字符串中，并且方法不保存。该字符串可以存储在任何文件中。</p> <p>要从字节流中检索对象，有<code>unserialize()</code>方法。调用<strong>unserialize()</strong>函数之前，必须有相应类的定义。</p> <h2>示例</h2> <p>首先，让我们序列化以下类的对象，并将字符串存储在文件中。</p> <pre>&lt;?php class&nbsp;test1{ &nbsp;&nbsp;&nbsp;private&nbsp;$name; &nbsp;&nbsp;&nbsp;function&nbsp;__construct($arg){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;name=$arg; &nbsp;&nbsp;&nbsp;} } $obj1=new&nbsp;test1("Kiran"); $str=serialize($obj1); $fd=fopen("obj.txt","w"); fwrite($fd,&nbsp;$str); fclose($fd); ?&gt;</pre> <p>在当前文件夹中，创建obj.txt。为了反序列化，以下代码从从给定文件读取的字节流中重建对象</p> <h2>示例</h2> <pre>&lt;?php class&nbsp;test1{ &nbsp;&nbsp;&nbsp;private&nbsp;$name; &nbsp;&nbsp;&nbsp;function&nbsp;__construct($arg){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;name=$arg; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;function&nbsp;getname(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;name; &nbsp;&nbsp;&nbsp;} } $filename="obj.txt"; $fd=fopen("obj.txt","r"); $str=fread($fd,&nbsp;filesize($filename)); $obj=unserialize($str); echo&nbsp;"name:&nbsp;'&nbsp;.&nbsp;$obj-&gt;getname(); ?&gt;</pre> <p>输出结果</p> <p>上面的代码现在在输出之后返回名称</p> <pre>name:&nbsp;Kiran</pre> <div></div> 			                <div class="clearfix"></div>
-                <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-24686.htm">领养宠物狗免费的平台有哪些的简单介绍</a></p>
-                                        <p>下一个：<a href="/news/article-25151.htm">新手小白怎么开宠物店（开宠物店的利润和风险）</a></p>
-                                    </div>
-                
+                        <div class="xcblog-blog-list">
+                                                        <div class="row item xcblog-blog-item" data-date="2024-12-01">
+                                <div class="col-md-3 text-center">
+                                    <a href="/news/article-19628.htm" class="xcblog-blog-url">
+                                        <img src="/uploads/20240802/2bd52fc75de75b355c635076c20e4280.webp" alt="动物活疫苗和灭活疫苗的优缺点有哪些（动物灭活疫苗的作用机理）" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/news/article-19628.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">动物活疫苗和灭活疫苗的优缺点有哪些（动物灭活疫苗的作用机理）</h3>
+                                    </a>
+                                    <p>
+                                        摘要：       今天给各位分享动物活疫苗和灭活疫苗的优缺点有哪些的知识，其中也会对动物灭活疫苗的作用机理进行解释，如果能碰巧解决你现在面临的问题，别忘了关注本站，现在开始吧！本文目录一览：1、灭.                                    </p>
+                                </div>
+                            </div>
+                                                        <div class="row item xcblog-blog-item" data-date="2024-12-01">
+                                <div class="col-md-3 text-center">
+                                    <a href="/free-nodes/2024-12-1-sing-box-node.htm" class="xcblog-blog-url">
+                                        <img src="/uploads/20240802/79ac94eaaf66fb8442ef355d8b77dceb.webp" alt="12月1日 | SingBox Github每天更新19.6M/S免费节点订阅链接" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="/free-nodes/2024-12-1-sing-box-node.htm" class="xcblog-blog-url">
+                                        <h3 class="xcblog-blog-title">12月1日 | SingBox Github每天更新19.6M/S免费节点订阅链接</h3>
+                                    </a>
+                                    <p>
+                                        这一次的节点更新覆盖了香港、加拿大、日本、韩国、美国、新加坡、欧洲等地区,最高速度可达19.6 M/S。只需复制下方的Clash/v2ray订阅链接,在客户端添加后即可正常使用。                                    </p>
+                                </div>
+                            </div>
+                            
+                            <ul class="pagination"><li><a href="/date/2024-12/page-4.htm">&laquo;</a></li> <li><a href="/date/2024-12/">1</a></li><li><a href="/date/2024-12/page-2.htm">2</a></li><li><a href="/date/2024-12/page-3.htm">3</a></li><li><a href="/date/2024-12/page-4.htm">4</a></li><li class="active"><span>5</span></li> <li class="disabled"><span>&raquo;</span></li></ul>                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="panel panel-default">
@@ -85,16 +110,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-3-node-share-links.htm" title="10月3日 | SingBox Github每天更新21.1M/S免费节点订阅链接">10月3日 | SingBox Github每天更新21.1M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-8-3-free-node-subscribe-links.htm" title="8月3日 | SingBox Github每天更新20.2M/S免费节点订阅链接">8月3日 | SingBox Github每天更新20.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-sing-box-node-github.htm" title="11月6日 | SingBox Github每天更新18.4M/S免费节点订阅链接">11月6日 | SingBox Github每天更新18.4M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-node-subscribe.htm" title="10月15日 | SingBox Github每天更新21.5M/S免费节点订阅链接">10月15日 | SingBox Github每天更新21.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-27-latest-sing-box-node.htm" title="10月27日 | SingBox Github每天更新22.8M/S免费节点订阅链接">10月27日 | SingBox Github每天更新22.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-sing-box-node-github.htm" title="12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接">12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-node-subscribe-links.htm" title="10月26日 | SingBox Github每天更新19.3M/S免费节点订阅链接">10月26日 | SingBox Github每天更新19.3M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-19-sing-box-node.htm" title="9月19日 | SingBox Github每天更新22.2M/S免费节点订阅链接">9月19日 | SingBox Github每天更新22.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-node-subscribe.htm" title="10月23日 | SingBox Github每天更新20.8M/S免费节点订阅链接">10月23日 | SingBox Github每天更新20.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-21-free-node-subscribe-links.htm" title="8月21日 | SingBox Github每天更新21.7M/S免费节点订阅链接">8月21日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23759.htm" title="生物疫苗有什么区别（生物疫苗一样吗）">生物疫苗有什么区别（生物疫苗一样吗）</a></li>
+                        <li class="py-2"><a href="/news/article-22834.htm" title="济南免费领养宠物狗在哪里（济南免费领养宠物狗在哪里办理）">济南免费领养宠物狗在哪里（济南免费领养宠物狗在哪里办理）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-29-free-sing-box-node.htm" title="8月29日 | SingBox Github每天更新21.1M/S免费节点订阅链接">8月29日 | SingBox Github每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-18758.htm" title="宠物粮食代工厂（生产宠物粮的工厂有哪些）">宠物粮食代工厂（生产宠物粮的工厂有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-8-sing-box-node.htm" title="10月8日 | SingBox Github每天更新22.5M/S免费节点订阅链接">10月8日 | SingBox Github每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-subscribe-node.htm" title="9月29日 | SingBox Github每天更新21.4M/S免费节点订阅链接">9月29日 | SingBox Github每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-3-node-share-links.htm" title="10月3日 | SingBox Github每天更新21.1M/S免费节点订阅链接">10月3日 | SingBox Github每天更新21.1M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-today-sing-box-node.htm" title="11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接">11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-8-free-sing-box-node.htm" title="8月8日 | SingBox Github每天更新18.4M/S免费节点订阅链接">8月8日 | SingBox Github每天更新18.4M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
