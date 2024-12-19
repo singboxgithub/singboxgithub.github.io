@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-27936.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Python 列表和字典数据结构的性能分析</title>
+        <meta name="description" content="文章目录  Python 列表和字典数据结构的性能分析   list列表数据类型 dict字典数据类型      list列表数据类型 list类型各种操作（interface）的实现方法有很多，如何" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Python 列表和字典数据结构的性能分析</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-tomorrow-night"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#Python__1" rel="nofollow">Python 列表和字典数据结构的性能分析</a></li> <li> <ul> <li><a href="#list_2" rel="nofollow">list列表数据类型</a></li> <li><a href="#dict_103" rel="nofollow">dict字典数据类型</a></li> </ul> </li> </ul> </div> </h1> <h2><a id="list_2" rel="nofollow"></a>list列表数据类型</h2> <p>list类型各种操作（interface）的实现方法有很多，如何选择具体哪种实现方法？ 总的方案就是，<code>让最常用的操作性能最好，牺牲不太常用的操作</code>。<br /> 有一个准则：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/a573eb62433051317f744d224bcbcac9.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p><strong>80/20准则</strong>：80%的功能其使用率只有20%<br /> 在实现列表数据结构时，Python的设计师有许多选择，每一个选择都会影响操作的性能。为了做出正确的选择，他们考虑了列表最常见的用法，并据此优化列表的实现，以使最常用的操作非常快。</p> <p>当然，他们也尽力使不常用的操作也很快，但在需要权衡时，往往会牺牲低频操作的性能。</p> <p>最常用的是：按索引取值和赋值（v =a[i], a[i]= v）,由于列表的随机访问特性，这两个操作执行时间与列表大小无关，均为O(1)</p> <p>另一个是列表增长，可以选择append()和__add__()“+”<br /> lst.append(v)，执行时间是O(1),<br /> lst= lst+ [v]，执行时间是O(n+k)，其中k是被加的列表长度，<br /> 选择哪个方法来操作列表，决定了程序的性能。</p> <p><strong>4种生成前n个整数列表的方法</strong>：</p> <pre><code>import time  # 1 循环连接 def test1(num):     l = []     for i in range(num):         l = l + [i]  # 2 append()方法 def test2(num):     l = []     for i in range(num):         l.append(i)  # 3 列表推导式 def test3(num):     l = [i for i in range(num)]  # 4 list(range()) def test4(num):     l = list(range(num))  num = 100000 t1 = time.time() test1(num) t2 = time.time() print('concat %f seconds\n' % (t2-t1))  test2(num) t3 = time.time() print("append %f seconds\n" % (t3-t2))  test3(num) t4 = time.time() print("comprehension %f seconds\n" % (t4-t3))  test4(num) t5 = time.time() print("list range %f seconds\n" %  (t5-t4))</code></pre> <p>运行结果：</p> <pre><code>concat 19.451530 seconds  append 0.007978 seconds  comprehension 0.003990 seconds  list range 0.002991 seconds</code></pre> <p>我们看到，4种方法运行时间差别很大，列表连接（concat）最慢，List range最快。</p> <p><strong>List基本操作的大O数量级</strong>：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/38f84c9c6af771b903bfe844ef66b519.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>我们注意到pop这个操作，<br /> pop()从列表末尾移除元素，O(1)<br /> pop(i)从列表中部移除元素，O(n)<br /> 原因在于Python所选择的实现方法，从中部移除元素的话，要把移除元素后面的元素，全部向前挪位复制一遍，这个看起来有点笨拙，但这种实现方法能够保证列表按索引取值和赋值的操作很快，达到O(1)，这也算是一种对常用和不常用操作的折中方案。</p> <p>为了验证表中的大O数量级，我们把两种情况下的pop操作来实际计时对比<br /> 相对同一个大小的list，分别调用pop()和pop(0)，对不同大小的list做计时，期望的结果是<code>pop()的时间不随list大小变化，pop(0)的时间随着list变大而变长</code>。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/023e5320efb3b6484012061d3311615b.jpg" alt="Python 列表和字典数据结构的性能分析"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/48af40bf6f73e8897d7bc70d346bb384.jpg" alt="Python 列表和字典数据结构的性能分析"><br /> 虽然测试结果说明pop(0)确实比pop()慢,但是并没有证明pop(0)的时间复杂度是O(n),也没有证明pop()的是O(1)。要证明这一点，需要看看两个操作在各个列表长度下的性能。以下代码实现了这个测试。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/60f6a24564fd2329d5be4d5bd8fe13e4.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>图2-3展示了实验结果。可以看出，<code>列表越长，pop(0)的耗时也随之变长，而 pop()的耗时很稳定</code>。这刚好符合O(n)和O(1)的特征。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/b8bcdf292058628ee66a28b8425b58be.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>实验会有一些误差。因为用来测量的计算机运行着其他进程，所以可能拖慢代码的速度。因此，尽管我们尽力减少计算机所做的其他工作,测出的时间仍然会有些许变化。这也是测试1000遍的原因，从统计角度来说，收集足够多的信息有助于得到可靠的结果。</p> <h2><a id="dict_103" rel="nofollow"></a>dict字典数据类型</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/91996544fb95575faebff29018b4a2d7.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>字典与列表不同，根据关键码（key）找到数据项，而列表是根据位置（index）,最常用的取值get和赋值set，其性能为O(1)，另一个重要操作contains(in)是判断字典中是否存在某个关键码（key），这个性能也是O(1)。</p> <p>下面设计一个性能试验来验证list中检索一个值，以及dict中检索一个值的计时对比，生成包含连续值的list和包含连续关键码key的dict，用随机数来检验操作符in的耗时。<br /> 程序示例：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/326349d58f78ad0d4f854151b7c9c7ab.jpg" alt="Python 列表和字典数据结构的性能分析"><br /> 结果：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/2ee0956fea7a8a13f40c072f708b9a68.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>下图展示了实验结果：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220905/12949fe77492b54117905a833507aca9.jpg" alt="Python 列表和字典数据结构的性能分析"></p> <p>可见<code>字典的执行时间与规模无关，是常数，而列表的执行时间则随着列表的规模加大而线性上升</code>。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-27470.htm">天津猫咪免费领养（天津猫咪领养中心）</a></p>
+                                        <p>下一个：<a href="/news/article-27938.htm">海拉鲁左上角第二个神庙（海拉鲁丘陵下面神庙）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-8-20-sing-box-github.htm" title="8月20日 | SingBox Github每天更新19.2M/S免费节点订阅链接">8月20日 | SingBox Github每天更新19.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-sing-box-node.htm" title="10月25日 | SingBox Github每天更新20.2M/S免费节点订阅链接">10月25日 | SingBox Github每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-9-node-share-links.htm" title="8月9日 | SingBox Github每天更新22.6M/S免费节点订阅链接">8月9日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-12-sing-box-node.htm" title="10月12日 | SingBox Github每天更新21.2M/S免费节点订阅链接">10月12日 | SingBox Github每天更新21.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-free-node-subscribe-links.htm" title="12月19日 | SingBox Github每天更新22.6M/S免费节点订阅链接">12月19日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25608.htm" title="三国杀武将台词语音包下载（三国杀角色台词语音）">三国杀武将台词语音包下载（三国杀角色台词语音）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-sing-box-node-share.htm" title="10月13日 | SingBox Github每天更新19M/S免费节点订阅链接">10月13日 | SingBox Github每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-4-sing-box-node-github.htm" title="9月4日 | SingBox Github每天更新22.9M/S免费节点订阅链接">9月4日 | SingBox Github每天更新22.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe-links.htm" title="11月29日 | SingBox Github每天更新22.8M/S免费节点订阅链接">11月29日 | SingBox Github每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20544.htm" title="成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）">成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
