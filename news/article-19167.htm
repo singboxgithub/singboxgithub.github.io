@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数</title>
         <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型inpu" />
-        <link rel="icon" href="__ADDON__/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
@@ -71,7 +71,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                                          				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型input_size设定的那样喂给它。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> <pre><code class="language-python">import torch  import torch.nn as nn import torchvision import torchvision.transforms as transforms   # Device configuration device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Hyper-parameters sequence_length = 28 input_size = 28 hidden_size = 128 num_layers = 2 num_classes = 10 batch_size = 100 num_epochs = 2 learning_rate = 0.01  # MNIST dataset train_dataset = torchvision.datasets.MNIST(root='../../data/',                                            train=True,                                             transform=transforms.ToTensor(),                                            download=True)  test_dataset = torchvision.datasets.MNIST(root='../../data/',                                           train=False,                                            transform=transforms.ToTensor())  # Data loader train_loader = torch.utils.data.DataLoader(dataset=train_dataset,                                            batch_size=batch_size,                                             shuffle=True)  test_loader = torch.utils.data.DataLoader(dataset=test_dataset,                                           batch_size=batch_size,                                            shuffle=False)  total_step = len(train_loader) for epoch in range(num_epochs):     for i, (images, labels) in enumerate(train_loader):         print(images.size())         images = images.reshape(-1,sequence_length,input_size).to(device)         # images = images.view(-1,sequence_length,input_size).to(device)         print(images.size())         labels = labels.to(device)</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([100, 28, 28]) 100是batch_size,1是代表mnist灰色图像只有一个通道，28width，28height</code></pre> <p>&nbsp; &nbsp; &nbsp; &nbsp; 咱再举一反三打个比方，</p> <pre><code class="language-python">        images = images.reshape(-1,2,sequence_length, input_size).to(device)         # images = images.view(-1,2,sequence_length, input_size).to(device)         print(images.size())</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([50,2, 28, 28]) 自动把batchsize变成了50，但总的数据量少没有变的，你，学废了吗？</code></pre> <p></p> </p></div> 			                <div class="clearfix"></div>
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp; 它俩的细节参考链接都说的很明白我就不赘述了，我主要讲一下我那lstm处理mnist数据集的时候需要对数据集进行一个处理，方便把数据按模型input_size设定的那样喂给它。</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p> <pre><code class="language-python">import torch  import torch.nn as nn import torchvision import torchvision.transforms as transforms   # Device configuration device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')  # Hyper-parameters sequence_length = 28 input_size = 28 hidden_size = 128 num_layers = 2 num_classes = 10 batch_size = 100 num_epochs = 2 learning_rate = 0.01  # MNIST dataset train_dataset = torchvision.datasets.MNIST(root='../../data/',                                            train=True,                                             transform=transforms.ToTensor(),                                            download=True)  test_dataset = torchvision.datasets.MNIST(root='../../data/',                                           train=False,                                            transform=transforms.ToTensor())  # Data loader train_loader = torch.utils.data.DataLoader(dataset=train_dataset,                                            batch_size=batch_size,                                             shuffle=True)  test_loader = torch.utils.data.DataLoader(dataset=test_dataset,                                           batch_size=batch_size,                                            shuffle=False)  total_step = len(train_loader) for epoch in range(num_epochs):     for i, (images, labels) in enumerate(train_loader):         print(images.size())         images = images.reshape(-1,sequence_length,input_size).to(device)         # images = images.view(-1,sequence_length,input_size).to(device)         print(images.size())         labels = labels.to(device)</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([100, 28, 28]) 100是batch_size,1是代表mnist灰色图像只有一个通道，28width，28height</code></pre> <p>&nbsp; &nbsp; &nbsp; &nbsp; 咱再举一反三打个比方，</p> <pre><code class="language-python">        images = images.reshape(-1,2,sequence_length, input_size).to(device)         # images = images.view(-1,2,sequence_length, input_size).to(device)         print(images.size())</code></pre> <pre><code>打印出来的size正如你所见： 通过enumerate(trai_loader)出来的：torch.Size([100, 1, 28, 28]) 通过reshape或者view改变shape后的：torch.Size([50,2, 28, 28]) 自动把batchsize变成了50，但总的数据量少没有变的，你，学废了吗？</code></pre> <p></p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-18759.htm">猫掉毛最好的解决办法（猫掉毛最好的解决办法是什么）</a></p>
                                         <p>下一个：<a href="/news/article-19169.htm">猫咪抓伤出血伤口红肿怎么办（猫咪抓伤后伤口红肿）</a></p>
@@ -85,16 +86,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-23-sing-hysteria-windows.htm" title="11月23日 | SingBox Github每天更新20.6M/S免费节点订阅链接">11月23日 | SingBox Github每天更新20.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-11-sing-box-github.htm" title="8月11日 | SingBox Github每天更新19.2M/S免费节点订阅链接">8月11日 | SingBox Github每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-node-subscribe-links.htm" title="11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接">11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-sing-box-node.htm" title="12月10日 | SingBox Github每天更新22.8M/S免费节点订阅链接">12月10日 | SingBox Github每天更新22.8M/S免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2024-8-22-free-node-subscribe-links.htm" title="8月22日 | SingBox Github每天更新19.6M/S免费节点订阅链接">8月22日 | SingBox Github每天更新19.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-node-subscribe.htm" title="11月28日 | SingBox Github每天更新18.5M/S免费节点订阅链接">11月28日 | SingBox Github每天更新18.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-10-free-high-speed-nodes.htm" title="8月10日 | SingBox Github每天更新19.7M/S免费节点订阅链接">8月10日 | SingBox Github每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-24-sing-box-node-windows.htm" title="10月24日 | SingBox Github每天更新19.7M/S免费节点订阅链接">10月24日 | SingBox Github每天更新19.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-30-today-sing-box-node.htm" title="11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接">11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-16-sing-box-node.htm" title="8月16日 | SingBox Github每天更新19.2M/S免费节点订阅链接">8月16日 | SingBox Github每天更新19.2M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-9-today-sing-box-node.htm" title="9月9日 | SingBox Github每天更新22.6M/S免费节点订阅链接">9月9日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-18758.htm" title="宠物粮食代工厂（生产宠物粮的工厂有哪些）">宠物粮食代工厂（生产宠物粮的工厂有哪些）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-sing-box-node-share.htm" title="10月13日 | SingBox Github每天更新19M/S免费节点订阅链接">10月13日 | SingBox Github每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27936.htm" title="Python 列表和字典数据结构的性能分析">Python 列表和字典数据结构的性能分析</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-sing-box-node-windows.htm" title="12月15日 | SingBox Github每天更新18.2M/S免费节点订阅链接">12月15日 | SingBox Github每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20998.htm" title="Springmvc记录操作日志到数据库">Springmvc记录操作日志到数据库</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-sing-box-node-share.htm" title="10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接">10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-2-node-share.htm" title="12月2日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月2日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-5-sing-box-github.htm" title="8月5日 | SingBox Github每天更新20.2M/S免费节点订阅链接">8月5日 | SingBox Github每天更新20.2M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -106,7 +107,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -134,6 +135,15 @@
         <div class="container d-md-flex py-4">
             <div class="me-md-auto text-center text-md-start">
                 <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                     SingBox Github免费节点分享站 版权所有 Powered by WordPress
                 </div>
             </div>
