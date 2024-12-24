@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-30288.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Linux 环境Skywalking部署Elasticsearch</title>
+        <meta name="description" content="一、环境准备 1、Java jdk 1.8+（安装教程可参考https://www.cnblogs.com/sportsky/p/15973713.html） 2、elasticsearch 二、环境" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Linux 环境Skywalking部署Elasticsearch</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一、环境准备</h2> <p>1、Java jdk 1.8+（安装教程可参考<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/sportsky/p/15973713.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/sportsky/p/15973713.html</a>）</p> <p>2、elasticsearch</p> <h2>二、环境搭建</h2> <p>1、创建目录</p> <div class="cnblogs_code"> <pre><span style="color: rgba(255, 0, 0, 1)"><strong>mkdir  /usr/local/skywalking</strong></span></pre> </div> <p>2、将资源目录中的elasticsearch安装包上传到虚拟机<strong>/usr/local/skywalking</strong>目录下</p> <p>下载地址：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.elastic.co/cn/downloads/elasticsearch"  target="_blank" rel="nofollow">https://www.elastic.co/cn/downloads/elasticsearch</a></p> <p>3、首先安装elasticsearch，将压缩包解压</p> <div class="cnblogs_code"> <pre><strong><span style="color: rgba(255, 0, 0, 1)">tar -zxvf elasticsearch-7.0.0-linux-x86_64.tar.gz</span></strong></pre> </div> <p>&nbsp;修改Linux系统的限制配置，将文件创建数修改为65536个。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">a、修改系统中允许应用最多创建多少文件等的限制权限。Linux默认来说，一般限制应用最多创建的文件是65536个。但是ES至少需要65536的文件创建数的权限。  b、修改系统中允许用户启动的进程开启多少个线程。默认的Linux限制root用户开启的进程可以开启任意数量的线程，其他用户开启的进程可以开启1024个线程。必须修改限制数为4096</span>+。因为ES至少需要4096的线程池预备。</pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(255, 0, 0, 1)"><strong>vi /etc/security/limits.conf</strong></span>--<span style="color: rgba(0, 0, 0, 1)"> 增加如下内容在limits.conf文件中  es soft nofile</span><span style="color: rgba(128, 0, 128, 1)">65536</span><span style="color: rgba(0, 0, 0, 1)"> es hard nofile</span><span style="color: rgba(128, 0, 128, 1)">65536</span><span style="color: rgba(0, 0, 0, 1)"> es soft nproc</span><span style="color: rgba(128, 0, 128, 1)">4096</span><span style="color: rgba(0, 0, 0, 1)"> es hard nproc</span><span style="color: rgba(128, 0, 128, 1)">4096</span></pre> </div> <p>修改系统控制权限，elasticsearch需要开辟一个65536字节以上空间的虚拟内存，Linux默认不允许在任何用户和应用程序直接开辟这么大的虚拟内存。</p> <div class="cnblogs_code"> <pre><strong><span style="color: rgba(255, 0, 0, 1)">vi /etc/sysctl.conf</span></strong>--<span style="color: rgba(0, 0, 0, 1)"> 新增如下内容在sysctl.conf文件中。当前用户拥有的内存权限大小 vm.max_map_count</span>=<span style="color: rgba(128, 0, 128, 1)">262144</span>  --<span style="color: rgba(0, 0, 0, 1)"> 让系统控制权限配置生效<span style="color: rgba(255, 0, 0, 1)"><strong>sysctl</strong></span></span><span style="color: rgba(255, 0, 0, 1)"><strong>-p</strong></span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fc4eac66c6645c3e504296e2e9d6c332.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f0c971eae0552b606182c17194a3afb6.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> <p>&nbsp;新建一个用户，用于elasticsearch启动，ES在5.x版本之后，强制要求在linux中不能使用root用户启动ES进程。所以必须使用其他用户启动ES进程才可以。</p> <div class="cnblogs_code"> <pre>--<span style="color: rgba(0, 0, 0, 1)"> 创建用户 useradd es</span>--<span style="color: rgba(0, 0, 0, 1)"> 修改上述用户密码 passwd es</span>--<span style="color: rgba(0, 0, 0, 1)"> 修改es目录的拥有者 chown</span>-R es:es elasticsearch-7.0.0</pre> </div> <p>4、修改&nbsp;elasticsearch-7.10.1/config/elasticsearch.yml 配置信息</p> <div class="cnblogs_code"> <pre>vi elasticsearch-7.0.0/config/<span style="color: rgba(0, 0, 0, 1)">elasticsearch.yml</span>--<span style="color: rgba(0, 0, 0, 1)"> 文件中增加如下配置 cluster.name: elasticsearch node.name: node</span>-<span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)"> network.host:</span><span style="color: rgba(128, 0, 128, 1)">127.0</span>.<span style="color: rgba(128, 0, 128, 1)">0.1</span><span style="color: rgba(0, 0, 0, 1)"> http.port:</span><span style="color: rgba(128, 0, 128, 1)">9200</span><span style="color: rgba(0, 0, 0, 1)"> http.host:</span><span style="color: rgba(128, 0, 128, 1)">0.0</span>.<span style="color: rgba(128, 0, 128, 1)">0.0</span><span style="color: rgba(0, 0, 0, 1)"> cluster.initial_master_nodes: [</span><span style="color: rgba(128, 0, 0, 1)">"</span><span style="color: rgba(128, 0, 0, 1)">node-1</span><span style="color: rgba(128, 0, 0, 1)">"</span>]</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/96b1c809fd5b81232c9c0734baaaac99.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> <p>&nbsp;5、启动elasticsearch，切换es 用户</p> <p>打开解压后的elasticsearch-7.0.0文件，进入bin目录，执行 ./elasticsearch</p> <div class="cnblogs_code"> <pre><strong><span style="color: rgba(255, 0, 0, 1)">su es<br/><br/>cd  elasticsearch-7.0.0/bin  ./elasticsearch -d</span></strong></pre> </div> <p>&nbsp;6、查看es日志</p> <div class="cnblogs_code"> <pre><strong><span style="color: rgba(255, 0, 0, 1)">tail -f logs/elasticsearch.log</span></strong></pre> </div> <p>&nbsp;出现如图所示，说明es服务已经启动</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2876b09c6229d11d60cdbb77f742241d.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> <p>&nbsp;7、请求es服务</p> <div class="cnblogs_code"> <pre>curl http:<span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">127.0.0.1:9200</span></pre> </div> <p>出现如图所示说明请求成功</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/83f4c1ff321602de5a62c1069ff63fcd.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> <p>&nbsp;8、宿主主机浏览器访问elasticsearch，先检查虚拟机是否开启防火墙，是否有开放9200端口</p> <div class="cnblogs_code"> <pre><span style="color: rgba(128, 0, 128, 1)">1</span><span style="color: rgba(0, 0, 0, 1)">、查看防火墙状态 systemctl status firewalld</span><span style="color: rgba(128, 0, 128, 1)">2</span><span style="color: rgba(0, 0, 0, 1)">、如果不是显示active状态，需要打开防火墙 systemctl start firewalld</span><span style="color: rgba(128, 0, 128, 1)">3</span><span style="color: rgba(0, 0, 0, 1)">、查看所有已开放的临时端口（默认为空） firewall</span>-cmd --list-<span style="color: rgba(0, 0, 0, 1)">ports</span><span style="color: rgba(128, 0, 128, 1)">4</span><span style="color: rgba(0, 0, 0, 1)">、 查看所有永久开放的端口（默认为空） firewall</span>-cmd --list-ports --<span style="color: rgba(0, 0, 0, 1)">permanent</span><span style="color: rgba(128, 0, 128, 1)">5</span><span style="color: rgba(0, 0, 0, 1)">、添加永久开放的端口（例如：9200端口） firewall</span>-cmd --add-port=<span style="color: rgba(128, 0, 128, 1)">9200</span>/tcp --<span style="color: rgba(0, 0, 0, 1)">permanent</span><span style="color: rgba(128, 0, 128, 1)">6</span><span style="color: rgba(0, 0, 0, 1)">、配置结束后需要输入重载命令并重启防火墙以生效配置 firewall</span>-cmd --reload</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/67149f1431959d9bcb515bcacf50edd5.jpg" alt="Linux 环境Skywalking部署Elasticsearch"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-29804.htm">昂刺鱼青菜汤的做法(清汤昂刺鱼的做法)</a></p>
+                                        <p>下一个：<a href="/news/article-30290.htm">制狗粮的机器设备 制狗粮的机器设备是什么</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-subscribe-node.htm" title="10月18日 | SingBox Github每天更新22.6M/S免费节点订阅链接">10月18日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-free-node-subscribe-links.htm" title="8月17日 | SingBox Github每天更新21.7M/S免费节点订阅链接">8月17日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20544.htm" title="成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）">成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-27-node-share.htm" title="8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接">8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-today-sing-box-node.htm" title="10月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接">10月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-14-free-subscribe-node.htm" title="10月14日 | SingBox Github每天更新22.6M/S免费节点订阅链接">10月14日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-node-subscribe-links.htm" title="11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接">11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-sing-box-node-windows.htm" title="10月31日 | SingBox Github每天更新21.4M/S免费节点订阅链接">10月31日 | SingBox Github每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-sing-box-node.htm" title="11月13日 | SingBox Github每天更新19M/S免费节点订阅链接">11月13日 | SingBox Github每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-22-free-node-subscribe-links.htm" title="8月22日 | SingBox Github每天更新19.6M/S免费节点订阅链接">8月22日 | SingBox Github每天更新19.6M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
