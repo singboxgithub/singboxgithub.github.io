@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-34574.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>java8中的Instant有关</title>
+        <meta name="description" content="Instant 表示时间，可以精确到纳秒。 这里直接打印的时间可以看出来，应该是有时区的差距的，差不多是差了8个小时。 在 Instant.now()的基础上加上8个小时，打印出来的时间戳就是一致的了" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>java8中的Instant有关</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="Instant_0" rel="nofollow"></a>Instant</h2> <p>表示时间，可以精确到纳秒。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/ce81ad853ab03dcff5836c0cd97f5f37.jpg" alt="java8中的Instant有关"><br /> 这里直接打印的时间可以看出来，应该是有时区的差距的，差不多是差了8个小时。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/c342bbdca90c11341e987ea9a95b4f3a.jpg" alt="java8中的Instant有关"><br /> 在 Instant.now()的基础上加上8个小时，打印出来的时间戳就是一致的了。<br /> Instant.ofEpochSecond(ss); 根据给的秒数构建一个对象<br /> Instant.ofEpochSecond(milli); 根据给的毫秒构建一个对象。</p> <p>本来我想用 now.get(ChronoField.YEAR)获得年份的，但是报错了，后来看源码发现这个方法的参数如果是ChronoField的话就支持四个，<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/e6fc05b4059a00e53d0fe055f20fa8fc.jpg" alt="java8中的Instant有关"><br /> 想找到可以获取到年份的途径，但是都尝试失败了。</p> <p>now.toEpochMilli() 这个返回值就和 System.currentTimeMillis() 效果是一样的。但是now这个时候是不能加上时区的的<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/61c65ffa82f79117e80ea6a41ab794e0.jpg" alt="java8中的Instant有关"><br /> 这就是差别，明显是差了八个小时的。</p> <h2><a id="Duration_17" rel="nofollow"></a>Duration</h2> <p>可以用来表示一个间隔时间。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221117/514adf20b20949ae0f64f9ba4e256bda.jpg" alt="java8中的Instant有关"><br /> 有挺多时间单位可以选择来给构建的。</p> <pre><code>        Instant now = Instant.now().plus(8,ChronoUnit.HOURS);         Duration d1 = Duration.ofHours(2);         Instant now2 = now.plus(d1);         System.out.println("now = "+now);         System.out.println("now2 = "+now2); //        now = 2021-11-09T22:50:03.606Z //        now2 = 2021-11-10T00:50:03.606Z         System.out.println("now is before now2 :"+now.isBefore(now2));         System.out.println("now2 is after now :"+now2.isAfter(now)); //        now is before now2 :true //        now2 is after now :true</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/a608f6e1ab0db07404f1057b80a56d7b.jpg" alt="java8中的Instant有关"><br /> 还可以在Duration的基础上再进行计算。</p> <h2><a id="Period_38" rel="nofollow"></a>Period</h2> <p>也是用来表示一段间隔时间的，但是我看的文章上说Period通常用来表示年月日，Duration通常用来表示秒 毫秒的。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221117/ee705a7586d858f81f97554b5e8ec73e.jpg" alt="java8中的Instant有关"></p> <p>我看静态的构建方法果然就是年月日的，并且这个对象也是可以用Instant对象直接运算的</p> <pre><code>        Instant now = Instant.now().plus(8,ChronoUnit.HOURS);         Period p1 = Period.ofDays(1);         System.out.println(now.plus(p1)); //        2021-11-10T22:56:42.776Z</code></pre> <p>和Duration的方法有些类似的。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-34099.htm">宠物粮食品牌前十名排名图片及价格（宠物粮种类）</a></p>
+                                        <p>下一个：<a href="/news/article-34577.htm">动物疫苗生产厂家排名前十名有哪些呢（动物疫苗有哪些大厂家）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-31738.htm" title="三角形的车标是什么牌子车(三角形车标是啥车)">三角形的车标是什么牌子车(三角形车标是啥车)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-2-today-sing-box-node.htm" title="10月2日 | SingBox Github每天更新19.6M/S免费节点订阅链接">10月2日 | SingBox Github每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29326.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-sing-box-node.htm" title="11月13日 | SingBox Github每天更新19M/S免费节点订阅链接">11月13日 | SingBox Github每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-node-subscribe.htm" title="10月23日 | SingBox Github每天更新20.8M/S免费节点订阅链接">10月23日 | SingBox Github每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-today-sing-box-node.htm" title="12月7日 | SingBox Github每天更新21.4M/S免费节点订阅链接">12月7日 | SingBox Github每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-sing-box-node-share.htm" title="11月15日 | SingBox Github每天更新18.6M/S免费节点订阅链接">11月15日 | SingBox Github每天更新18.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20083.htm" title="幼猫怎么驱虫体外（幼猫怎么驱虫体外驱虫药）">幼猫怎么驱虫体外（幼猫怎么驱虫体外驱虫药）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-11-sing-box-github.htm" title="11月11日 | SingBox Github每天更新20.2M/S免费节点订阅链接">11月11日 | SingBox Github每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-23-sing-box-node-windows.htm" title="8月23日 | SingBox Github每天更新22M/S免费节点订阅链接">8月23日 | SingBox Github每天更新22M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
