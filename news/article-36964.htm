@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-36964.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Python3通过字符串访问与修改局部变量</title>
+        <meta name="description" content="在Python中定义一个函数时，就会把变量空间划分为全局变量(global)与局部变量(local)，如果是定义在一个类的成员函数中，那么就还有额外的成员变量(self)空间。那么，如果在实际操作中，" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Python3通过字符串访问与修改局部变量</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>在Python中定义一个函数时，就会把变量空间划分为全局变量(global)与局部变量(local)，如果是定义在一个类的成员函数中，那么就还有额外的成员变量(self)空间。那么，如果在实际操作中，想把这几种不同的变量空间做一个分离的话，有没有办法呢？</p> </h1> <p>首先来看一下局部变量的读取，一般有<code>locals()</code>、<code>vars()</code>和<code>sys._getframe(0).f_code.co_varnames</code>这几种方法，另外有一种<code>sys._getframe(0).f_locals</code>的方法，其实等价于<code>locals()</code>，相关的实现代码如下：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.func(y)              def func(y, z=1):         m = 2         print (locals())         print (vars())         print (__import__('sys')._getframe(0).f_code.co_varnames)  if __name__ == '__main__':     Obj(2)</code></pre> <p>该代码的运行结果如下：</p> <pre><code class="language-bash">{'self': &lt;__main__.Obj object at 0x7f5cf5e74e50&gt;, 'y': 2, 'z': 1, 'm': 2} {'self': &lt;__main__.Obj object at 0x7f5cf5e74e50&gt;, 'y': 2, 'z': 1, 'm': 2} ('self', 'y', 'z', 'm')</code></pre> <p>在vars方法不加具体变量名的时候，就是等价于locals方法，两者返回的结果都是字典格式。如果是一个类中的成员函数下执行locals或者vars，会附带一个<code>__main__.Obj object</code>的变量，相当于所有self的成员变量，其实也是局部变量的一部分。而如果使用<code>co_varnames</code>的方法，那么得到的就是所有局部变量的名称，我们也可以在例子中额外定义一个self的成员变量：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self, y):         self.p = 5         self.func(y)      def func(self, y, z=1):         m = 2         print(locals())         print(vars())         print(__import__('sys')._getframe(0).f_code.co_varnames)  if __name__ == '__main__':     Obj(2)     # {'self': &lt;__main__.Obj object at 0x7fe9aac0ce50&gt;, 'y': 2, 'z': 1, 'm': 2}     # {'self': &lt;__main__.Obj object at 0x7fe9aac0ce50&gt;, 'y': 2, 'z': 1, 'm': 2}     # ('self', 'y', 'z', 'm')</code></pre> <p>可以发现，所有的成员变量都被放在了self中。并且需要注意的是，<strong>全局变量<code>x</code>自始至终都没有在局部变量中出现</strong>。那么既然我们可以通过这种方式分离出局部变量，或者是局部变量的名称，那我们如何去调整或者修改这些局部变量呢？首先我们需要知道，<code>locals()</code>方法返回的变量是一个copy，也就是说即使修改了locals方法返回的结果，也不能真正的改变局部变量本身的值，这样描述可能有点抽象，我们直接看下这个案例：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.func(y)      def func(self, y, z=1):         m = 2         vars()['z']=2         locals()['n']=3         print (locals())         print (z)  if __name__ == '__main__':     Obj(2)</code></pre> <p>在这个案例中分别通过vars方法和locals方法去修改局部变量的值，最终的输出结果如下：</p> <pre><code class="language-bash">{'self': &lt;__main__.Obj object at 0x7f74d9470e50&gt;, 'y': 2, 'z': 1, 'm': 2, 'n': 3} 1</code></pre> <p>首先要解释一下为什么这个案例中没有打印<code>n</code>这个变量，前面提到vars和locals的返回值都是真实变量的一个copy，因此我们不管是修改也好，新增也好，内容不会同步到变量空间中去，也就是说，此时的局部变量n还是处于一个没有定义的状态，只是在locals或者vars的字典中存在，此时打印只会报错NameError。而z的最终打印输出是1，这表明z的值确实没有受到对vars的变量修改的影响。那到底有没有办法可以通过字符串去修改局部变量呢（不同步到全局变量）？答案是有的，但是这个方案非常的hacky，请看如下示例：</p> <pre><code class="language-python">import ctypes  x = 0  class Obj:     def __init__(self,y):         self.func(y)      def func(self, y, z=1):         m = 2         __import__('sys')._getframe(0).f_locals.update({             'z': 2,'n': 3         })         ctypes.pythonapi.PyFrame_LocalsToFast(             ctypes.py_object(__import__('sys')._getframe(0)), ctypes.c_int(0))         print (locals())         print (z)  if __name__ == '__main__':     Obj(2)</code></pre> <p>这个案例是使用了Cython的方案直接去修改了数据帧的内容，而这里所使用的f_locals其实本质上就是locals。经过一番运行，输出结果如下：</p> <pre><code class="language-bash">{'self': &lt;__main__.Obj object at 0x7fea2e2 a1e80&gt;, 'y': 2, 'z': 2, 'm': 2, 'n': 3} 2</code></pre> <p>此时局部变量z是被成功修改了的，但是在前面提到的，即使我们通过这种方法修改了局部变量的值，但是依然不能通过这个方案去创建一个新的局部变量，此时去执行<code>print (n)</code>的话，依然会有报错提示。</p> </h1> <p>相比于修改局部变量，其实查看修改全局变量要显的更加容易。首先我们用一个示例演示一下如何查看所有的全局变量：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.func(y)      def func(self, y, z=1):         m = 2         print (globals())  if __name__ == '__main__':     Obj(2)</code></pre> <p>获取局部变量的方式有很多，但是获取全局变量一般就是globals或者等价的f_globals。上述代码执行输出如下：</p> <pre><code class="language-bash">{'__name__': '__main__', '__doc__': None, '__package__': None,  '__loader__': &lt;_frozen_importlib_external.SourceFileLoader object at 0x7f202632ac40&gt;,  '__spec__': None, '__annotations__': {}, '__builtins__': &lt;module 'builtins' (built-in)&gt;,  '__file__': 'xxx.py', '__cached__': None, 'x': 0, 'Obj': &lt;class '__main__.Obj'&gt;}</code></pre> <p>用这种方法我们发现了全局变量x，而在同一个函数内的几个局部变量，就没有显示在globals的key中。而不同于locals变量的是，globals函数返回的是一个真实的数据，是可以直接修改，并且在全局生效的。比如我们在函数内定义或者修改全局变量：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.func(y)      def func(self, y, z=1):         global m         m = 2         globals()['x']=3  if __name__ == '__main__':     Obj(2)     print(globals()['x'])     print(globals()['m'])     # 3     # 2</code></pre> <p>在这个例子中我们就可以发现，不仅仅是修改的x值生效了，新建的m也同步到了全局变量中，这样就可以比较容易的划分全局变量和局部变量再进行统一赋值或者修改。</p> </h1> <p>在python中每一个定义的object都有一个隐藏属性<code>__dict__</code>，这是一个字典，其中包含了所有的成员变量名和成员变量值。在前一篇<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/dechinphy/p/dict-class.html"  target="_blank" rel="nofollow">博客</a>中，我们就介绍了通过__dict__去给类中的成员变量进行赋值，非常的方便。我们可以通过一个示例来看看__dict__中所包含的内容：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.m = 2         self.func(y)      def func(self, y, z=1):         print (self.__dict__)  if __name__ == '__main__':     Obj(2)     # {'m': 2}</code></pre> <p>从输出结果中我们就可以看到，__dict__输出的内容非常的纯净，就是所有的成员变量名和变量值。而成员变量虽然是一个对象的属性，但是其操作方式跟全局变量globals是非常接近的，不像locals一样只读，具体示例如下：</p> <pre><code class="language-python">x = 0  class Obj:     def __init__(self,y):         self.m = 2         self.func(y)      def func(self, y, z=1):         self.m = 5         self.__dict__['n'] = 6         print (self.__dict__)         print (self.m, self.n)  if __name__ == '__main__':     Obj(2)     # {'m': 5, 'n': 6}     # 5     # 6</code></pre> <p>在这个案例中，我们修改了成员变量的值，也使用__dict__新建了一个成员变量的值，可以看到最终都有同步到变量空间中，这样就完成了成员变量的修改。</p> </h1> <p>Python本身是一门比较灵活便捷的编程语言，但是便捷往往有可能伴随着一些风险，比如exec和eval等内置函数的实现，有可能导致sandbox escaping的问题。而有时候我们又需要一些批量化的操作，比如批量化的创建或者修改局部、全局或者是成员变量，这样就需要我们首先要把所有的变量名存成字符串，在需要的时候再作为变量名去调用。在这篇文章中，我们介绍了一系列非exec和eval的操作（并不是说没有风险，也引用了ctype和sys定义的数据帧），来查看和定义、修改所需的各种变量。</p> <ol></ol> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36488.htm">动物疫苗价格查询表图片及价格大全图（动物疫苗接种时间表）</a></p>
+                                        <p>下一个：<a href="/news/article-36965.htm">动物医院的英文怎么说怎么写呀（动物医院的英文怎么说怎么写呀）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-sing-box-node-windows.htm" title="12月25日 | SingBox每天更新20.7M/S免费节点链接地址分享">12月25日 | SingBox每天更新20.7M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-node-share-links.htm" title="12月14日 | SingBox Github每天更新20.7M/S免费节点订阅链接">12月14日 | SingBox Github每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-sing-box-node.htm" title="10月19日 | SingBox Github每天更新20.7M/S免费节点订阅链接">10月19日 | SingBox Github每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-sing-box-node-windows.htm" title="11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接">11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29803.htm" title="动物疫苗行业介绍ppt（动物疫苗行业介绍）">动物疫苗行业介绍ppt（动物疫苗行业介绍）</a></li>
+                        <li class="py-2"><a href="/news/article-30290.htm" title="制狗粮的机器设备 制狗粮的机器设备是什么">制狗粮的机器设备 制狗粮的机器设备是什么</a></li>
+                        <li class="py-2"><a href="/news/article-25608.htm" title="三国杀武将台词语音包下载（三国杀角色台词语音）">三国杀武将台词语音包下载（三国杀角色台词语音）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-6-sing-box-node-github.htm" title="11月6日 | SingBox Github每天更新18.4M/S免费节点订阅链接">11月6日 | SingBox Github每天更新18.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-sing-box-node-share.htm" title="10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接">10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-sing-box-github.htm" title="1月4日 | SingBox每天更新20.4M/S免费节点链接地址分享">1月4日 | SingBox每天更新20.4M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

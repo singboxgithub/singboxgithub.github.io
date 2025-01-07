@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-36486.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Spring boot 注解@Async不生效 无效 不起作用</title>
+        <meta name="description" content="今天在做公司项目时，有一个发邮件的需求。所以写了一个发送邮件的方法后来发现发邮件很慢，导致接口响应也很慢。于是我便想到要使用异步调用去处理这个方法。于是我把注解@Async 加到了自己service类" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Spring boot 注解@Async不生效 无效 不起作用</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>今天在做公司项目时，有一个发邮件的需求。所以写了一个发送邮件的方法后来发现发邮件很慢，导致接口响应也很慢。于是我便想到要使用异步调用去处理这个方法。于是我把注解@Async 加到了自己service类下的一个发邮件的一个方法，后来发现并没有生效。</p> <p>&nbsp;</p> <p>调用处代码：</p> <p><img fetchpriority="high" decoding="async" alt="" class="has" height="118" src="http://img.555519.xyz/uploads/20230119/2f7863f352860f42082fad7d6c2d86f9.jpg"></p> <p><span style="color:#f33b45;"><strong>我在以下两个方法上都试过加上@Async注解 可是都并没有生效</strong></span></p> <p>发送邮件代码：</p> <p><img decoding="async" alt="" class="has" height="564" src="http://img.555519.xyz/uploads/20230119/ea8e318e2a670366b3e439636a6d05c4.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" class="has" height="574" src="http://img.555519.xyz/uploads/20230119/c912a5c081667572855b647b5b105b37.jpg"></p> <p>我思考了一下可能应该是因为aop代理的缘故，<span style="color:#f33b45;"><strong>被调用方法 和 调用处的代码都处在同一个类，所以只是相当于本类调用，并没有使用代理类 从而@Async并没有产生效果。</strong></span></p> <p>&nbsp;</p> <p>于是我查询了一下资料，证实了我的想法，于是我把@Async 注解放到了工具类&nbsp;MailService 下</p> <p><img loading="lazy" decoding="async" alt="" class="has" height="116" src="http://img.555519.xyz/uploads/20230119/4fcb08ed9623e913b1b07539bcd8a142.jpg"></p> <p><img loading="lazy" decoding="async" alt="" class="has" height="1200" src="http://img.555519.xyz/uploads/20230119/4d158ec695ca5aa7377a65c6235a897d.jpg"></p> <p>&nbsp;</p> <p>修改了注解的添加位置后，接口调用明显速度加快了，成功！</p> <p>总结：</p> <p>失效原因<br /> 1.@SpringBootApplication启动类当中没有添加@EnableAsync注解。<br /> 2.异步方法使用注解@Async的返回值只能为void或者Future。<br /> 3.没有走Spring的代理类。因为@Transactional和@Async注解的实现都是基于Spring的AOP，而AOP的实现是基于动态代理模式实现的。那么注解失效的原因就很明显了，有可能因为调用方法的是对象本身而不是代理对象，因为没有经过Spring容器管理。</p> <p>&nbsp;</p> <p>解决方法:<br /> 这里具体说一下第三种情况的解决方法。<br /> 1.注解的方法必须是public方法。<br /> 2.方法一定要从另一个类中调用，也就是从类的外部调用，类的内部调用是无效的。<br /> 3.如果需要从类的内部调用，需要先获取其代理类。</p> <p>&nbsp;</p> <p>扩展阅读：</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/YoungLee16/article/details/88398045"  rel="nofollow">https://blog.csdn.net/YoungLee16/article/details/88398045</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/QYHuiiQ/article/details/85014983"  rel="nofollow">https://blog.csdn.net/QYHuiiQ/article/details/85014983</a></p> <p>&nbsp;</p> <div id="gtx-trans"> <div class="gtx-trans-icon">   &nbsp;  </div> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36031.htm">宠物粮原料（宠物粮种类）</a></p>
+                                        <p>下一个：<a href="/news/article-36488.htm">动物疫苗价格查询表图片及价格大全图（动物疫苗接种时间表）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-node-subscribe-links.htm" title="10月28日 | SingBox Github每天更新20M/S免费节点订阅链接">10月28日 | SingBox Github每天更新20M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-node-share-links.htm" title="12月23日 | SingBox每天更新19.8M/S免费节点链接地址分享">12月23日 | SingBox每天更新19.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-node-share.htm" title="12月13日 | SingBox Github每天更新21.8M/S免费节点订阅链接">12月13日 | SingBox Github每天更新21.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-18759.htm" title="猫掉毛最好的解决办法（猫掉毛最好的解决办法是什么）">猫掉毛最好的解决办法（猫掉毛最好的解决办法是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-30764.htm" title="宠物零食制作教程 宠物零食制作教程风干">宠物零食制作教程 宠物零食制作教程风干</a></li>
+                        <li class="py-2"><a href="/news/article-30290.htm" title="制狗粮的机器设备 制狗粮的机器设备是什么">制狗粮的机器设备 制狗粮的机器设备是什么</a></li>
+                        <li class="py-2"><a href="/news/article-19167.htm" title="关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数">关于reshape(-1,&#8230;)与view(-1,&#8230;)这两个改变张量shape的函数</a></li>
+                        <li class="py-2"><a href="/news/article-28400.htm" title="太原市免费领养狗狗（太原哪里可以免费领养狗狗）">太原市免费领养狗狗（太原哪里可以免费领养狗狗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-sing-hysteria-windows.htm" title="11月3日 | SingBox Github每天更新19M/S免费节点订阅链接">11月3日 | SingBox Github每天更新19M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
