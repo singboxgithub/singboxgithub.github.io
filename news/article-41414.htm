@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-41414.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Python 字典dict</title>
+        <meta name="description" content="描述 Python 字典(Dictionary)&nbsp;get()&nbsp;函数返回指定键的值。 语法 get()方法语法： dict.get(key[, value])  参数  key --" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Python 字典dict</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <hr/> <h2>描述</h2> <p>Python 字典(Dictionary)&nbsp;get()&nbsp;函数返回指定键的值。</p> <h2>语法</h2> <p>get()方法语法：</p> <pre>dict.get(key[, value]) </pre> <h2>参数</h2> <ul> <li>key -- 字典中要查找的键。</li> <li>value -- 可选，如果指定键的值不存在时，返回该默认值。</li> </ul> <h2>返回值</h2> <p>返回指定键的值，如果键不在字典中返回默认值&nbsp;<strong>None</strong>&nbsp;或者设置的默认值。</p> <h2>实例</h2> <p>以下实例展示了&nbsp;get()&nbsp;函数的使用方法：</p> <h2>实例</h2> <p>#!/usr/bin/python<br /> # -*- coding: UTF-8 -*-</p> <p> tinydict&nbsp;=&nbsp;{'Name':&nbsp;'Runoob',&nbsp;'Age':&nbsp;27}</p> <p> print&nbsp;("Age : %s"&nbsp;% &nbsp;tinydict.get('Age'))</p> <p> # 没有设置 Sex，也没有设置默认的值，输出 None<br /> print&nbsp;("Sex : %s"&nbsp;% &nbsp;tinydict.get('Sex'))&nbsp;&nbsp;</p> <p> # 没有设置 Salary，输出默认的值 &nbsp;0.0<br /> print&nbsp;('Salary: %s'&nbsp;% tinydict.get('Salary',&nbsp;0.0))</p> <p>以上实例输出结果为：</p> <pre>Age : 27 Sex : None Salary: 0.0</pre> <h3>get() 方法 Vs dict[key] 访问元素区别</h3> <p>get(key)&nbsp;方法在 key（键）不在字典中时，可以返回默认值&nbsp;<strong>None</strong>&nbsp;或者设置的默认值。</p> <p>dict[key]&nbsp;在 key（键）不在字典中时，会触发&nbsp;<strong>KeyError</strong>&nbsp;异常。</p> <h2>实例</h2> <p>&gt;&gt;&gt;&nbsp;runoob&nbsp;=&nbsp;{}<br /> &gt;&gt;&gt;&nbsp;print('URL: ',&nbsp;runoob.get('url'))&nbsp;&nbsp; &nbsp;&nbsp;# 返回 None<br /> URL: &nbsp;None</p> <p> &gt;&gt;&gt;&nbsp;print(runoob['url'])&nbsp;&nbsp; &nbsp;&nbsp;# 触发 KeyError<br /> Traceback&nbsp;(most recent call last):<br /> &nbsp; File&nbsp;"&lt;stdin&gt;",&nbsp;line&nbsp;1,&nbsp;in&nbsp;&lt;module&gt;<br /> KeyError:&nbsp;'url'<br /> &gt;&gt;&gt;</p> <h3>嵌套字典使用</h3> <p>get()&nbsp;方法对嵌套字典的使用方法如下：</p> <h2>实例</h2> <p>#!/usr/bin/python<br /> # -*- coding: UTF-8 -*-</p> <p> tinydict&nbsp;=&nbsp;{'RUNOOB'&nbsp;:&nbsp;{'url'&nbsp;:&nbsp;'www.runoob.com'}}</p> <p> res&nbsp;=&nbsp;tinydict.get('RUNOOB',&nbsp;{}).get('url')<br /> # 输出结果<br /> print("RUNOOB url 为 : &nbsp;%s"&nbsp;%&nbsp;str(res))</p> <p> &lt;p&gt;以上实例输出结果为：&lt;/p&gt;<br /> &lt;pre&gt;<br /> RUNOOB url 为 : &nbsp;www.runoob.com<br /> &lt;/pre&gt;</p> <p>//遍历键</p> <pre><code class="language-python">import random a=[random.randint(1,10) for i in range(10)] s=set(a) d=dict() for i in s:     d[i]=a.count(i) print(d)  print("print key:") for k in d.keys():     print(k,end=' ') print()  print("print value:") for v in d.values():     print(v,end=' ') print()  print("print(k,v):") for k,v in d.items():     print(k,":",v,end=',') print() #这个可能会出错 print(d[2]) #这个不会出错 print(d.get(2)) </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-40933.htm">宠物用品比较好的牌子（宠物用品排名榜）</a></p>
+                                        <p>下一个：<a href="/news/article-41415.htm">vuex数据共享与多模块化</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41415.htm" title="vuex数据共享与多模块化">vuex数据共享与多模块化</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接">12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-10-sing-box-node-share.htm" title="10月10日 | SingBox Github每天更新22.5M/S免费节点订阅链接">10月10日 | SingBox Github每天更新22.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-sing-box-github.htm" title="1月4日 | SingBox每天更新20.4M/S免费节点链接地址分享">1月4日 | SingBox每天更新20.4M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-sing-box-github.htm" title="11月27日 | SingBox Github每天更新18.2M/S免费节点订阅链接">11月27日 | SingBox Github每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-sing-box-node-windows.htm" title="12月11日 | SingBox Github每天更新20.4M/S免费节点订阅链接">12月11日 | SingBox Github每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-sing-hysteria-windows.htm" title="12月27日 | SingBox每天更新18M/S免费节点链接地址分享">12月27日 | SingBox每天更新18M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-28399.htm" title="宠物店从哪进货比较好（宠物店怎么拿货源）">宠物店从哪进货比较好（宠物店怎么拿货源）</a></li>
+                        <li class="py-2"><a href="/news/article-29327.htm" title="武汉宠物批发市场（武汉宠物批发市场有几个）">武汉宠物批发市场（武汉宠物批发市场有几个）</a></li>
+                        <li class="py-2"><a href="/news/article-37452.htm" title="动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）">动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-41415.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vuex数据共享与多模块化</title>
+        <meta name="description" content="数据共享 数据共享：相同数据在多组件中使用 vuex模块化 模块化+命名空间 目的： 让代码更好维护，让多种数据分类更加明确 修改store/index.js // 该文件是准备vuex的核心 ==&" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>vuex数据共享与多模块化</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4><a id="_0" rel="nofollow"></a>数据共享</h4> <p>数据共享：相同数据在多组件中使用<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/5e3a90d5f5183b94567ad47345a7ce25.jpg" alt="vuex数据共享与多模块化"></p> <h4><a id="vuex_3" rel="nofollow"></a>vuex模块化</h4> <h5><a id="_4" rel="nofollow"></a>模块化+命名空间</h5> <p><strong>目的：</strong> 让代码更好维护，让多种数据分类更加明确</p> <p>修改<code>store/index.js</code></p> <pre><code class="prism language-javascript"><span class="token comment">// 该文件是准备vuex的核心 ==&gt; store</span><span class="token comment">// 引入Vue核心库</span><span class="token keyword">import</span> Vue<span class="token keyword">from</span><span class="token string">"vue"</span><span class="token comment">// 引入Vuex</span><span class="token keyword">import</span> Vuex<span class="token keyword">from</span><span class="token string">'vuex'</span><span class="token comment">// 使用Vuex插件</span> Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span><span class="token comment">//count模块</span><span class="token keyword">const</span> countOptions<span class="token operator">=</span><span class="token punctuation">{<!-- --></span> 	namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 开启命名空间</span> 	actions<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	mutations<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	state<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	getters<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">//person模块</span><span class="token keyword">const</span> personOptions<span class="token operator">=</span><span class="token punctuation">{<!-- --></span> 	namespaced<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">// 开启命名空间</span> 	actions<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	mutations<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	state<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">,</span> 	getters<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment">// 创建并暴露store</span><span class="token keyword">export</span><span class="token keyword">default</span><span class="token keyword">new</span><span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> 	modules<span class="token operator">:</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 声明模块</span> 		countAbout<span class="token operator">:</span>countOptions<span class="token punctuation">,</span> 		personAbout<span class="token operator">:</span>personOptions<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> <p>1）开启命名空间后，组件中读取<code>state</code>数据</p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接读取</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>personAbout<span class="token punctuation">.</span>personList<span class="token comment">//方式二：借助mapState读取</span><span class="token operator">...</span><span class="token function">mapState</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'sum'</span><span class="token punctuation">,</span><span class="token string">'school'</span><span class="token punctuation">,</span><span class="token string">'subject'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre> <p>2）开启命名空间后，组件中读取<code>getters</code>数据</p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接读取</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>getters<span class="token punctuation">[</span><span class="token string">'personAbout/firstPersonName'</span><span class="token punctuation">]</span><span class="token comment">//方式二：借助mapGetters读取</span><span class="token operator">...</span><span class="token function">mapGetters</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">'bigSum'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre> <p>3）开启命名空间后，组件中调用<code>dispatch</code></p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接dispatch</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'personAbout/addPersonWang'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span><span class="token comment">//方式二：借助mapActions</span><span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>incrementOdd<span class="token operator">:</span><span class="token string">'plusOdd'</span><span class="token punctuation">,</span>incrementWait<span class="token operator">:</span><span class="token string">'plusWait'</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> <p>4）开启命名空间后，组件中调用<code>commit</code></p> <pre><code class="prism language-javascript"><span class="token comment">//方式一： 自己直接commit</span><span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span><span class="token string">'personAbout/ADD_PERSON'</span><span class="token punctuation">,</span>person<span class="token punctuation">)</span><span class="token comment">//方式二：借助mapMutations</span><span class="token operator">...</span><span class="token function">mapActions</span><span class="token punctuation">(</span><span class="token string">'countAbout'</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span>increment<span class="token operator">:</span><span class="token string">'PLUS'</span><span class="token punctuation">,</span>decrement<span class="token operator">:</span><span class="token string">'MINUS'</span><span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41414.htm">Python 字典dict</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-sing-box-node-share.htm" title="11月15日 | SingBox Github每天更新18.6M/S免费节点订阅链接">11月15日 | SingBox Github每天更新18.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-sing-box-node-share.htm" title="11月10日 | SingBox Github每天更新20.5M/S免费节点订阅链接">11月10日 | SingBox Github每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34099.htm" title="宠物粮食品牌前十名排名图片及价格（宠物粮种类）">宠物粮食品牌前十名排名图片及价格（宠物粮种类）</a></li>
+                        <li class="py-2"><a href="/news/article-32670.htm" title="宠物粮食店名称大全四个字怎么取（宠物粮创意名字）">宠物粮食店名称大全四个字怎么取（宠物粮创意名字）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-sing-box-github.htm" title="12月22日 | SingBox每天更新18.2M/S免费节点链接地址分享">12月22日 | SingBox每天更新18.2M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-node-subscribe-links.htm" title="1月7日 | SingBox每天更新18.4M/S免费节点链接地址分享">1月7日 | SingBox每天更新18.4M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-32203.htm" title="docker离线配置安装">docker离线配置安装</a></li>
+                        <li class="py-2"><a href="/news/article-28399.htm" title="宠物店从哪进货比较好（宠物店怎么拿货源）">宠物店从哪进货比较好（宠物店怎么拿货源）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21917.htm" title="Golang错误处理机制（error 与 panic）">Golang错误处理机制（error 与 panic）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
