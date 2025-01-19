@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-42912.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>flex布局，解决最后一排数量不够自动向两端对齐的问题（适合所有列的布局：3列、4列、5列等等）推荐使用！</title>
+        <meta name="description" content="适合所有列的布局：3 、 4、 5 、 6列 .....  网上其他网友说的解决方法大概是：添加几个空的item，这种虽然也行，但是不太灵活吧。。。  （推荐）最佳解决方案： &lt;view cla" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-42912.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="flex布局，解决最后一排数量不够自动向两端对齐的问题（适合所有列的布局：3列、4列、5列等等）推荐使用！" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/7082db2cbffb1697b7c755f343496cc5.webp" />
+        <meta property="og:release_date" content="2025-01-19T07:10:05" />
+    <meta property="og:updated_time" content="2025-01-19T07:10:05" />
+        <meta property="og:description" content="适合所有列的布局：3 、 4、 5 、 6列 .....  网上其他网友说的解决方法大概是：添加几个空的item，这种虽然也行，但是不太灵活吧。。。  （推荐）最佳解决方案： &lt;view cla" />
+        
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>flex布局，解决最后一排数量不够自动向两端对齐的问题（适合所有列的布局：3列、4列、5列等等）推荐使用！</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3><strong>适合所有列的布局：</strong><span style="color:#f33b45;">3 、 4、 5 、 6列 .....</span></h3> <blockquote> <p>网上其他网友说的解决方法大概是：<span style="color:#7c79e5;"><u>添加几个空的item，这种虽然也行，但是不太灵活吧。。。</u></span></p> </blockquote> <p><strong><span style="color:#f33b45;">（推荐）</span>最佳解决方案：</strong></p> <pre class="has"><code class="language-html">&lt;view class="v1-box"&gt;     &lt;block v-for="(item,index) in 11" :key="index"&gt;         &lt;view class="v1-box-item"&gt;             {<!-- -->{index}}         &lt;/view&gt;     &lt;/block&gt; &lt;/view&gt;</code></pre> <pre class="has"><code class="language-css">&lt;style lang="scss" scoped&gt;     .v1-box {         /**          * 最外层的盒子          * padding值中的第二个参数(6rpx)是右边距，为什么是6呢？          * 因为盒子的左边距的值是(30rpx)，然后盒子的右边距的值要与子元素中的左右间距的值(24rpx)相减，最后得到6rpx，这样看起来的效果 盒子左右两边的间距就是一样的了          */         padding: 20rpx 6rpx 20rpx 30rpx;          width: 100%;         display: flex;         flex-wrap: wrap;         justify-content: space-between;          .v1-box-item {             /**              * 部分关键代码说明              * 1、margin-right的值(24rpx) 和 width中的值(24rpx) 要设置成一样值，这是每个子元素的左右间距              * 2、每个子元素的宽度是动态计算的，如果你的列是3列，那么width中最后两个的值也像这deme一样设置成3，如果是4列，那就修改成4...               * 3、margin-bottom是每个子元素的上下间距              */             margin-right: 24rpx;             width: calc((100% - 24rpx * 3) / 3);             margin-bottom: 30rpx; 			 			             /* 底下这部分不是很关键 */             height: 140rpx;             background-color: #FFFFFF;             border-radius: 10rpx;             box-shadow: 4rpx 4rpx 4rpx $u-tips-color;             display: flex;             align-items: center;             justify-content: center;         }     }      // 给最外层的盒子添加伪元素，列不满则左对齐     .v1-box:after {         content: "";         flex: auto;     } &lt;/style&gt;</code></pre> <p>ps：如果没有用scss的写法，可以把子元素类（.v1-box-item）的样式放到外面去就好～</p> <p><strong>3列布局的效果图：</strong></p> <p><img fetchpriority="high" decoding="async" alt="" height="261" src="http://img.555519.xyz/uploads3/20220610/8a26eefefadf7b2e17df52415e116933.jpg"><img decoding="async" alt="" height="264" src="http://img.555519.xyz/uploads3/20220610/85a8ce90a0f120f7e72d344567f375d8.jpg"></p> <p><strong>4列布局的效果图：</strong></p> <p><img decoding="async" alt="" height="202" src="http://img.555519.xyz/uploads3/20220610/4e3574435ba294719bb9d2567fb361d5.jpg"><img loading="lazy" decoding="async" alt="" height="200" src="http://img.555519.xyz/uploads3/20220610/83972d821509ecf1de9e7b6b2dd3604b.jpg"></p> <p><strong>5列布局的效果图：</strong></p> <p><img loading="lazy" decoding="async" alt="" height="202" src="http://img.555519.xyz/uploads3/20220610/109e5defc7efabb835c474954dc9ff23.jpg"><strong></strong><img loading="lazy" decoding="async" alt="" height="203" src="http://img.555519.xyz/uploads3/20220610/cc16b5b78012fa57357ec779923f7936.jpg"></p> <p>觉的还可以的，那就点个赞吧～～</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42404.htm">宠物领养协议是否有法律效力要求呢英语（宠物领养协议有法律效力吗）</a></p>
+                                        <p>下一个：<a href="/news/article-42913.htm">node.js &#8211; 包、express</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-22-sing-box-node-share.htm" title="10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接">10月22日 | SingBox Github每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-node-subscribe-links.htm" title="10月26日 | SingBox Github每天更新19.3M/S免费节点订阅链接">10月26日 | SingBox Github每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-free-node-subscribe.htm" title="12月24日 | SingBox每天更新22.9M/S免费节点链接地址分享">12月24日 | SingBox每天更新22.9M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-sing-box-node-github.htm" title="1月17日 | SingBox每天更新22.7M/S免费节点链接地址分享">1月17日 | SingBox每天更新22.7M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-sing-box-node.htm" title="11月25日 | SingBox Github每天更新19.3M/S免费节点订阅链接">11月25日 | SingBox Github每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38945.htm" title="宠物领养平台app推荐下载苹果版（宠物领养平台app推荐下载苹果版）">宠物领养平台app推荐下载苹果版（宠物领养平台app推荐下载苹果版）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-sing-box-github.htm" title="1月5日 | SingBox每天更新18.7M/S免费节点链接地址分享">1月5日 | SingBox每天更新18.7M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-21454.htm" title="百度沸点小说榜单(百度沸点年度十大小说)">百度沸点小说榜单(百度沸点年度十大小说)</a></li>
+                        <li class="py-2"><a href="/news/article-19169.htm" title="猫咪抓伤出血伤口红肿怎么办（猫咪抓伤后伤口红肿）">猫咪抓伤出血伤口红肿怎么办（猫咪抓伤后伤口红肿）</a></li>
+                        <li class="py-2"><a href="/news/article-33142.htm" title="宠物粮品牌名称及图片大全集（宠物粮品牌起名字）">宠物粮品牌名称及图片大全集（宠物粮品牌起名字）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
