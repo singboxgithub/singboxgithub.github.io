@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-45387.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Java Web实现用户登录功能</title>
+        <meta name="description" content="java web 学习记录一下   mvc结构实现mysql 连接   什么是mvc  MVC是模型（model)、视图（view)、控制（controller）这三个单词上的首字母组成。它是一种应用" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-45387.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="Java Web实现用户登录功能" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/a873cf3d3445964abdc0a307cabd3f13.webp" />
+        <meta property="og:release_date" content="2025-01-24T09:27:33" />
+    <meta property="og:updated_time" content="2025-01-24T09:27:33" />
+        <meta property="og:description" content="java web 学习记录一下   mvc结构实现mysql 连接   什么是mvc  MVC是模型（model)、视图（view)、控制（controller）这三个单词上的首字母组成。它是一种应用" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java Web实现用户登录功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+                        <a href="/">
+                <p class="logo me-auto">SingBox <span>Github</span></p>
+            </a>
+                        <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Java Web实现用户登录功能</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2 id="java-web-学习记录一下">java web 学习记录一下</h2> <ul> <li> <p>mvc结构实现mysql 连接</p> </li> <li> <p>什么是mvc</p> <ul> <li>MVC是模型（model)、视图（view)、控制（controller）这三个单词上的首字母组成。它是一种应用模型，它的目的是实现Web系统的职能分工。避免all in one 所有代码全部写在一个文件里的一种分工模型。</li> </ul> </li> <li> <p>实现简单登录功能</p> <ul> <li>登录成功，进入sccess.jsp界面，失败返回首页，并输出密码错误</li> </ul> </li> </ul> <h2 id="数据库简单编写">数据库简单编写</h2> <ul> <li>创建数据库</li> </ul> <pre><code>create database student;</code></pre> <ul> <li>创建表</li> </ul> <pre><code>create table tbl_user(     userId   varchar(11)  not null         primary key,     passWord varchar(255) not null );</code></pre> <ul> <li>导入数据</li> </ul> <pre><code>insert into tbl_user (userId,passWord) values ('admin','1234'); insert into tbl_user (userId,passWord) values ('张三','1234');</code></pre> <h2 id="idea上准备工作">idea上准备工作</h2> <ul> <li>创建一个干净的meavn项目</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e77b411755ef6c8a70703021a955762a.jpg" alt="Java Web实现用户登录功能"></p> <ul> <li>把该项目添加web项目</li> </ul> <h2 id="导入依赖">导入依赖</h2> <ul> <li>junit 是为了便于测试</li> <li>其他是一些基础包 <ul> <li>mysql 连接数据库</li> <li>servlet-api servlet服务</li> <li>jsp-api</li> <li>jstl 写el表达式</li> </ul> </li> </ul> <pre><code>&lt;dependencies&gt;         &lt;dependency&gt;             &lt;groupId&gt;mysql&lt;/groupId&gt;             &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;             &lt;version&gt;8.0.27&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;javax.servlet&lt;/groupId&gt;             &lt;artifactId&gt;servlet-api&lt;/artifactId&gt;             &lt;version&gt;2.5&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;javax.servlet.jsp&lt;/groupId&gt;             &lt;artifactId&gt;jsp-api&lt;/artifactId&gt;             &lt;version&gt;2.2.1-b02&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;javax.servlet&lt;/groupId&gt;             &lt;artifactId&gt;jstl&lt;/artifactId&gt;             &lt;version&gt;1.2&lt;/version&gt;         &lt;/dependency&gt;         &lt;dependency&gt;             &lt;groupId&gt;junit&lt;/groupId&gt;             &lt;artifactId&gt;junit&lt;/artifactId&gt;             &lt;version&gt;4.11&lt;/version&gt;         &lt;/dependency&gt;     &lt;/dependencies&gt;</code></pre> <h2 id="连接数据库">连接数据库</h2> <ul> <li>使用idea连接本地数据库<br /><img decoding="async" src="https://img2020.cnblogs.com/blog/2659401/202112/2659401-20211204222234673-949914038.png" alt="Java Web实现用户登录功能"></li> </ul> <h2 id="编写实体类user">编写实体类User</h2> <pre><code>public class User {     private String userId;     private String passWord;     public String getUserId() {         return userId;     }     public void setUserId(String userId) {         this.userId = userId;     }     public String getPassWord() {         return passWord;     }     public void setPassWord(String passWord) {         this.passWord = passWord;     } }</code></pre> <h2 id="userdao层接口">UserDao层接口</h2> <pre><code>public interface UserDao {     public boolean getUser(String userID,String userPassWord); }</code></pre> <h2 id="userdaoimpl实现类">UserDaoImpl实现类</h2> <pre><code>public class UserDaoImpl implements UserDao{      private String driver = "com.mysql.cj.jdbc.Driver";     private String url = "jdbc:mysql://localhost:3306/student";     private String root = "root";     private String password = "123456";      @Override     public boolean getUser(String userID,String userPassWord) {         boolean flag = false;         Connection conn = null;         PreparedStatement pstm = null;         ResultSet rs = null;         String sql = "select * from tbl_user where userId = ? and passWord = ?";         try {             Class.forName(driver);             conn = DriverManager.getConnection(url,root,password);             pstm = conn.prepareStatement(sql);             pstm.setString(1,userID);             pstm.setString(2,userPassWord);             rs = pstm.executeQuery();             if(rs.next()){                 flag = true;             }         } catch (Exception e) {             e.printStackTrace();         }finally{             try {                 rs.close();                 pstm.close();                 conn.close();             } catch (SQLException throwables) {                 throwables.printStackTrace();             }         }         return flag;     } }</code></pre> <h2 id="userservice层接口">UserService层接口</h2> <pre><code>public interface UserService {      public boolean Login(String userId,String userPassWord); }</code></pre> <h2 id="userserviceimpl实现类">UserServiceImpl实现类</h2> <pre><code>public class UserServiceImpl implements UserService{     @Override     public boolean Login(String userId, String userPassWord) {         boolean flag = false;         UserDao userDao = new UserDaoImpl();         flag = userDao.getUser(userId,userPassWord);         return flag;     } }</code></pre> <h2 id="编写loginservlet服务层">编写LoginServlet服务层</h2> <pre><code>public class LoginServlet extends HttpServlet {     @Override     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {          boolean flag = false;         String userId = req.getParameter("userName");         String userPassWord = req.getParameter("userPassWord");         UserService userService = new UserServiceImpl();         flag = userService.Login(userId,userPassWord);         if(flag){             User user = new User();             user.setUserId(userId);             user.setPassWord(userPassWord);             req.getSession().setAttribute("user",user);             resp.sendRedirect("jsp/success.jsp");         }else{             req.setAttribute("msg","用户错误");             req.getRequestDispatcher("login.jsp").forward(req,resp);         }      }     @Override     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {         doGet(req, resp);     } }</code></pre> <h2 id="配置webxml文件">配置web.xml文件</h2> <ul> <li>servlet3.0之后可以使用注解，不用配置这个文件，但是是初学者，还是先学会配置web.xml文件</li> </ul> <pre><code>&lt;servlet&gt;         &lt;servlet-name&gt;loginServlet&lt;/servlet-name&gt;         &lt;servlet-class&gt;com.hjk.servlet.LoginServlet&lt;/servlet-class&gt;     &lt;/servlet&gt;     &lt;servlet-mapping&gt;         &lt;servlet-name&gt;loginServlet&lt;/servlet-name&gt;         &lt;url-pattern&gt;/login&lt;/url-pattern&gt;     &lt;/servlet-mapping&gt;</code></pre> <h2 id="编写loginjsp-界面">编写login.jsp 界面</h2> <ul> <li>简单的写了一下，一个表单的提交功能</li> </ul> <pre><code>&lt;form action="login" method="post"&gt;     &lt;table&gt;         &lt;tr&gt;&lt;span style="color: aquamarine"&gt;${requestScope.msg}&lt;/span&gt;&lt;/tr&gt;         &lt;tr&gt;             &lt;td&gt;用户名：&lt;/td&gt;&lt;td&gt;&lt;input type="text" name="userName"/&gt;&lt;/td&gt;         &lt;/tr&gt;         &lt;tr&gt;             &lt;td&gt;密码&lt;/td&gt;&lt;td&gt;&lt;input type="password" name="userPassWord"/&gt;&lt;/td&gt;         &lt;/tr&gt;         &lt;tr&gt;             &lt;td&gt;&lt;/td&gt;             &lt;td&gt;             &lt;input type="submit" value="submit"/&gt;             &lt;input type="reset" value="reset"&gt;             &lt;/td&gt;         &lt;/tr&gt;     &lt;/table&gt; &lt;/form&gt;</code></pre> <ul> <li>写一个登录成功界面sccess.jsp<br /> -这个文件在web问价夹下面，本来想写一个拦截器，没有登录不能直接访问后面的界面，现在还没有写</li> </ul> <pre><code>&lt;h1&gt;&lt;span style="text-align: center"&gt;&lt;span style="color: deeppink" &gt;欢迎您，${sessionScope.user.userId}登录成功&lt;/span&gt;&lt;/span&gt;&lt;/h1&gt;</code></pre> <ul> <li>如果登录失败就返回登录界面</li> </ul> <h3 id="idea默认会先访问indexjsp界面这里在webxml配置一下让他直接访问loginjsp">idea默认会先访问index.jsp界面，这里在web.xml配置一下，让他直接访问login.jsp</h3> <pre><code>    &lt;welcome-file-list&gt;         &lt;welcome-file&gt;/login.jsp&lt;/welcome-file&gt;     &lt;/welcome-file-list&gt;</code></pre> <h4 id="已经可以登录了但是还是存在中文乱码编写一个过滤器characterencoding让它处理中文乱码">已经可以登录了，但是还是存在中文乱码，编写一个过滤器CharacterEncoding，让它处理中文乱码</h4> <ul> <li>这个包必须导入<code>import javax.servlet.*;</code></li> </ul> <pre><code>public class CharacterEncoding implements Filter {     @Override     public void init(FilterConfig filterConfig) throws ServletException {      }      @Override     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {          servletRequest.setCharacterEncoding("utf-8");         servletRequest.setCharacterEncoding("utf-8"); 		//不执行filterChain就会一直卡在这里，相当于一直拦截         filterChain.doFilter(servletRequest,servletResponse);     }      @Override     public void destroy() {      } }</code></pre> <ul> <li>为过滤文件配置web.xml</li> </ul> <pre><code>    &lt;filter&gt;         &lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;         &lt;filter-class&gt;com.hjk.filter.CharacterEncoding&lt;/filter-class&gt;     &lt;/filter&gt;     &lt;filter-mapping&gt;         &lt;filter-name&gt;characterEncoding&lt;/filter-name&gt;         &lt;url-pattern&gt;/*&lt;/url-pattern&gt;     &lt;/filter-mapping&gt;</code></pre> <h2 id="结果展示">结果展示</h2> <ul> <li> <p>初始界面<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/90887e69e2604fa8e26275c8e1f6a43a.jpg" alt="Java Web实现用户登录功能"></p> </li> <li> <p>登录失败界面<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/62c4de15d39fbf6c5473a79ca1653e18.jpg" alt="Java Web实现用户登录功能"></p> </li> <li> <p>登录成功；不加过滤器张山是不能登录成功的</p> </li> <li> <p>admin<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/db41477a0a0085d1a2b791abc91f9c98.jpg" alt="Java Web实现用户登录功能"></p> </li> <li> <p>张三<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/a32f42034e74fa1eff0f57985a9b91a0.jpg" alt="Java Web实现用户登录功能"></p> </li> </ul> <h3 id="文件的整体结构">文件的整体结构</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/3fbe56eafa2f7f652f3bd43928adc9ac.jpg" alt="Java Web实现用户登录功能"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/fec397a157f4cbb88e306c10b59ccce4.jpg" alt="Java Web实现用户登录功能"></p> <h2 id="一些注意点">一些注意点</h2> <ul> <li>导包的时候一定要到对</li> <li>idea有可能在测试的时候没有lib包这个时候需要自己添加lib问价夹，并且把相应的依赖都添加进去</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6eed8f8ccfb08a2401bd923e1bf7ed99.jpg" alt="Java Web实现用户登录功能"></p> <ul> <li>服务器报404 一般是路径错误（比较好解决）</li> <li>500 可能是一些代码错误，或者jar没到入</li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44897.htm">小型饲料颗粒机500元160型 小型饲料颗粒机500元视频</a></p>
+                                        <p>下一个：<a href="/news/article-45388.htm">宠物猫多贵（宠物猫贵的品种）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25150.htm" title="PHP对象序列化">PHP对象序列化</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-sing-box-github.htm" title="1月22日 | SingBox每天更新19.3M/S免费节点链接地址分享">1月22日 | SingBox每天更新19.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-sing-hysteria-windows.htm" title="11月17日 | SingBox Github每天更新20.6M/S免费节点订阅链接">11月17日 | SingBox Github每天更新20.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-sing-box-node.htm" title="10月19日 | SingBox Github每天更新20.7M/S免费节点订阅链接">10月19日 | SingBox Github每天更新20.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30763.htm" title="MySQL分组统计-每组各个条件信息条数">MySQL分组统计-每组各个条件信息条数</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-27004.htm" title="家猫轻微抓伤（家猫轻微抓伤没有出血用不用打疫苗）">家猫轻微抓伤（家猫轻微抓伤没有出血用不用打疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-latest-sing-box-node.htm" title="12月5日 | SingBox Github每天更新21.6M/S免费节点订阅链接">12月5日 | SingBox Github每天更新21.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-sing-box-node-windows.htm" title="11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接">11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接">12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
