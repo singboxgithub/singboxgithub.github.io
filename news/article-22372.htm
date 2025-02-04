@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://singboxgithub.github.io/news/article-22372.htm" />
@@ -8,16 +8,44 @@
     <title>Go_error处理及panic、recover使用的正确姿势</title>
         <meta name="description" content="异常 异常就是程序出现了不正常的情况，会导致程序非正常停止，而异常处理就是针对非正常停止的情况，给出异常时的处理方式。语法错误不算异常体系中  error：   error是一个接口，作用是返回程序异" />
         <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-22372.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="Go_error处理及panic、recover使用的正确姿势" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/b56b928ac2e5a864192be8a1ea1f09f9.webp" />
+        <meta property="og:release_date" content="2024-12-07T10:21:31" />
+    <meta property="og:updated_time" content="2024-12-07T10:21:31" />
+        <meta property="og:description" content="异常 异常就是程序出现了不正常的情况，会导致程序非正常停止，而异常处理就是针对非正常停止的情况，给出异常时的处理方式。语法错误不算异常体系中  error：   error是一个接口，作用是返回程序异" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Go_error处理及panic、recover使用的正确姿势">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
-    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -85,16 +113,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-29803.htm" title="动物疫苗行业介绍ppt（动物疫苗行业介绍）">动物疫苗行业介绍ppt（动物疫苗行业介绍）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-5-latest-sing-box-node.htm" title="12月5日 | SingBox Github每天更新21.6M/S免费节点订阅链接">12月5日 | SingBox Github每天更新21.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-21919.htm" title="动物疫苗注射方法视频讲解 动物疫苗注射方法视频讲解教程">动物疫苗注射方法视频讲解 动物疫苗注射方法视频讲解教程</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-29-sing-box-node.htm" title="12月29日 | SingBox每天更新19.7M/S免费节点链接地址分享">12月29日 | SingBox每天更新19.7M/S免费节点链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-2-sing-hysteria-windows.htm" title="11月2日 | SingBox Github每天更新18M/S免费节点订阅链接">11月2日 | SingBox Github每天更新18M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-27-node-share.htm" title="8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接">8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-6-sing-box-node-share.htm" title="8月6日 | SingBox Github每天更新22.6M/S免费节点订阅链接">8月6日 | SingBox Github每天更新22.6M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-33142.htm" title="宠物粮品牌名称及图片大全集（宠物粮品牌起名字）">宠物粮品牌名称及图片大全集（宠物粮品牌起名字）</a></li>
-                        <li class="py-2"><a href="/news/article-31191.htm" title="人用疫苗和兽用疫苗（人用疫苗和兽用疫苗一样吗）">人用疫苗和兽用疫苗（人用疫苗和兽用疫苗一样吗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-24-sing-box-node-share.htm" title="8月24日 | SingBox Github每天更新21.4M/S免费节点订阅链接">8月24日 | SingBox Github每天更新21.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-sing-box-node-windows.htm" title="12月11日 | SingBox Github每天更新20.4M/S免费节点订阅链接">12月11日 | SingBox Github每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-41908.htm" title="给动物注射疫苗属于主动免疫嘛（给动物接种疫苗的目的是治疗疾病）">给动物注射疫苗属于主动免疫嘛（给动物接种疫苗的目的是治疗疾病）</a></li>
+                        <li class="py-2"><a href="/news/article-27003.htm" title="济南宠物领养中心在哪个位置 济南宠物领养中心在哪个位置啊">济南宠物领养中心在哪个位置 济南宠物领养中心在哪个位置啊</a></li>
+                        <li class="py-2"><a href="/news/article-48855.htm" title="动物打防疫针运输（动物打防疫针运输安全吗）">动物打防疫针运输（动物打防疫针运输安全吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-subscribe-node.htm" title="11月21日 | SingBox Github每天更新19.6M/S免费节点订阅链接">11月21日 | SingBox Github每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26535.htm" title="Java程序查找数字的偶数因数之和">Java程序查找数字的偶数因数之和</a></li>
+                        <li class="py-2"><a href="/news/article-25608.htm" title="三国杀武将台词语音包下载（三国杀角色台词语音）">三国杀武将台词语音包下载（三国杀角色台词语音）</a></li>
+                        <li class="py-2"><a href="/news/article-43921.htm" title="人工被动免疫接种的物质为（人工被动免疫注射的是）">人工被动免疫接种的物质为（人工被动免疫注射的是）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-3-free-node-subscribe-links.htm" title="12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接">12月3日 | SingBox Github每天更新20.4M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-node-subscribe-links.htm" title="11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接">11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -106,22 +134,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

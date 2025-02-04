@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-50875.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>js下拉列表二级联动</title>
+        <meta name="description" content="&nbsp;学了JS也有一段时间了，今天把JS中较为重要的下拉列表二级联动记录一下。所谓二级联动，就是要通过一个下拉列表的选择从而在另一个select下拉列表中显示出对应的数据。好比我有两个下拉列表，" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-50875.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="js下拉列表二级联动" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/3018233dd8035e0ccccd1211e16172d9.webp" />
+        <meta property="og:release_date" content="2025-02-04T00:26:46" />
+    <meta property="og:updated_time" content="2025-02-04T00:26:46" />
+        <meta property="og:description" content="&nbsp;学了JS也有一段时间了，今天把JS中较为重要的下拉列表二级联动记录一下。所谓二级联动，就是要通过一个下拉列表的选择从而在另一个select下拉列表中显示出对应的数据。好比我有两个下拉列表，" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="js下拉列表二级联动">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>js下拉列表二级联动</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp;学了JS也有一段时间了，今天把JS中较为重要的下拉列表二级联动记录一下。所谓二级联动，就是要通过一个下拉列表的选择从而在另一个select下拉列表中显示出对应的数据。好比我有两个下拉列表，第一列表是选择省份，那么我选择某一个省份，那么另一个列表也会对应显示该省份的城市。</p> <p><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220902/38495dc83803b4841b961668321b567c.jpg"><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220902/30bb5f11f58e6d3068f0a1aa3e79d58e.jpg"></p> <p>&nbsp;如上图所示，我选择了河北省，那么对应的城市列表中就会出现相应的城市。代码如下:</p> <p>js:</p> <pre class="has"><code class="language-javascript">cities = new Object(); cities['河北省']=new Array('石家庄', '张家口市', '承德市', '秦皇岛市', '唐山市', '廊坊市', '保定市', '沧州市', '衡水市', '邢台市', '邯郸市'); cities['山西省']=new Array('太原市', '大同市', '朔州市', '阳泉市', '长治市', '晋城市', '忻州地区', '吕梁地区', '晋中市', '临汾地区', '运城地区');  function set_city(province, city) {     var pv, cv;     var i, ii;      pv=province.value;     cv=city.value;      city.length=1;      if(pv=='0') return;     if(typeof(cities[pv])=='undefined') return;      for(i=0; i&lt;cities[pv].length; i++)     {        ii = i+1;        city.options[ii] = new Option();        city.options[ii].text = cities[pv][i];        city.options[ii].value = cities[pv][i];     }  }</code></pre> <p>jsp:</p> <pre class="has"><code class="language-html">&lt;form name="form1" action="" method="get"&gt;     &lt;select name="province" onChange="set_city(this, this.form.city);"&gt;     &lt;option value="0"&gt;选择省&lt;/option&gt;     &lt;option value="河北省"&gt;河北省&lt;/option&gt;     &lt;option value="山西省"&gt;山西省&lt;/option&gt;     &lt;/select&gt;     &lt;select   name="city" id="citys"&gt;     &lt;option value="0"&gt;选择城市&lt;/option&gt;     &lt;/select&gt; &lt;/form&gt;</code></pre> <p>&nbsp;还有一个案例是关于商品分类的问题，这个多用于网上购物方面。</p> <p><img decoding="async" alt="" class="has" src="http://img.555519.xyz/uploads3/20220902/19b317280f57a2389aa6ba01bf46186a.jpg"></p> <pre class="has"><code class="language-html">1 整机 	15 笔记本  	16 笔记本配件   	17 台式机  	18 服务器  	19 服务器配件   	20 工作站  	21 小型机  	22 移动PC  	23 平板电脑   	24 网络电脑  2 数码产品 	  	25 数据相机  	26 MP3 	27 便携式DVD  	28 数码学习机  	29 数码摄像头  	30 数码相机伴侣  	31 MD播放器 	32 滤镜镜头  	33 多媒体硬盘播放 3 无线网  	34 无线上网卡  	35 无线网卡 4 配件 	36 CPU  	37 内存  	38 主板 5 耗材 	40 墨盒  	41 纸张  6 软件 	42 操作系统  	43 办公软件  	44 杀毒软件 7 语音视频 	45 视频会议  	46 视频卡 8 办公设备 	47 投影机  	48 打印机  	49 扫描仪 9 网络设备 	50 交换机  	51 集线器 10 机房布线 	52 测试仪  	53 机房空调 11 移动存储 	54 闪存卡 	55 移动硬盘 12 通讯设备 	56 手机  	57 电话机 13 显示设备 	58 液晶显示器  	59 CRT显示器 14 其他 	60 游戏机 	61 电池 	62 音响</code></pre> <p>附上数据。</p> <p>HTML:</p> <pre class="has"><code class="language-html">&lt;form name="frmProduct"&gt; ......&lt;br&gt; 商品大类: &lt;select name="sltParent" id="sltParent" onChange="ss()"&gt;     &lt;option value="0"&gt;--选择大类--&lt;/option&gt;     &lt;option value="1"&gt;--整机--&lt;/option&gt;     &lt;option value="2"&gt;--数码产品--&lt;/option&gt;     &lt;option value="3"&gt;--无线网--&lt;/option&gt;     &lt;option value="4"&gt;--配件--&lt;/option&gt;     &lt;option value="5"&gt;--耗材--&lt;/option&gt;     &lt;option value="6"&gt;--软件--&lt;/option&gt;     &lt;option value="7"&gt;--语音视频--&lt;/option&gt;     &lt;option value="8"&gt;--办公设备--&lt;/option&gt;     &lt;option value="9"&gt;--网络设备--&lt;/option&gt;     &lt;option value="10"&gt;--机房布线--&lt;/option&gt;     &lt;option value="11"&gt;--移动存储--&lt;/option&gt;     &lt;option value="12"&gt;--通讯设备--&lt;/option&gt;     &lt;option value="13"&gt;--显示设备--&lt;/option&gt;     &lt;option value="14"&gt;--其他--&lt;/option&gt; &lt;/select&gt;  商品子类: &lt;select name="sltSub" id="sltSub" onChange="ss2()"&gt; &lt;option value=""&gt;--选择子类--&lt;/option&gt; &lt;/select&gt; &lt;br&gt;...... &lt;input type="button" onClick="showSele()" value="提交"/&gt; &lt;/form&gt;</code></pre> <p>JS:</p> <pre class="has"><code class="language-javascript">&lt;script type="text/javascript"&gt;</code></pre> <pre class="has"><code class="language-javascript">//使用数组存储数据 var agoods1=new Array('请选择','整机','数码产品','无线网','配件','耗材','软件','语音视频','办公设备','网络设备','机房布线','移动存储','通讯设备','显示设备','其他'); var agoods2=new Array('--选择子类--','笔记本','笔记本配件','台式机','服务器','服务器配件','工作站','小型机','移动PC','平板电脑','网络电脑','数据相机','MP3','便携式DVD','数码学习机','数码摄像头','数码相机伴侣','MD播放器','滤镜镜头','多媒体硬盘播放','无线上网卡','无线网卡','CPU','内存','主板',' ','墨盒','纸张','操作系统', '办公软件','杀毒软件','视频会议','视频卡','投影机','打印机','扫描仪','交换机','集线器','测试仪','机房空调','闪存卡','移动硬盘','手机','电话机','液晶显示器','CRT显示器','游戏机','电池','音响');</code></pre> <pre class="has"><code class="language-javascript">//声明一个arrayGoods对应，这个对象在new的时候指向一个数组，可通过arrayGoodsP['i']找到对应数组  var arrayGoodsP=new Object(); arrayGoodsP['1']=new Array('--选择子类--','15','16','17','18','19','20','21','22','23','24'); arrayGoodsP['2']=new Array('--选择子类--','25','26','27','28','29','30','31','32','33'); arrayGoodsP['3']=new Array('--选择子类--','34','35'); arrayGoodsP['4']=new Array('--选择子类--','36','37','38'); arrayGoodsP['5']=new Array('--选择子类--','40','41'); arrayGoodsP['6']=new Array('--选择子类--','42','43','44'); arrayGoodsP['7']=new Array('--选择子类--','45','46'); arrayGoodsP['8']=new Array('--选择子类--','47','48','49'); arrayGoodsP['9']=new Array('--选择子类--','50','51'); arrayGoodsP['10']=new Array('--选择子类--','52','53'); arrayGoodsP['11']=new Array('--选择子类--','54','55'); arrayGoodsP['12']=new Array('--选择子类--','56','57'); arrayGoodsP['13']=new Array('--选择子类--','58','59'); arrayGoodsP['14']=new Array('--选择子类--','60','61','62'); var result="";</code></pre> <pre class="has"><code class="language-javascript">&nbsp;//该方法实现了商品大类与子类的联动 	function ss() 	{ 		 		var sltp=document.getElementById("sltParent"); 		var slsb=document.getElementById("sltSub"); 		var sva=sltp.value; 		slsb.options.length=1; 		for(var i=0;i&lt;arrayGoodsP[sva].length;i++) 		{ 			 			if(i==25) 			{ 				continue; 			} 			if(i!=0) 			{ 			&nbsp;slsb.options[i]=new Option(agoods2[Number(arrayGoodsP[sva][i])-14],arrayGoodsP[sva][i]); 			} 			else 			{ 			&nbsp;slsb.options[i]=new Option(agoods2[0],'0'); 			} 		} 	}</code> 	function ss() 	{ 		 		var sltp=document.getElementById("sltParent"); 		var slsb=document.getElementById("sltSub"); 		var sva=sltp.value; 		slsb.options.length=1; 		for(var i=0;i&lt;arrayGoodsP[sva].length;i++) 		{ 			 			if(i==25) 			{ 				continue; 			} 			if(i!=0) 			{ 			&nbsp;slsb.options[i]=new Option(agoods2[Number(arrayGoodsP[sva][i])-14],arrayGoodsP[sva][i]); 			} 			else 			{ 			&nbsp;slsb.options[i]=new Option(agoods2[0],'0'); 			} 		} 	}</pre> <pre class="has"><code class="language-javascript">&nbsp;//ss2()和showSele()方法实现提交时，显示对应选择的商品名称与编号</code></pre> <pre class="has"><code class="language-javascript">&nbsp;function ss2() 	{ 		var slsb2=document.getElementById("sltSub"); 		if(slsb2.value!="--选择子类--") 		{ 			result=slsb2.value; 		} 	} 	function showSele() 	{ 		alert("您选择的商品为"+agoods2[Number(result)-14]+",商品的编号为"+result);	 	} &lt;/script&gt;</code>function ss2() 	{ 		var slsb2=document.getElementById("sltSub"); 		if(slsb2.value!="--选择子类--") 		{ 			result=slsb2.value; 		} 	} 	function showSele() 	{ 		alert("您选择的商品为"+agoods2[Number(result)-14]+",商品的编号为"+result);	 	} &lt;/script&gt;</pre> <p> 其中new Option(agr,agr),第一个参数为text文本，第二参数为服务器返回的value值。比如 new Option("举例","0"),相对应的HTML</p> <p>就是&lt;option value="0"&gt;举例&lt;/option&gt;。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-50365.htm">上海宠物医院排行榜前十名（上海宠物医院排行榜前十名）</a></p>
+                                        <p>下一个：<a href="/news/article-50876.htm">猫咪三针疫苗多久打一次啊视频（猫三针疫苗要多久）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-44897.htm" title="小型饲料颗粒机500元160型 小型饲料颗粒机500元视频">小型饲料颗粒机500元160型 小型饲料颗粒机500元视频</a></li>
+                        <li class="py-2"><a href="/news/article-46371.htm" title="成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）">成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）</a></li>
+                        <li class="py-2"><a href="/news/article-40429.htm" title="动物医院常用设备名称（动物医院常用设备名称大全）">动物医院常用设备名称（动物医院常用设备名称大全）</a></li>
+                        <li class="py-2"><a href="/news/article-32205.htm" title="全国最便宜的进货平台是哪个平台（最便宜的进货网）">全国最便宜的进货平台是哪个平台（最便宜的进货网）</a></li>
+                        <li class="py-2"><a href="/news/article-20998.htm" title="Springmvc记录操作日志到数据库">Springmvc记录操作日志到数据库</a></li>
+                        <li class="py-2"><a href="/news/article-27470.htm" title="天津猫咪免费领养（天津猫咪领养中心）">天津猫咪免费领养（天津猫咪领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-29326.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/news/article-36965.htm" title="动物医院的英文怎么说怎么写呀（动物医院的英文怎么说怎么写呀）">动物医院的英文怎么说怎么写呀（动物医院的英文怎么说怎么写呀）</a></li>
+                        <li class="py-2"><a href="/news/article-24220.htm" title="动物打了疫苗 动物打了疫苗了被抓还要***吗">动物打了疫苗 动物打了疫苗了被抓还要***吗</a></li>
+                        <li class="py-2"><a href="/news/article-24219.htm" title="品牌狗粮排行榜（十大口碑最好的狗粮）">品牌狗粮排行榜（十大口碑最好的狗粮）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

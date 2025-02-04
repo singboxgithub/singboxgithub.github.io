@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-49856.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Autograd：Pytorch 中的自动微分机制讲解</title>
+        <meta name="description" content="本文翻译、整理自 本文讲解了Autograd——pytorch中用于自动求微分的模块。下面的内容不需全部掌握，但读一下还有有助于加强理解的。 在backward的过程中排除一部分子图 Tensor的属" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-49856.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="Autograd：Pytorch 中的自动微分机制讲解" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/0faa9b3d53b388a892306551824d9204.webp" />
+        <meta property="og:release_date" content="2025-02-02T09:26:38" />
+    <meta property="og:updated_time" content="2025-02-02T09:26:38" />
+        <meta property="og:description" content="本文翻译、整理自 本文讲解了Autograd——pytorch中用于自动求微分的模块。下面的内容不需全部掌握，但读一下还有有助于加强理解的。 在backward的过程中排除一部分子图 Tensor的属" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Autograd：Pytorch 中的自动微分机制讲解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>Autograd：Pytorch 中的自动微分机制讲解</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p><em>本文翻译、整理自</a></em></p> <p>本文讲解了<code>Autograd</code>——pytorch中用于自动求微分的模块。下面的内容不需全部掌握，但读一下还有有助于加强理解的。</p> <h2 id="在backward的过程中排除一部分子图">在backward的过程中排除一部分子图</h2> <p><code>Tensor</code>的属性<code>requires_grad</code>代表它是否需要求梯度。注意除了这个属性除了可以被显式地设置性之外，还会被一个规则所定义：</p> <p>如果一个<code>Tensor</code> <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style="position: relative;"></p> <p>   <span class="math" id="MathJax-Span-1" style="width: 0.768em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.604em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.642em, 1000.55em, 2.626em, -999.997em); top: -2.456em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: STIXGeneral; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.462em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.937em;"></span></span><br />   <span class="MJX_Assistive_MathML"></p> <p>     A</p> <p>   </span></span></script> 由其他<code>Tensor</code>  <span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-2-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><msub><mi>B</mi><mn>1</mn></msub><mo>,</mo><msub><mi>B</mi><mn>2</mn></msub><mo>,</mo><mo>&amp;#x22EF;</mo></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-4" style="width: 4.702em; display: inline-block;"><span style="display: inline-block; position: relative; width: 3.828em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.642em, 1003.72em, 2.79em, -999.997em); top: -2.456em; left: 0em;"><span class="mrow" id="MathJax-Span-5"><span class="msubsup" id="MathJax-Span-6"><span style="display: inline-block; position: relative; width: 1.041em; height: 0px;"><span style="position: absolute; clip: rect(3.172em, 1000.6em, 4.156em, -999.997em); top: -3.986em; left: 0em;"><span class="mi" id="MathJax-Span-7" style="font-family: STIXGeneral; font-style: italic;">B</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span><span style="position: absolute; top: -3.822em; left: 0.604em;"><span class="mn" id="MathJax-Span-8" style="font-size: 70.7%; font-family: STIXGeneral;">1</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span></span></span><span class="mo" id="MathJax-Span-9" style="font-family: STIXGeneral;">,</span><span class="msubsup" id="MathJax-Span-10" style="padding-left: 0.167em;"><span style="display: inline-block; position: relative; width: 1.041em; height: 0px;"><span style="position: absolute; clip: rect(3.172em, 1000.6em, 4.156em, -999.997em); top: -3.986em; left: 0em;"><span class="mi" id="MathJax-Span-11" style="font-family: STIXGeneral; font-style: italic;">B</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span><span style="position: absolute; top: -3.822em; left: 0.604em;"><span class="mn" id="MathJax-Span-12" style="font-size: 70.7%; font-family: STIXGeneral;">2</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span></span></span><span class="mo" id="MathJax-Span-13" style="font-family: STIXGeneral;">,</span><span class="mo" id="MathJax-Span-14" style="font-family: STIXGeneral; padding-left: 0.167em;">⋯</span></span><span style="display: inline-block; width: 0px; height: 2.462em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.263em; border-left: 0px solid; width: 0px; height: 1.137em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>B</mi><mn>1</mn></msub><mo>,</mo><msub><mi>B</mi><mn>2</mn></msub><mo>,</mo><mo>⋯</mo></math></span></span></script>计算得到，只要存在一个<code>requires_grad</code>值为<code>True</code>的<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-3-Frame" tabindex="0" style="position: relative;"></p> <p>   <span class="math" id="MathJax-Span-15" style="width: 1.096em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.877em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.369em, 1000.88em, 2.516em, -999.997em); top: -2.183em; left: 0em;"><span class="mrow" id="MathJax-Span-16"><span class="msubsup" id="MathJax-Span-17"><span style="display: inline-block; position: relative; width: 0.877em; height: 0px;"><span style="position: absolute; clip: rect(3.172em, 1000.6em, 4.156em, -999.997em); top: -3.986em; left: 0em;"><span class="mi" id="MathJax-Span-18" style="font-family: STIXGeneral; font-style: italic;">B</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span><span style="position: absolute; top: -3.822em; left: 0.604em;"><span class="mi" id="MathJax-Span-19" style="font-size: 70.7%; font-family: STIXGeneral; font-style: italic;">i</span><span style="display: inline-block; width: 0px; height: 3.992em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.189em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.263em; border-left: 0px solid; width: 0px; height: 1.137em;"></span></span><br />   <span class="MJX_Assistive_MathML"></p> <p>      B</p> <p>      i</p> <p>   </span></span></script>，<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-4-Frame" tabindex="0" style="position: relative;"></p> <p>   <span class="math" id="MathJax-Span-20" style="width: 0.768em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.604em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.642em, 1000.55em, 2.626em, -999.997em); top: -2.456em; left: 0em;"><span class="mrow" id="MathJax-Span-21"><span class="mi" id="MathJax-Span-22" style="font-family: STIXGeneral; font-style: italic;">A</span></span><span style="display: inline-block; width: 0px; height: 2.462em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.937em;"></span></span><br />   <span class="MJX_Assistive_MathML"></p> <p>     A</p> <p>   </span></span></script>的<code>requires_grad</code>就是<code>True</code>。</p> <p>这个属性可以用来”冻结“model的一部分使其参数不变，微调网络中的其他部分。比如下面这个例子中只调节最后的FCN：</p> <pre class="prettyprint"><code class="language-python hljs">model = torchvision.models.resnet18(pretrained=<span class="hljs-keyword">True</span>) <span class="hljs-keyword">for</span> param <span class="hljs-keyword">in</span> model.parameters():     param.requires_grad = <span class="hljs-keyword">False</span> <span class="hljs-comment"># Replace the last fully-connected layer</span> <span class="hljs-comment"># Parameters of newly constructed modules have requires_grad=True by default</span> model.fc = nn.Linear(<span class="hljs-number">512</span>, <span class="hljs-number">100</span>)  <span class="hljs-comment"># Optimize only the classifier</span> optimizer = optim.SGD(model.fc.parameters(), lr=<span class="hljs-number">1e-2</span>, momentum=<span class="hljs-number">0.9</span>)</code></pre> <h2 id="autograd怎样记录历史信息">Autograd怎样记录历史信息</h2> <p>从概念上来说，<code>Autograd</code>的对每个数据记录了一个有向无环图（DAG），叫做<strong>计算图</strong>，来表示它的计算过程。 <br /> 比如下图表示<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-5-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mi>y</mi><mo>=</mo><mi>x</mi><mo>&amp;#x22C5;</mo><mi>sin</mi><mo>&amp;#x2061;</mo><mo stretchy=&quot;false&quot;>(</mo><mi>x</mi><mo>&amp;#x22C5;</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy=&quot;false&quot;>)</mo></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-23" style="width: 10.276em; display: inline-block;"><span style="display: inline-block; position: relative; width: 8.418em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.642em, 1008.36em, 2.844em, -999.997em); top: -2.456em; left: 0em;"><span class="mrow" id="MathJax-Span-24"><span class="mi" id="MathJax-Span-25" style="font-family: STIXGeneral; font-style: italic;">y</span><span class="mo" id="MathJax-Span-26" style="font-family: STIXGeneral; padding-left: 0.331em;">=</span><span class="mi" id="MathJax-Span-27" style="font-family: STIXGeneral; font-style: italic; padding-left: 0.331em;">x<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-28" style="font-family: STIXGeneral; padding-left: 0.276em;">⋅</span><span class="mi" id="MathJax-Span-29" style="font-family: STIXGeneral; padding-left: 0.276em;">sin</span><span class="mo" id="MathJax-Span-30"></span><span class="mo" id="MathJax-Span-31" style="font-family: STIXGeneral;">(</span><span class="mi" id="MathJax-Span-32" style="font-family: STIXGeneral; font-style: italic;">x<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-33" style="font-family: STIXGeneral; padding-left: 0.276em;">⋅</span><span class="mi" id="MathJax-Span-34" style="font-family: STIXGeneral; font-style: italic; padding-left: 0.276em;">a</span><span class="mo" id="MathJax-Span-35" style="font-family: STIXGeneral; padding-left: 0.276em;">+</span><span class="mi" id="MathJax-Span-36" style="font-family: STIXGeneral; font-style: italic; padding-left: 0.276em;">b</span><span class="mo" id="MathJax-Span-37" style="font-family: STIXGeneral;">)</span></span><span style="display: inline-block; width: 0px; height: 2.462em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.33em; border-left: 0px solid; width: 0px; height: 1.203em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>y</mi><mo>=</mo><mi>x</mi><mo>⋅</mo><mi>sin</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>x</mi><mo>⋅</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo stretchy="false">)</mo></math></span></span></script>的计算图。沿着计算图应用链式求导法则就可以求出梯度。 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/93706c3cac55a01775b081a5c2eac53b.jpg" alt="Autograd：Pytorch 中的自动微分机制讲解"><br /> 在底层实现中，PyTorch中的计算图的每个结点都是一个<code>Function</code>对象，这个对象可以使用<code>apply()</code>进行操作。 <br /> 在前向传播过程中，<code>Autograd</code>一边执行着前向计算，一边搭建一个graph，这个graph的结点是用于计算梯度的函数，这些函数结点保存在对应<code>Tensor</code>的<code>.grad_fn</code>中；而反向传播就利用这个graph计算梯度。</p> <h2 id="autograd中的in-place-operations问题">Autograd中的in-place operations问题</h2> <p>在<code>Autograd</code>使用in-place operations相当麻烦，不建议使用==。<code>Autograd</code>对buffer的释放和使用已经很高效了，in-place operations大多数情况下都会让效果更差。</p> <p>总的来说，限制in-place operations有以下两个原因： <br /> 1. in-place operations会改变一些值，可能导致梯度计算错误 <br /> 2. 每个in-place operation后都必须更新计算图，因为要把<code>Function</code>对象的所有输入的creator都改变，万一别的<span class="MathJax_Preview" style="color: inherit; display: none;"></span><span class="MathJax" id="MathJax-Element-6-Frame" tabindex="0" style="position: relative;"></p> <p>   <span class="math" id="MathJax-Span-38" style="width: 3.5em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.844em; height: 0px; font-size: 122%;"><span style="position: absolute; clip: rect(1.642em, 1002.84em, 2.626em, -999.997em); top: -2.456em; left: 0em;"><span class="mrow" id="MathJax-Span-39"><span class="mi" id="MathJax-Span-40" style="font-family: STIXGeneral; font-style: italic;">T<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.057em;"></span></span><span class="mi" id="MathJax-Span-41" style="font-family: STIXGeneral; font-style: italic;">e</span><span class="mi" id="MathJax-Span-42" style="font-family: STIXGeneral; font-style: italic;">n</span><span class="mi" id="MathJax-Span-43" style="font-family: STIXGeneral; font-style: italic;">s</span><span class="mi" id="MathJax-Span-44" style="font-family: STIXGeneral; font-style: italic;">o</span><span class="mi" id="MathJax-Span-45" style="font-family: STIXGeneral; font-style: italic;">r<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span></span><span style="display: inline-block; width: 0px; height: 2.462em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.063em; border-left: 0px solid; width: 0px; height: 0.937em;"></span></span><br />   <span class="MJX_Assistive_MathML"></p> <p>     T</p> <p>     e</p> <p>     n</p> <p>     s</p> <p>     o</p> <p>     r</p> <p>   </span></span></script>也引用了相同内存区域就很麻烦。这时候PyTorch会报错。</p> <h2 id="in-place正确性检查">In-place正确性检查</h2> <p>每个<code>Tensor</code>都有一个verion counter来记录对它的操作次数。当一个<code>Function</code>对象保存了它用于反向传播的若干<code>Tensor</code>时，它会将它们的version counter记录下来。当访问<code>self.saved_tensors</code>时，Pytorch会执行检查<code>Tensor</code>的counter，如果它比记录的counter要大就会报错。 <br /> 这样就保证了，如果你使用了in-place functions并且没有看到报错，计算的梯度一定是正确的。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49338.htm">宠物美容师真实现状（宠物美容师的发展前景怎么样）</a></p>
+                                        <p>下一个：<a href="/news/article-49857.htm">kerberos认证python_python confluent kafka客户端配置kerberos认证</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-free-node-subscribe-links.htm" title="11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接">11月7日 | SingBox Github每天更新22.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29326.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/news/article-44897.htm" title="小型饲料颗粒机500元160型 小型饲料颗粒机500元视频">小型饲料颗粒机500元160型 小型饲料颗粒机500元视频</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-sing-box-node.htm" title="11月25日 | SingBox Github每天更新19.3M/S免费节点订阅链接">11月25日 | SingBox Github每天更新19.3M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22372.htm" title="Go_error处理及panic、recover使用的正确姿势">Go_error处理及panic、recover使用的正确姿势</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-subscribe-node.htm" title="11月21日 | SingBox Github每天更新19.6M/S免费节点订阅链接">11月21日 | SingBox Github每天更新19.6M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-45894.htm" title="上海宠物领养站电话地址（上海宠物领养站电话地址是多少）">上海宠物领养站电话地址（上海宠物领养站电话地址是多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-sing-box-node-github.htm" title="1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享">1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-latest-sing-box-node.htm" title="1月12日 | SingBox每天更新20.3M/S免费节点链接地址分享">1月12日 | SingBox每天更新20.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-46371.htm" title="成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）">成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

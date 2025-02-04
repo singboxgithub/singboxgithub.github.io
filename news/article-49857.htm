@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-49857.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>kerberos认证python_python confluent kafka客户端配置kerberos认证</title>
+        <meta name="description" content="kafka的认证方式一般有如下3种： 1.&nbsp;SASL/GSSAPI&nbsp; 从版本0.9.0.0开始支持 2.&nbsp;SASL/PLAIN&nbsp; &nbsp;从版本0.10.0" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-49857.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="kerberos认证python_python confluent kafka客户端配置kerberos认证" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/b0b942a60ffdb2e410abace0ba4f098f.webp" />
+        <meta property="og:release_date" content="2025-02-02T09:26:38" />
+    <meta property="og:updated_time" content="2025-02-02T09:26:38" />
+        <meta property="og:description" content="kafka的认证方式一般有如下3种： 1.&nbsp;SASL/GSSAPI&nbsp; 从版本0.9.0.0开始支持 2.&nbsp;SASL/PLAIN&nbsp; &nbsp;从版本0.10.0" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="kerberos认证python_python confluent kafka客户端配置kerberos认证">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                        <li><a class="nav-link" href="#">关于</a></li>
+                    <li><a class="nav-link" href="#">联系</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>kerberos认证python_python confluent kafka客户端配置kerberos认证</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>kafka的认证方式一般有如下3种：</p> <p>1.&nbsp;SASL/GSSAPI&nbsp; 从版本0.9.0.0开始支持</p> <p>2.&nbsp;SASL/PLAIN&nbsp; &nbsp;从版本0.10.0.0开始支持</p> <p>3.&nbsp;SASL/SCRAM-SHA-256 以及 SASL/SCRAM-SHA-512&nbsp; &nbsp;从版本0.10.2.0开始支持</p> <p>其中第一种SASL/GSSAPI的认证就是kerberos认证，对于java来说有原生的支持，但是对于python来说配置稍微麻烦一些，下面说一下具体的配置过程，confluent kafka模块底层依赖于librdkafka，这是使用c编写的高性能的kafka客户端库，有好多语言的库都是依赖于这个，所以GSSAPI接口的开启也需要在librdkafka编译的时候支持</p> <p>librdkafka源码：https://github.com/edenhill/librdkafka</p> <p>编译之前需要先安装必要的开发包，否则相关的接口编译不进去</p> <p>首先是openssl库，使用yum安装为：&nbsp;yum -y install openssl openssl-devel&nbsp;，编译openssl只能支持默认的PLAIN还有SCRAM这两种机制，无法支持GSSAPI的机制，还需要编译libsasl2依赖，yum安装命令如下：</p> <p>yum install cyrus-sasl-gssapi cyrus-sasl-devel</p> <p>在ubuntu下使用命令：&nbsp;apt-get install libsasl2-modules-gssapi-mit libsasl2-dev&nbsp;安装libsasl2开发包</p> <p>然后确认一下是否有zlib库，这个是方便对kafka消息压缩使用的，一般都会存在，安装命令：&nbsp;yum install zlib-devel&nbsp;，如果需要更高的性能可以手动编译安装zstd并且启用压缩，这里不再详细叙述</p> <p>上面的库都安装成功就可以开始编译librdkafka源码了，这里源码包为：librdkafka-1.2.1.tar.gz，安装命令如下：</p> <p># 解压包tar -xvzf librdkafka-1.2.1.tar.gz</p> <p>cd librdkafka-1.2.1# 编译源码</p> <p>./configuremake</p> <p>make install</p> <p>上面注意一下在执行命令./configure之后，根据输出确认libssl以及libsasl2是否被开启，如下：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads/20221230/993895dcdb23d25c258edb12299fcb1b.jpg" alt="kerberos认证python_python confluent kafka客户端配置kerberos认证"></p> <p>这里libssl以及libsasl2都显示ok说明是可以的，现在SSL和SASL SCRAM以及SASL GSSAPI都已经支持了，执行configure阶段没指定prefix则默认安装位置为/usr/local，动态库位置就为：/usr/local/lib，需要将这个目录添加到动态库连接列表中，比如加到/etc/ld.so.conf，保存后执行ldconfig生效</p> <p>最后可以编译和安装python的confluent kafka模块，这里安装的版本是1.2.0，安装之后可以运行下面的代码测试：</p> <p>1 #!/usr/bin/env python3</p> <p>2 #coding=utf-8</p> <p>3 from confluent_kafka importProducer4</p> <p>5 defdelivery_report(err, msg):6 """Called once for each message produced to indicate delivery result.7 Triggered by poll() or flush()."""</p> <p>8 if err is notNone:9 print('Message delivery failed: {}'.format(err))10 else:11 print('Message delivered to {} [{}]'.format(msg.topic(), msg.partition()))12</p> <p>13 if __name__ == '__main__':14 producer_conf ={15 "bootstrap.servers": '192.168.0.3:9092,192.168.0.4:9092,192.168.0.5:9092',16 "security.protocol": 'sasl_plaintext',17 'sasl.kerberos.service.name': 'kafka',18 'sasl.kerberos.keytab': '/opt/user.keytab',19 'sasl.kerberos.principal': 'kafkauser',20 }21 p =Producer(producer_conf)22</p> <p>23 p.poll(0)24 p.produce('testTopic', 'confluent kafka test'.encode('utf-8'),25 callback=delivery_report)26</p> <p>27 p.flush()28 print('done')</p> <p>如果生产消息正常就配置成功了，使用GSSAPI只需要配置security.protocol以及keytab的路径即可，其他的认证参数比如用户名和密码在不同的认证机制下配置，更多的配置参数参考文档：https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md</p> <p>librdkafka SASL认证的详细配置流程参考：https://github.com/edenhill/librdkafka/wiki/Using-SASL-with-librdkafka</p> </div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49856.htm">Autograd：Pytorch 中的自动微分机制讲解</a></p>
+                                        <p>下一个：<a href="/news/article-50364.htm">北京哪个医院看狗咬伤（北京哪个医院看狗咬伤好）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-40430.htm" title="动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）">动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-sing-box-node-github.htm" title="12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接">12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-50875.htm" title="js下拉列表二级联动">js下拉列表二级联动</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-sing-box-node-share.htm" title="1月19日 | SingBox每天更新20.4M/S免费节点链接地址分享">1月19日 | SingBox每天更新20.4M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-node-share.htm" title="1月23日 | SingBox每天更新19.3M/S免费节点链接地址分享">1月23日 | SingBox每天更新19.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-node-subscribe-links.htm" title="11月9日 | SingBox Github每天更新20.2M/S免费节点订阅链接">11月9日 | SingBox Github每天更新20.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-node-subscribe-links.htm" title="11月29日 | SingBox Github每天更新22.8M/S免费节点订阅链接">11月29日 | SingBox Github每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37452.htm" title="动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）">动物接种疫苗后多久产生抗体?（动物疫苗间隔时间）</a></li>
+                        <li class="py-2"><a href="/news/article-33142.htm" title="宠物粮品牌名称及图片大全集（宠物粮品牌起名字）">宠物粮品牌名称及图片大全集（宠物粮品牌起名字）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

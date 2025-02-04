@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://singboxgithub.github.io/news/article-21917.htm" />
@@ -8,16 +8,44 @@
     <title>Golang错误处理机制（error 与 panic）</title>
         <meta name="description" content="文章目录    一、概述 二、error 三、panic      一、概述 Go语言并没有像Java那样的try catch finally 的处理机制，而是提供了其特有的错误处理机制。在Go语言中" />
         <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-21917.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="Golang错误处理机制（error 与 panic）" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/b56b928ac2e5a864192be8a1ea1f09f9.webp" />
+        <meta property="og:release_date" content="2024-12-06T09:13:46" />
+    <meta property="og:updated_time" content="2024-12-06T09:13:46" />
+        <meta property="og:description" content="文章目录    一、概述 二、error 三、panic      一、概述 Go语言并没有像Java那样的try catch finally 的处理机制，而是提供了其特有的错误处理机制。在Go语言中" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Golang错误处理机制（error 与 panic）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <!-- Vendor CSS Files -->
-    <link href="__ADDON__/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
-    <link href="__ADDON__/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -85,16 +113,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-22834.htm" title="济南免费领养宠物狗在哪里（济南免费领养宠物狗在哪里办理）">济南免费领养宠物狗在哪里（济南免费领养宠物狗在哪里办理）</a></li>
-                        <li class="py-2"><a href="/news/article-20998.htm" title="Springmvc记录操作日志到数据库">Springmvc记录操作日志到数据库</a></li>
-                        <li class="py-2"><a href="/news/article-24220.htm" title="动物打了疫苗 动物打了疫苗了被抓还要***吗">动物打了疫苗 动物打了疫苗了被抓还要***吗</a></li>
-                        <li class="py-2"><a href="/news/article-20083.htm" title="幼猫怎么驱虫体外（幼猫怎么驱虫体外驱虫药）">幼猫怎么驱虫体外（幼猫怎么驱虫体外驱虫药）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-27-node-share.htm" title="8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接">8月27日 | SingBox Github每天更新21.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-12-node-share-links.htm" title="12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接">12月12日 | SingBox Github每天更新21.7M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20084.htm" title="动物疫苗注射方法视频讲解图（动物疫苗的使用方法及注意事项）">动物疫苗注射方法视频讲解图（动物疫苗的使用方法及注意事项）</a></li>
-                        <li class="py-2"><a href="/news/article-28400.htm" title="太原市免费领养狗狗（太原哪里可以免费领养狗狗）">太原市免费领养狗狗（太原哪里可以免费领养狗狗）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-26-node-share.htm" title="9月26日 | SingBox Github每天更新19.8M/S免费节点订阅链接">9月26日 | SingBox Github每天更新19.8M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-25608.htm" title="三国杀武将台词语音包下载（三国杀角色台词语音）">三国杀武将台词语音包下载（三国杀角色台词语音）</a></li>
+                        <li class="py-2"><a href="/news/article-34099.htm" title="宠物粮食品牌前十名排名图片及价格（宠物粮种类）">宠物粮食品牌前十名排名图片及价格（宠物粮种类）</a></li>
+                        <li class="py-2"><a href="/news/article-37451.htm" title="Eclipse开发Java如何Debug详解">Eclipse开发Java如何Debug详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-sing-box-github.htm" title="2月2日 | SingBox每天更新22.9M/S免费节点链接地址分享">2月2日 | SingBox每天更新22.9M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-33621.htm" title="我要卖猫去哪里卖 我要卖猫去哪里卖比较好">我要卖猫去哪里卖 我要卖猫去哪里卖比较好</a></li>
+                        <li class="py-2"><a href="/news/article-30764.htm" title="宠物零食制作教程 宠物零食制作教程风干">宠物零食制作教程 宠物零食制作教程风干</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-sing-box-node-github.htm" title="1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享">1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-32203.htm" title="docker离线配置安装">docker离线配置安装</a></li>
+                        <li class="py-2"><a href="/news/article-39939.htm" title="合肥宠物收容中心地址电话（合肥市宠物收容中心）">合肥宠物收容中心地址电话（合肥市宠物收容中心）</a></li>
+                        <li class="py-2"><a href="/news/article-36488.htm" title="动物疫苗价格查询表图片及价格大全图（动物疫苗接种时间表）">动物疫苗价格查询表图片及价格大全图（动物疫苗接种时间表）</a></li>
+                        <li class="py-2"><a href="/news/article-35546.htm" title="2021年河南动物疫苗中标公告公布时间（河南省2021年动物疫苗中标公告）">2021年河南动物疫苗中标公告公布时间（河南省2021年动物疫苗中标公告）</a></li>
                     </ul>
     </div>
 </div>
@@ -106,22 +134,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
