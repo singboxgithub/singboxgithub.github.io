@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-55730.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>rancher安装redis集群</title>
+        <meta name="description" content="基于上一篇：docker安装rancher_RT_0114的博客-CSDN博客 之前也安装过redis集群只不过是用docker单机装的。docker搭建redis集群_RT_0114的博客-CSDN" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-55730.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="rancher安装redis集群" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/a873cf3d3445964abdc0a307cabd3f13.webp" />
+        <meta property="og:release_date" content="2025-02-13T03:09:04" />
+    <meta property="og:updated_time" content="2025-02-13T03:09:04" />
+        <meta property="og:description" content="基于上一篇：docker安装rancher_RT_0114的博客-CSDN博客 之前也安装过redis集群只不过是用docker单机装的。docker搭建redis集群_RT_0114的博客-CSDN" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="rancher安装redis集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>rancher安装redis集群</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>基于上一篇：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/Smy_0114/article/details/117410695"  rel="nofollow">docker安装rancher_RT_0114的博客-CSDN博客</a></p> <p>之前也安装过redis集群只不过是用docker单机装的。<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/Smy_0114/article/details/116800727"  rel="nofollow">docker搭建redis集群_RT_0114的博客-CSDN博客</a></p> <p>来，记录一下rancher安装redis集群。机器防火墙全部是关闭的。</p> <p>对还是三台机器，master、mode1、node2，master不部署redis只是用来共享redis的配置文件，node1和node2分别部署3台redis共计6台redis。</p> <blockquote> <p>进入master主机创建文件夹：</p> </blockquote> <pre><code class="language-bash">mkdir -p /water/runfile/docker_volume/redis_cluster/7001/data mkdir -p /water/runfile/docker_volume/redis_cluster/7002/data mkdir -p /water/runfile/docker_volume/redis_cluster/7003/data mkdir -p /water/runfile/docker_volume/redis_cluster/7004/data mkdir -p /water/runfile/docker_volume/redis_cluster/7005/data mkdir -p /water/runfile/docker_volume/redis_cluster/7006/data</code></pre> <blockquote> <p>在master上安装nfs：</p> </blockquote> <pre><code>cd /water/runfile/docker_volume/redis_cluster rpc.nfsd 8 rpc.mountd  exportfs -r #使配置生效  exportfs #可以查看到已经ok</code></pre> <blockquote> <p>执行过程：</p> </blockquote> <pre><code class="language-bash">[root@CSS-app-SG1 7006]# cd /water/runfile/docker_volume/redis_cluster [root@CSS-app-SG1 redis_cluster]# exportfs /water/runfile/docker_volume                 172.21.168.195/24 [root@CSS-app-SG1 redis_cluster]#</code></pre> <blockquote> <p>创建配置文件：</p> </blockquote> <pre><code>vi /water/runfile/docker_volume/redis_cluster/7001/redis.conf vi /water/runfile/docker_volume/redis_cluster/7002/redis.conf vi /water/runfile/docker_volume/redis_cluster/7003/redis.conf vi /water/runfile/docker_volume/redis_cluster/7004/redis.conf vi /water/runfile/docker_volume/redis_cluster/7005/redis.conf vi /water/runfile/docker_volume/redis_cluster/7006/redis.conf</code></pre> <blockquote> <p>修改：6个文件只是端口不一样其他都一样</p> </blockquote> <pre><code>#bind 127.0.0.1 port 7001  #端口 cluster-enabled yes #启用集群模式 cluster-config-file /data/nodes.conf cluster-node-timeout 5000 #超时时间 logfile "/data/redis.log" #输出日志 appendonly yes daemonize no #是否后台运行，这里不能改成yes，不然docker运行就关闭了 protected-mode no #非保护模式 pidfile  /var/run/redis.pid</code></pre> <blockquote> <p>在default空间下创建pv</p> </blockquote> <blockquote> <p>nfs-redisclutser-pv<br /> NFS-Share 10<br /> /water/runfile/docker_volume 172.21.168.195<br /> 是否只读：否<br /> 多主机读写</p> </blockquote> <p><img fetchpriority="high" decoding="async" alt="" height="340" src="http://img.555519.xyz/uploads3/20220609/ffa5048c4c4abe2c377d1703330a5385.jpg"></p> <blockquote> <p>过程：</p> </blockquote> <p><img decoding="async" alt="" height="557" src="http://img.555519.xyz/uploads3/20220609/3405d7074d19e948e81cb2645c4550c3.jpg"></p> <blockquote> <p>在default空间下创建pvc</p> </blockquote> <blockquote> <p>工作负载-负载均衡-服务发现-PVC(勾)-流水线<br /> 选择添加pvc<br /> nfs-redisclutser-pvc 命名空间:选择刚创建的redis-cluster<br /> 持久卷(PV) 选择：nfs-redisclutser-pv<br /> 自定义： 多主机读写</p> </blockquote> <p><img decoding="async" alt="" height="336" src="http://img.555519.xyz/uploads3/20220609/6fd99f3f46518f4274ae204af01d4e75.jpg"></p> <blockquote> <p>过程：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="576" src="http://img.555519.xyz/uploads3/20220609/ce85bee579cf22185400ffa66594da76.jpg"></p> <blockquote> <p>部署redis：先手动拉取redis镜像。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="503" src="http://img.555519.xyz/uploads3/20220609/84c205976699ec3363a55d0b44be1f0b.jpg"></p> <blockquote> <p>主机调度：指定</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="218" src="http://img.555519.xyz/uploads3/20220609/50fd76573411abbc019fa85760a8977d.jpg"></p> <blockquote> <p>数据卷：pvc里面配置到了/water/runfile/docker_volume因此下面配置的时候只需要配置下级目录即可</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="471" src="http://img.555519.xyz/uploads3/20220609/42e5027e20a423a647683b23793e16b7.jpg"></p> <blockquote> <p>入口/命令：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="480" src="http://img.555519.xyz/uploads3/20220609/e8c4b817a9af05321d0c3fb69898a34c.jpg"></p> <blockquote> <p>网络：</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="339" src="http://img.555519.xyz/uploads3/20220609/48e3a0db7ed532e94504c88e912b1c28.jpg"></p> <blockquote> <p>点记确定即可。</p> </blockquote> <blockquote> <p>再复制5份，分别把端口和数据卷的端口文件夹改一下，调度的主机也改一下一台机器3台redis。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="449" src="http://img.555519.xyz/uploads3/20220609/da0e827e780f364d20be2b776900c6ca.jpg"></p> <blockquote> <p>进入任意一台redis：</p> </blockquote> <blockquote> <p>执行：点击yes，完成，3主3从。</p> </blockquote> <pre><code>redis-cli --cluster create 172.21.168.197:7001 172.21.168.197:7002 172.21.168.197:7005 172.21.168.199:7003 172.21.168.199:7004 172.21.168.199:7006 --cluster-replicas 1</code></pre> <blockquote> <p>cluster nodes &nbsp;查看集群节点</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="174" src="http://img.555519.xyz/uploads3/20220609/eea88e8925e9b809b822a6b15604118e.jpg"></p> <blockquote> <p>cluster info:查看集群信息</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="305" src="http://img.555519.xyz/uploads3/20220609/d707e89b832264fb34812152fb5ff0ab.jpg"></p> <blockquote> <p>尝试用一下：就这简单不，搞一遍就会了，没什么难度。</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="337" src="http://img.555519.xyz/uploads3/20220609/a8179f2ea3b1be976b668ed1b487bec0.jpg"></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55171.htm">CEPH-2：rbd功能详解及普通用户应用ceph集群</a></p>
+                                        <p>下一个：<a href="/news/article-55731.htm">我所在的城市有一家宠物医院英文怎么写 我所在的城市有一家宠物医院英文怎么写</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-sing-box-node-share.htm" title="11月10日 | SingBox Github每天更新20.5M/S免费节点订阅链接">11月10日 | SingBox Github每天更新20.5M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-30763.htm" title="MySQL分组统计-每组各个条件信息条数">MySQL分组统计-每组各个条件信息条数</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-26-free-high-speed-nodes.htm" title="1月26日 | SingBox每天更新22.3M/S免费节点链接地址分享">1月26日 | SingBox每天更新22.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-6-free-node-subscribe-links.htm" title="2月6日 | SingBox每天更新22.8M/S免费节点链接地址分享">2月6日 | SingBox每天更新22.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-sing-box-node-github.htm" title="12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接">12月8日 | SingBox Github每天更新22.7M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-sing-hysteria-windows.htm" title="2月10日 | SingBox每天更新20.1M/S免费节点链接地址分享">2月10日 | SingBox每天更新20.1M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-subscribe-node.htm" title="11月22日 | SingBox Github每天更新22M/S免费节点订阅链接">11月22日 | SingBox Github每天更新22M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-46887.htm" title="servlet 中 servlet context 与 session 与 request 三个对象的常用方法和存放数据的作用域。">servlet 中 servlet context 与 session 与 request 三个对象的常用方法和存放数据的作用域。</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-latest-sing-box-node.htm" title="2月5日 | SingBox每天更新18.1M/S免费节点链接地址分享">2月5日 | SingBox每天更新18.1M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-sing-box-node-github.htm" title="1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享">1月6日 | SingBox每天更新18.3M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

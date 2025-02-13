@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-55171.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CEPH-2：rbd功能详解及普通用户应用ceph集群</title>
+        <meta name="description" content="ceph集群rbd使用详解 一个完整的ceph集群，可以提供块存储、文件系统和对象存储。 本节主要介绍rbd存储功能如何灵活的使用，集群背景： $ ceph -s    cluster:     id" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-55171.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="CEPH-2：rbd功能详解及普通用户应用ceph集群" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/79ac94eaaf66fb8442ef355d8b77dceb.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:06:46" />
+    <meta property="og:updated_time" content="2025-02-12T09:06:46" />
+        <meta property="og:description" content="ceph集群rbd使用详解 一个完整的ceph集群，可以提供块存储、文件系统和对象存储。 本节主要介绍rbd存储功能如何灵活的使用，集群背景： $ ceph -s    cluster:     id" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CEPH-2：rbd功能详解及普通用户应用ceph集群">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>CEPH-2：rbd功能详解及普通用户应用ceph集群</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2 id="ceph集群rbd使用详解">ceph集群rbd使用详解</h2> <p>一个完整的ceph集群，可以提供块存储、文件系统和对象存储。</p> <p>本节主要介绍rbd存储功能如何灵活的使用，集群背景：</p> <pre><code class="language-bash">$ ceph -s    cluster:     id:     537175bb-51de-4cc4-9ee3-b5ba8842bff2     health: HEALTH_OK     services:     mon: 3 daemons, quorum ceph-node1,ceph-node2,ceph-node3 (age 2m)     mgr: ceph-node1(active, since 2d), standbys: ceph-node2     mds: mycephfs:1 {0=ceph-node2=up:active} 1 up:standby     osd: 12 osds: 12 up (since 30h), 12 in (since 30h)     rgw: 2 daemons active (ceph-node1, ceph-node2)     task status:     data:     pools:   7 pools, 201 pgs     objects: 212 objects, 6.9 KiB     usage:   12 GiB used, 1.2 TiB / 1.2 TiB avail     pgs:     201 active+clean</code></pre> </h1> <h3 id="rbd介绍">rbd介绍</h3> <p>RBD即RADOS Block Device的简称，RBD块存储是最稳定且最常用的存储类型。RBD块设备类似磁盘可以被格式化、挂载。RBD块设备具有快照、多副本、克隆和一致性等特性，数据以条带化的方式存储在Ceph集群的多个OSD中。</p> <h3 id="rbd工作流程">rbd工作流程</h3> <ol> <li>客户端创建一个pool，并指定pg数量，创建rbd设备并挂载；</li> </ol> <ol start="2"> <li>用户写入数据，ceph进行对数据切块，每个块的大小默认为4M，每个块名字是object+序号；</li> <li>将每个object通过哈希算法分配给对应的pg；</li> <li>pg根据crush算法会寻找3个osd（假设副本数为3），把这object分别保存在这3个osd上存储，这一组osd就是pgp的概念；</li> <li>osd实际把硬盘格式化为xfs文件系统，object存储在这个文件系统就相当于存储了一个文件rbd0.object1.file。</li> </ol> <h3 id="rbd创建及使用">rbd创建及使用</h3> <p>某节点想要挂载、创建或使用rbd功能，必须满足以下两个条件</p> <ol> <li>有操纵ceph集群的能力，也就是必须要有ceph.conf文件</li> <li>要有ceph客户端相关组件，也就是ceph-common组件包</li> </ol> <h5 id="1创建">（1）创建</h5> <pre><code class="language-bash">## 创建pool $ ceph osd pool create myrbd1 64 64  pool 'myrbd1' created  ## 将此pool启动rbd功能 $ ceph osd pool application enable myrbd1 rbd enabled application 'rbd' on pool 'myrbd1'  ## 初始化pool池 $ rbd pool init -p myrbd1  ## 创建一个10G大小的块镜像 $ rbd create --size 10240 myrbd1/image01  ## 查看存储池中的image $ rbd ls --pool myrbd1  image01  ## 查看镜像详情 $ rbd info myrbd1/image01 rbd image 'image01': 	size 10 GiB in 2560 objects 	order 22 (4 MiB objects) 	snapshot_count: 0 	id: 121a89b2ad1f2 	block_name_prefix: rbd_data.121a89b2ad1f2 	format: 2 	features: layering, exclusive-lock, object-map, fast-diff, deep-flatten 	op_features:  	flags:  	create_timestamp: Mon Feb 21 11:24:07 2022 	access_timestamp: Mon Feb 21 11:24:07 2022 	modify_timestamp: Mon Feb 21 11:24:07 2022</code></pre> <h5 id="2映射到客户端机器内核">（2）映射到客户端机器内核</h5> <pre><code class="language-bash">## 映射到内核 # rbd map myrbd1/image01 rbd: sysfs write failed RBD image feature set mismatch. You can disable features unsupported by the kernel with "rbd feature disable myrbd1/image01 object-map fast-diff deep-flatten". In some cases useful info is found in syslog - try "dmesg | tail". rbd: map failed: (6) No such device or address</code></pre> <blockquote> <p>以上有报错，因为ceph rbd很多特性基于内核，提示此版本内核不支持object-map fast-diff deep-flatten特性</p> </blockquote> <p>将此特性关闭</p> <pre><code class="language-bash">rbd feature disable myrbd1/image01 object-map fast-diff deep-flatten</code></pre> <p>再次映射</p> <pre><code class="language-bash"># rbd map myrbd1/image01  ## 查看机器块设备 lsblk | grep rbd  rbd0   252:0    0    10G  0 disk   ## List mapped rbd images. # rbd showmapped id  pool    namespace  image    snap  device    0   myrbd1             image01  -     /dev/rbd0</code></pre> <h5 id="3格式化挂载测试持久化">（3）格式化、挂载、测试、持久化</h5> <pre><code class="language-bash"># mkfs.xfs /dev/rbd0  # mount /dev/rbd0 /mnt/</code></pre> <p>测试读写</p> <pre><code class="language-bash"># for((i=1;i&lt;=20;i++));do echo $i &gt; $i.txt;done # ls 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt # cat 1.txt  1</code></pre> <p>卸载image</p> <pre><code class="language-bash"># umount /dev/rbd0 # rbd unmap myrbd1/image01</code></pre> <blockquote> <p>如果取消映射失败，提示设备忙，则加上-o force参数</p> </blockquote> <p>映射到其他机器，检查数据是否还存在</p> <pre><code class="language-bash"># mount /dev/rbd0 /mnt/rbd/ # cd /mnt/rbd # ls 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt # cat 1.txt  1</code></pre> <blockquote> <p>测试完毕，未丢失数据。</p> </blockquote> <h5 id="4修改rbd-image存储空间大小">（4）修改rbd image存储空间大小</h5> <pre><code class="language-bash">$ rbd resize myrbd1/image01 --size 15G Resizing image: 100% complete...done.  $ rbd info myrbd1/image01 rbd image 'image01': 	size 15 GiB in 3840 objects 	order 22 (4 MiB objects)</code></pre> <blockquote> <p>image01修改至15G大小</p> </blockquote> <p>目前查看大小还是10G：</p> <pre><code class="language-bash"># df -h | grep mnt /dev/rbd0        10G   33M   10G   1% /mnt</code></pre> <p>resize后，内核会直接识别到，不用重新map，直接刷新块设备即可：</p> <pre><code class="language-bash"># xfs_growfs /dev/rbd0  meta-data=/dev/rbd0              isize=512    agcount=16, agsize=163840 blks          =                       sectsz=512   attr=2, projid32bit=1          =                       crc=1        finobt=0 spinodes=0 data     =                       bsize=4096   blocks=2621440, imaxpct=25          =                       sunit=1024   swidth=1024 blks naming   =version 2              bsize=4096   ascii-ci=0 ftype=1 log      =internal               bsize=4096   blocks=2560, version=2          =                       sectsz=512   sunit=8 blks, lazy-count=1 realtime =none                   extsz=4096   blocks=0, rtextents=0 data blocks changed from 2621440 to 3932160  # df -h | grep mnt /dev/rbd0        15G   34M   15G   1% /mnt</code></pre> <blockquote> <p>xfs用xfs_growfs命令刷新，ext4和ext3用resize2fs</p> </blockquote> <h3 id="rbd快照的使用">rbd快照的使用</h3> <h5 id="1快照-在某个时间点的副本当系统出现问题可以通过恢复快照恢复之前副本状态">（1）快照: 在某个时间点的副本，当系统出现问题，可以通过恢复快照恢复之前副本状态。</h5> <p>创建快照</p> <pre><code class="language-bash">$ rbd snap create myrbd1/image01@snap01  $ rbd snap list myrbd1/image01 SNAPID  NAME    SIZE    PROTECTED  TIMESTAMP                     4  snap01  10 GiB             Tue Feb 22 11:33:32 2022  $ rbd info myrbd1/image01@snap01 rbd image 'image01': 	size 10 GiB in 2560 objects 	order 22 (4 MiB objects) 	snapshot_count: 1 	id: 121a89b2ad1f2 	block_name_prefix: rbd_data.121a89b2ad1f2 	format: 2 	features: layering, exclusive-lock 	op_features:  	flags:  	create_timestamp: Mon Feb 21 11:24:07 2022 	access_timestamp: Mon Feb 21 11:24:07 2022 	modify_timestamp: Mon Feb 21 11:24:07 2022 	protected: False</code></pre> <p>模拟删除数据，恢复快照</p> <pre><code class="language-bash"># ls 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt # rm -f *  # cd .. # umount /dev/rbd0  # rbd unmap myrbd1/image01  ## 恢复 $ rbd snap rollback myrbd1/image01@snap01 Rolling back to snapshot: 100% complete...done.</code></pre> <blockquote> <p>注意：恢复快照前，需要先将rbd设备umount和取消内核映射，然后再进行rollback。</p> </blockquote> <p>重新挂载，验证数据是否恢复</p> <pre><code class="language-bash"># rbd map myrbd1/image01 # mount /dev/rbd0 /mnt/rbd/ # ls 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt</code></pre> <blockquote> <p>数据恢复完成</p> </blockquote> <h5 id="2克隆-基于指定的块设备克隆出相同的一份出来">（2）克隆: 基于指定的块设备克隆出相同的一份出来</h5> <p>克隆是要基于块设备的快照进行的，我们之前用上一步所创建出来的snap01来进行演示克隆功能。</p> <p>设置快照处于被保护状态(快照必须处于被保护状态才能被克隆)</p> <pre><code class="language-bash">## 设为被保护状态 $ rbd snap protect myrbd1/image01@snap01  ## 查看详情，主要是protected变成了TRUE $ rbd info myrbd1/image01@snap01 rbd image 'image01': 	size 10 GiB in 2560 objects 	order 22 (4 MiB objects) 	snapshot_count: 1 ... 	protected: True</code></pre> <p>通过快照克隆一个新块设备</p> <pre><code class="language-bash">## 克隆 rbd clone replicapool/image01@snap01 replicapool/image01_clone  ## 查看目前所有image # rbd ls replicapool image01 image01_clone  ## 查看克隆块设备信息 # rbd info replicapool/image01_clone rbd image 'image01_clone': 	size 10 GiB in 2560 objects 	order 22 (4 MiB objects) 	snapshot_count: 0 	id: 8549a76ff74f 	block_name_prefix: rbd_data.8549a76ff74f 	format: 2 	features: layering 	op_features:  	flags:  	create_timestamp: Tue Mar 29 14:40:51 2022 	access_timestamp: Tue Mar 29 14:40:51 2022 	modify_timestamp: Tue Mar 29 14:40:51 2022 	parent: replicapool/image01@snap01 	overlap: 10 GiB</code></pre> <blockquote> <p>这个克隆设备主要多了 parent: myrbd1/image01@snap01 这行配置，表示它的父关系</p> </blockquote> <p>取消其父关系，使其独立，随后再进行mount测试</p> <pre><code class="language-bash">## 独立于父块设备 # rbd flatten myrbd1/image01_clone Image flatten: 100% complete...done.  ## 找其他机器，映射其克隆设备 # rbd map myrbd1/image01_clone /dev/rbd1  # mount 即可</code></pre> <p>需要注意：根据块设备的快照克隆的块设备UUID不发生改变，所以克隆的块设备不能和原块设备挂载同一台主机上，否则会产生冲突：</p> <pre><code class="language-bash">/dev/rbd0: UUID="14e60e20-3620-4177-a453-400b00caad1b" TYPE="xfs"  /dev/rbd1: UUID="14e60e20-3620-4177-a453-400b00caad1b" TYPE="xfs"</code></pre> <h4 id="rbd快照删除">rbd快照删除</h4> <pre><code class="language-bash">$ rbd snap remove myrbd1/image01@snap01 Removing snap: 100% complete...done. $ rbd snap list myrbd1/image01</code></pre> <h3 id="导入导出rbd镜像">导入导出RBD镜像</h3> <h4 id="1导出rbd镜像">1.导出rbd镜像</h4> <pre><code class="language-bash"># rbd export myrbd1/image01 /home/nfs/image01_bak Exporting image: 100% complete...done.</code></pre> <h4 id="2导入镜像恢复数据">2.导入镜像，恢复数据</h4> <p>先删除image01</p> <pre><code class="language-bash">## 快照要提前删完 # rbd snap remove replicapool/image01@snap01 Removing snap: 100% complete...done.  ## 删除镜像 # rbd remove replicapool/image01 Removing image: 100% complete...done.</code></pre> <p>重新导入镜像</p> <pre><code class="language-bash"># rbd import /home/nfs/image01_bak myrbd1/image01  --image-format 2 Importing image: 100% complete...done.</code></pre> <p>重新挂载测试数据是否存在</p> <pre><code class="language-bash"># rbd map replicapool/image01 /dev/rbd0  # mount /dev/rbd0 /mnt/ # ls /mnt/ 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt</code></pre> <blockquote> <p>没什么问题</p> </blockquote> <h3 id="rbd使用普通用户挂载">rbd使用普通用户挂载</h3> <p>首先，某节点想要挂载、创建或使用rbd功能，必须满足以下两个条件</p> <ol> <li>有操纵ceph集群的能力，也就是必须要有ceph.conf文件</li> <li>要有ceph客户端相关组件，也就是ceph-common组件包</li> </ol> <h5 id="1查看当前所有用户及权限">（1）查看当前所有用户及权限</h5> <pre><code class="language-bash">$ ceph auth list  installed auth entries:  mds.ceph-node1 	key: AQBoFg9iVjO6DhAADSCzL/Njv16XONHBAPuRLA== 	caps: [mds] allow 	caps: [mon] allow profile mds 	caps: [osd] allow rwx mds.ceph-node2 	key: AQCGFg9icS7TCBAAGvFfz/C5Av0P6Hu1Ws5SUw== 	caps: [mds] allow 	caps: [mon] allow profile mds 	caps: [osd] allow rwx ...</code></pre> <blockquote> <p>默认情况下，ceph每个组件都会创建对应的用户，每个用户都有自己对应的的权限。</p> </blockquote> <p><strong>授权类型</strong>：</p> <table> <thead> <tr> <th style="text-align: left">权限</th> <th>说明</th> </tr> </thead> <tbody> <tr> <td style="text-align: left">r</td> <td>向用户授予读取权限。读取集群各个组件（MON/OSD/MDS/CRUSH/PG）的状态。访问监视器(mon)以检索 CRUSH 运行图时需具有此能力。</td> </tr> <tr> <td style="text-align: left">w</td> <td>向用户授予针对对象的写入权限。</td> </tr> <tr> <td style="text-align: left">x</td> <td>授予用户调用类方法(包括读取和写入)的能力，以及在监视器中执行 auth 操作的能力。</td> </tr> <tr> <td style="text-align: left">*</td> <td>授予用户对特定守护进程/存储池的读取、写入和执行权限，以及执行管理命令的能力</td> </tr> <tr> <td style="text-align: left">class-read</td> <td>授予用户调用类读取方法的能力，属于是 x 能力的子集。</td> </tr> <tr> <td style="text-align: left">class-write</td> <td>授予用户调用类写入方法的能力，属于是 x 能力的子集。</td> </tr> <tr> <td style="text-align: left">profile osd</td> <td>授予用户以某个 OSD 身份连接到其他 OSD 或监视器的权限。授予 OSD 权限，使 OSD 能够处理复制检测信号流量和状态报告。</td> </tr> <tr> <td style="text-align: left">profile mds</td> <td>授予用户以某个 MDS 身份连接到其他 MDS 或监视器的权限。</td> </tr> <tr> <td style="text-align: left">profile bootstrap-osd</td> <td>授予用户引导 OSD 的权限(初始化 OSD 并将 OSD 加入 ceph 集群)，授 权给部署工具，使其在引导 OSD 时有权添加密钥。</td> </tr> <tr> <td style="text-align: left">profile bootstrap-mds</td> <td>授予用户引导元数据服务器的权限，授权部署工具权限，使其在引导 元数据服务器时有权添加密钥。</td> </tr> </tbody> </table> <p>获取指定用户权限信息：</p> <pre><code class="language-bash">$ ceph auth get client.admin exported keyring for client.admin [client.admin] 	key = AQA0bgdi30YtIRAABefFzbzVQw0vCttrjeqirA== 	caps mds = "allow *" 	caps mgr = "allow *" 	caps mon = "allow *" 	caps osd = "allow *"</code></pre> <h5 id="2创建普通用户并赋予对应的权限">（2）创建普通用户，并赋予对应的权限</h5> <pre><code class="language-bash">## 创建 client.vfan 用户，并授权可读 MON、可读写 OSD  $ ceph auth add client.vfan mon 'allow r' osd 'allow rw pool=myrbd1' added key for client.vfan  $ ceph auth get client.vfan exported keyring for client.vfan [client.vfan] 	key = AQCq2CViGig9HxAA64YqzL85idfTn3TRzE18dQ== 	caps mon = "allow r" 	caps osd = "allow rw pool=myrbd1" 	 ## 如果该用户已存在，此命令只以密钥文件格式返回用户名和密钥。授权可读 MON，可读写 OSD  $ ceph auth get-or-create client.tom mon 'allow r' osd 'allow rw pool=myrbd1' [client.tom] 	key = AQDh2SVi+cFJJhAAXZomi67Sfd7vbbUE9MmHDw== 	 ## 如果该用户已存在，此命令只返回密钥。授权可读 MON，可读写 OSD $ ceph auth get-or-create-key client.tony mon 'allow r' osd 'allow rw pool=myrbd1' AQAV2iVizi0pLhAA1RXFbxcYeDZqJxtKW9ZzSg==</code></pre> <h5 id="3传输用户密钥至客户端主机">（3）传输用户密钥至客户端主机</h5> <p>当客户端访问 ceph 集群时，ceph 会使用以下四个密钥环文件预设置密钥环设置：</p> <pre><code class="language-bash">/etc/ceph/&lt;$cluster name&gt;.&lt;user $type&gt;.&lt;user $id&gt;.keyring # 保存单个用户的 keyring  /etc/ceph/cluster.keyring                                 # 保存多个用户的 keyring /etc/ceph/keyring                                         # 未定义集群名称的多个用户的 keyring /etc/ceph/keyring.bin                                     # 编译后的二进制文件</code></pre> <p>创建普通用户密钥权限文件：</p> <pre><code class="language-bash">$ ceph auth get client.vfan -o ceph.client.vfan.keyring $ cat ceph.client.vfan.keyring  [client.vfan] 	key = AQCq2CViGig9HxAA64YqzL85idfTn3TRzE18dQ== 	caps mon = "allow r" 	caps osd = "allow rw pool=myrbd1"</code></pre> <blockquote> <p>此文件还可以进行用户恢复操作，具体命令ceph auth import -i ceph.client.vfan.keyring，这种恢复方式，用户key值不会发生改变。</p> </blockquote> <p>将密钥权限文件传输至客户端主机：</p> <pre><code class="language-bash">$ sudo scp ceph.client.vfan.keyring ceph-node2:/etc/ceph/</code></pre> <h5 id="4客户端使用普通用户测试访问集群">（4）客户端使用普通用户测试访问集群</h5> <pre><code class="language-bash"># ceph --user vfan -s    cluster:     id:     537175bb-51de-4cc4-9ee3-b5ba8842bff2     health: HEALTH_OK     services:     mon: 3 daemons, quorum ceph-node1,ceph-node2,ceph-node3 (age 2m)     mgr: ceph-node1(active, since 2d), standbys: ceph-node2     mds: mycephfs:1 {0=ceph-node2=up:active} 1 up:standby     osd: 12 osds: 12 up (since 30h), 12 in (since 30h)     rgw: 2 daemons active (ceph-node1, ceph-node2)     task status:     data:     pools:   8 pools, 265 pgs     objects: 273 objects, 14 MiB     usage:   8.1 GiB used, 792 GiB / 800 GiB avail     pgs:     265 active+clean</code></pre> <blockquote> <p>默认情况下，ceph是用admin用户，可以使用--user指定用户。</p> </blockquote> <h5 id="5普通用户挂载rbd">（5）普通用户挂载rbd</h5> <p>因为之前创建用户赋予权限时没有给osd的x权限，现在重新赋予一下权限：</p> <pre><code class="language-bash">$ ceph auth caps client.vfan mon 'allow r' osd 'allow rwx pool=myrbd1'updated caps for client.vfan</code></pre> <p>映射到内核，挂载rbd</p> <pre><code class="language-bash">$ sudo rbd map myrbd1/image01 --user vfan  $ sudo mount /dev/rbd0 /mnt/ $ ls /mnt/ 10.txt  12.txt  14.txt  16.txt  18.txt  1.txt   2.txt  4.txt  6.txt  8.txt 11.txt  13.txt  15.txt  17.txt  19.txt  20.txt  3.txt  5.txt  7.txt  9.txt</code></pre> <p>取消映射</p> <pre><code class="language-bash">$ sudo rbd unmap myrbd1/image01 --user vfan</code></pre> <h5 id="6其他操作如更改镜像大小创建快照克隆等功能均与admin用户操作相同只不过每条命令后边会添加--user-用户名的操作例如">（6）其他操作如更改镜像大小、创建快照、克隆等功能，均与admin用户操作相同，只不过每条命令后边会添加--user [用户名]的操作，例如：</h5> <pre><code class="language-bash">$ rbd resize replicapool/image01 --size 15G --user vfan Resizing image: 100% complete...done.</code></pre> <h4 id="至此rbd常用功能已演示完毕接下来介绍cephfs和对象存储的使用">至此rbd常用功能已演示完毕，接下来介绍cephfs和对象存储的使用。</h4> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55170.htm">Windows下如何优雅的管理多个python版本以及简易安装相关库（包括机器学习和PyQt）</a></p>
+                                        <p>下一个：<a href="/news/article-55730.htm">rancher安装redis集群</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-free-node-subscribe.htm" title="2月12日 | SingBox每天更新21.6M/S免费节点链接地址分享">2月12日 | SingBox每天更新21.6M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-27938.htm" title="海拉鲁左上角第二个神庙（海拉鲁丘陵下面神庙）">海拉鲁左上角第二个神庙（海拉鲁丘陵下面神庙）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-27-sing-hysteria-windows.htm" title="12月27日 | SingBox每天更新18M/S免费节点链接地址分享">12月27日 | SingBox每天更新18M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-today-sing-box-node.htm" title="11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接">11月30日 | SingBox Github每天更新18.9M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-51939.htm" title="被野猫抓了一下轻微破皮出血要打针吗（被野猫抓了一下轻微破皮出血要打针吗）">被野猫抓了一下轻微破皮出血要打针吗（被野猫抓了一下轻微破皮出血要打针吗）</a></li>
+                        <li class="py-2"><a href="/news/article-33142.htm" title="宠物粮品牌名称及图片大全集（宠物粮品牌起名字）">宠物粮品牌名称及图片大全集（宠物粮品牌起名字）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-node-share-links.htm" title="12月18日 | SingBox Github每天更新18.2M/S免费节点订阅链接">12月18日 | SingBox Github每天更新18.2M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20545.htm" title="动物诊疗有限公司 动物诊疗有限公司和动物诊所区别">动物诊疗有限公司 动物诊疗有限公司和动物诊所区别</a></li>
+                        <li class="py-2"><a href="/news/article-46371.htm" title="成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）">成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）</a></li>
+                        <li class="py-2"><a href="/news/article-30763.htm" title="MySQL分组统计-每组各个条件信息条数">MySQL分组统计-每组各个条件信息条数</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
