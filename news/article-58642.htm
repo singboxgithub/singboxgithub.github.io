@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-58642.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>网页中的动态加载(js文件和css文件即换肤)</title>
+        <meta name="description" content="导语： 最近经常遇到一些人问起网页中按需加载的需求，例如网页load时不加载js文件，只有当用户触发某个事件时才按其所需加载其所需的js文件，又比如用户可以随意地切换网页的颜色等。纵观这些需求分析，不" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-58642.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="网页中的动态加载(js文件和css文件即换肤)" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/952ce8bc3afc7941d161fcbf9ddb5f4e.webp" />
+        <meta property="og:release_date" content="2025-02-18T09:44:34" />
+    <meta property="og:updated_time" content="2025-02-18T09:44:34" />
+        <meta property="og:description" content="导语： 最近经常遇到一些人问起网页中按需加载的需求，例如网页load时不加载js文件，只有当用户触发某个事件时才按其所需加载其所需的js文件，又比如用户可以随意地切换网页的颜色等。纵观这些需求分析，不" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="网页中的动态加载(js文件和css文件即换肤)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>网页中的动态加载(js文件和css文件即换肤)</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-size:18px"><span style="font-size:24px">导语：</span><br /></span></p> <p><span style="font-size:18px">最近<span style="font-size:18px">经常</span>遇到一些人<span style="font-size:18px">问</span>起网页中按需加载的需求，<span style="font-size:18px">例</span>如网页load时不加载js文件，只<span style="font-size:18px">有当</span>用户触发某个事件时才按其所需加载其所需<span style="font-size:18px">的</span>js文件，又比如用户<span style="font-size:18px">可以<span style="font-size:18px">随<span style="font-size:18px">意地<span style="font-size:18px">切换<span style="font-size:18px">网页的颜色等。<span style="font-size:18px">纵观这些需求分析，不外<span style="font-size:18px">乎就是j<span style="font-size:18px">s里面的一个动态加载，因此有必要<span style="font-size:18px">做<span style="font-size:18px">几个<span style="font-size:18px">demo以供大家参考。</span></span></span></span></span></span></span></span></span></span></span></span></p> <p></p> <p><span style="font-size:24px">一、网页中动态加载js文件后执行某个函数：</span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px">网页中的元素：</span></span></span></span></span></span></span></span></span></span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></p> <pre><code class="language-html">&lt;input type="button" value="动态加载js文件" id="btn1" /&gt;</code></pre> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px">js代码：</span></span></span></span></span></span></span></span></span></span></span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px">照格式创建：&lt;script src="../js/myJs.js" type="text/javascript"&gt;&lt;/script&gt;</span><br /></span></span></span></span></span></span></span></span></span></span></span></p> <pre><code class="language-html">document.getElementById("btn1").onclick = function () { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var url = "js/myjs.js";  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!checkIsExist(url)) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var script = document.createElement("script"); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; script.type = "text/javascript"; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; script.src = "../" + url; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.body.appendChild(script); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setTimeout("sayHi()", 100); //加载完成后，执行其内部的函数 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }  //检查页面中是否存在重名的js文件 function checkIsExist(url) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var scripts = document.getElementsByTagName("script"); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //遍历查询页面中已存在有想要加载的js文件 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var i = 0; i &lt; scripts.length; i++) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (scripts[i].src.indexOf(url)&gt;-1) { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</code></pre> <p><span style="font-size:18px">js文件动态加载并运行完毕！</span></p> <p></p> <p><span style="font-size:18px">二、动态加载css文件实现换肤的功能</span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#000000">页面style</span><br /><span style="font-size:18px"></span></span></span></span></span></span></span></span></span></span></span></p> <pre><code class="language-html">#ulList li{ list-style-type: none; height:50px; width:50px; background-color:Green; margin-right:5px; float:left;}</code></pre> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><font size="4"><font size="4"><font size="4">三个css文件分别<font size="4">为：red.css\<font size="4">yellow.css\<font size="4">blue.css，保存在css文件夹中，<font size="4">其内容就是background<span style="font-size:18px">-c<span style="font-size:18px">olor:分别对应文件<span style="font-size:18px">名的颜色</span></span></span></font></font></font></font><br /></font></font></font></span></span></span></span></span></span></span></span></span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px">页面布局</span></span></span></span></span></span></span></span></span></span></span></span></p> <p><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px; color:#FF6666"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"><span style="font-size:18px"></span></span></span></span></span></span></span></span></span></span></span></span></p> <pre><code class="language-html">&lt;ul id="ulList"&gt;    &lt;li&gt;&lt;/li&gt;    &lt;li&gt;&lt;/li&gt;    &lt;li&gt;&lt;/li&gt; &lt;/ul&gt;</code></pre> <p><span style="font-size:18px; color:#000000">页面js</span></p> <pre><code class="language-html">&lt;script src="../js/jquery-1.8.3.min.js" type="text/javascript"&gt;&lt;/script&gt;     &lt;script src="../js/cookies.jquery.js" type="text/javascript"&gt;&lt;/script&gt;     &lt;script type="text/javascript"&gt;         var arrCss = [{ "color": "red" }, { "color": "yellow" }, { "color": "blue" } ]         $(function () {             //从cookie中读取有没有css的链接地址             var cssHrefCookie = $.cookie("cssName");             if (cssHrefCookie) {                 loadCss(cssHrefCookie);             }              $("#ulList &gt; li").map(function (index, item) {                 $(item).css("background-color", arrCss[index].color).click(function () {                     //1.先移除页面中包括在arrCss数组中的颜色link                     $("link").map(function (index, item) {                         //页面中css链接的地址                         var href = $(item).attr("href");                          //遍历arrCss数组对其值与页面获得的值进行比对                         $.map(arrCss, function (value, key) {                             //根据数组获得的css链接的地址                             var cssHref = "css/" + arrCss[key].color + ".css";                             if (cssHref == href) {                                 //1.移除该link标签                                 $(item).remove();                             }                         });                     });                      //动态加载css文件到页面中                     var url = "css/" + arrCss[index].color + ".css";                     loadCss(url);                      //保存当前用户的css地址到cookie中                     $.cookie("cssName", url, { expires: 1 });                 });             });         });          //动态加载css文件的函数         function loadCss(url) {             //&lt;link href="css/main.css"  type="text/css" /&gt;             var link = document.createElement("link");             link.rel = "stylesheet";             link.type = "text/css";             link.href = url;             document.getElementsByTagName("head")[0].appendChild(link);         }     &lt;/script&gt;</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-58641.htm">appium入门</a></p>
+                                        <p>下一个：<a href="/news/article-59127.htm">开宠物店利润高吗知乎（开宠物店利润大吗）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-30763.htm" title="MySQL分组统计-每组各个条件信息条数">MySQL分组统计-每组各个条件信息条数</a></li>
+                        <li class="py-2"><a href="/news/article-45895.htm" title="青岛想念动物医院曹大夫怎么样（青岛想念动物医院电话）">青岛想念动物医院曹大夫怎么样（青岛想念动物医院电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-sing-box-node-windows.htm" title="11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接">11月12日 | SingBox Github每天更新20.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38444.htm" title="宠物疫苗能带上高铁吗现在（宠物疫苗能带上火车吗）">宠物疫苗能带上高铁吗现在（宠物疫苗能带上火车吗）</a></li>
+                        <li class="py-2"><a href="/news/article-34099.htm" title="宠物粮食品牌前十名排名图片及价格（宠物粮种类）">宠物粮食品牌前十名排名图片及价格（宠物粮种类）</a></li>
+                        <li class="py-2"><a href="/news/article-29326.htm" title="vuex配置项、多组件数据共享案例详解">vuex配置项、多组件数据共享案例详解</a></li>
+                        <li class="py-2"><a href="/news/article-24219.htm" title="品牌狗粮排行榜（十大口碑最好的狗粮）">品牌狗粮排行榜（十大口碑最好的狗粮）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-10-sing-box-node.htm" title="12月10日 | SingBox Github每天更新22.8M/S免费节点订阅链接">12月10日 | SingBox Github每天更新22.8M/S免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-3-free-node-subscribe-links.htm" title="2月3日 | SingBox每天更新20M/S免费节点链接地址分享">2月3日 | SingBox每天更新20M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-4-free-subscribe-node.htm" title="2月4日 | SingBox每天更新20.1M/S免费节点链接地址分享">2月4日 | SingBox每天更新20.1M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
