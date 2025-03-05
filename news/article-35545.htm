@@ -65,18 +65,17 @@
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center">
-                        <a href="/">
-                <p class="logo me-auto">SingBox <span>Github</span></p>
-            </a>
-                        <nav id="navbar" class="navbar">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
                 <ul>
                                         <li><a class="nav-link" href="/">首页</a></li>
                                         <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
                                         <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
                                         <li><a class="nav-link" href="/news/">新闻资讯</a></li>
-                                        <li><a class="nav-link" href="#">关于</a></li>
-                    <li><a class="nav-link" href="#">联系</a></li>
-                </ul>
+                                    </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
         </div>
@@ -101,7 +100,6 @@
                                         <input type="hidden" id="share-website-info" data-name="" data-url="">
                   				  				  				<div id="content_views" class="htmledit_views"> <p>SpringBoot三种方式实现定时任务<br /> 定时任务实现的三种方式：</p> <p>Timer：这是java自带的java.util.Timer类，这个类允许你调度一个java.util.TimerTask任务。使用这种方式可以让你的程序按照某一个频度执行，但不能在指定时间运行。一般用的较少。</p> <p>ScheduledExecutorService：也jdk自带的一个类；是基于线程池设计的定时任务类,每个调度任务都会分配到线程池中的一个线程去执行,也就是说,任务是并发执行,互不影响。</p> <p>Spring Task：Spring3.0以后自带的task，可以将它看成一个轻量级的Quartz，而且使用起来比Quartz简单许多。</p> </h1> <p>这个目前在项目中用的较少，直接贴demo代码。具体的介绍可以查看api</p> <pre class="has"><code>public&nbsp;class&nbsp;TestTimer&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TimerTask&nbsp;timerTask&nbsp;=&nbsp;new&nbsp;TimerTask()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Override &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("task&nbsp;&nbsp;run:"+&nbsp;new&nbsp;Date()); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Timer&nbsp;timer&nbsp;=&nbsp;new&nbsp;Timer(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//安排指定的任务在指定的时间开始进行重复的固定延迟执行。这里是每3秒执行一次 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timer.schedule(timerTask,10,3000); &nbsp;&nbsp;&nbsp;&nbsp;} } </code></pre> </h1> <p>该方法跟Timer类似，直接看demo：</p> <pre class="has"><code>public&nbsp;class&nbsp;TestScheduledExecutorService&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ScheduledExecutorService&nbsp;service&nbsp;=&nbsp;Executors.newSingleThreadScheduledExecutor(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;参数：1、任务体&nbsp;2、首次执行的延时时间 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、任务执行间隔&nbsp;4、间隔时间单位 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;service.scheduleAtFixedRate(()-&gt;System.out.println("task&nbsp;ScheduledExecutorService&nbsp;"+new&nbsp;Date()),&nbsp;0,&nbsp;3,&nbsp;TimeUnit.SECONDS); &nbsp;&nbsp;&nbsp;&nbsp;} } </code></pre> </h1> <p>1，简单的定时任务<br /> 在SpringBoot项目中，我们可以很优雅的使用注解来实现定时任务，首先创建项目，导入依赖：</p> <pre class="has"><code>&lt;dependencies&gt; &nbsp;&nbsp;&lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &nbsp;&nbsp;&lt;/dependency&gt; &nbsp;&nbsp;&lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt; &nbsp;&nbsp;&lt;/dependency&gt; &nbsp;&nbsp;&lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;lombok&lt;/artifactId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;optional&gt;true&lt;/optional&gt; &nbsp;&nbsp;&lt;/dependency&gt; &nbsp;&nbsp;&lt;dependency&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt; &nbsp;&nbsp;&nbsp;&nbsp;&lt;scope&gt;test&lt;/scope&gt; &nbsp;&nbsp;&lt;/dependency&gt; &lt;/dependencies&gt; </code></pre> <p>创建任务类：</p> <pre class="has"><code>@Slf4j @Component public&nbsp;class&nbsp;ScheduledService&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;@Scheduled(cron&nbsp;=&nbsp;"0/5&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*") &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;scheduled(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info("=====&gt;&gt;&gt;&gt;&gt;使用cron&nbsp;&nbsp;{}",System.currentTimeMillis()); &nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;@Scheduled(fixedRate&nbsp;=&nbsp;5000) &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;scheduled1()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info("=====&gt;&gt;&gt;&gt;&gt;使用fixedRate{}",&nbsp;System.currentTimeMillis()); &nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;@Scheduled(fixedDelay&nbsp;=&nbsp;5000) &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;scheduled2()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info("=====&gt;&gt;&gt;&gt;&gt;fixedDelay{}",System.currentTimeMillis()); &nbsp;&nbsp;&nbsp;&nbsp;} } </code></pre> <p>在主类上使用@EnableScheduling注解开启对定时任务的支持，然后启动项目<br /> 可以看到三个定时任务都已经执行，并且使同一个线程中串行执行，如果只有一个定时任务，这样做肯定没问题，当定时任务增多，如果一个任务卡死，会导致其他任务也无法执行。</p> <p>2，多线程执行<br /> 在传统的Spring项目中，我们可以在xml配置文件添加task的配置，而在SpringBoot项目中一般使用config配置类的方式添加配置，所以新建一个AsyncConfig类</p> <pre class="has"><code>@Configuration @EnableAsync public&nbsp;class&nbsp;AsyncConfig&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* &nbsp;&nbsp;&nbsp;&nbsp;此处成员变量应该使用@Value从配置中读取 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/ &nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;corePoolSize&nbsp;=&nbsp;10; &nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;maxPoolSize&nbsp;=&nbsp;200; &nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;queueCapacity&nbsp;=&nbsp;10; &nbsp;&nbsp;&nbsp;&nbsp;@Bean &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Executor&nbsp;taskExecutor()&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThreadPoolTaskExecutor&nbsp;executor&nbsp;=&nbsp;new&nbsp;ThreadPoolTaskExecutor(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;executor.setCorePoolSize(corePoolSize); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;executor.setMaxPoolSize(maxPoolSize); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;executor.setQueueCapacity(queueCapacity); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;executor.initialize(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;executor; &nbsp;&nbsp;&nbsp;&nbsp;} } </code></pre> <p>@Configuration：表明该类是一个配置类<br /> @EnableAsync：开启异步事件的支持</p> <p>然后在定时任务的类或者方法上添加@Async 。最后重启项目，每一个任务都是在不同的线程中。</p> <p>在线cron表达式生成：http://qqe2.com/cron/index</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
-                                        <p>上一个：<a href="/news/article-35021.htm">初中学历能考什么证来提升自己（初中学历可以考个什么证）</a></p>
                                         <p>下一个：<a href="/news/article-35546.htm">2021年河南动物疫苗中标公告公布时间（河南省2021年动物疫苗中标公告）</a></p>
                                     </div>
                 
@@ -113,16 +111,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-24219.htm" title="品牌狗粮排行榜（十大口碑最好的狗粮）">品牌狗粮排行榜（十大口碑最好的狗粮）</a></li>
+                        <li class="py-2"><a href="/news/article-42913.htm" title="node.js &#8211; 包、express">node.js &#8211; 包、express</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-node-subscribe.htm" title="2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享">2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-45894.htm" title="上海宠物领养站电话地址（上海宠物领养站电话地址是多少）">上海宠物领养站电话地址（上海宠物领养站电话地址是多少）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-14-sing-box-node-github.htm" title="1月14日 | SingBox每天更新20M/S免费节点链接地址分享">1月14日 | SingBox每天更新20M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-41415.htm" title="vuex数据共享与多模块化">vuex数据共享与多模块化</a></li>
+                        <li class="py-2"><a href="/news/article-63859.htm" title="动物医院前台个人总结怎么写（动物医院前台个人总结怎么写范文）">动物医院前台个人总结怎么写（动物医院前台个人总结怎么写范文）</a></li>
                         <li class="py-2"><a href="/news/article-39939.htm" title="合肥宠物收容中心地址电话（合肥市宠物收容中心）">合肥宠物收容中心地址电话（合肥市宠物收容中心）</a></li>
-                        <li class="py-2"><a href="/news/article-20544.htm" title="成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）">成都宠物托运公司哪家比较好用一点（成都宠物运输比较可靠的公司）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-5-sing-box-github.htm" title="1月5日 | SingBox每天更新18.7M/S免费节点链接地址分享">1月5日 | SingBox每天更新18.7M/S免费节点链接地址分享</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-16-free-node-subscribe.htm" title="1月16日 | SingBox每天更新22M/S免费节点链接地址分享">1月16日 | SingBox每天更新22M/S免费节点链接地址分享</a></li>
-                        <li class="py-2"><a href="/news/article-19628.htm" title="动物活疫苗和灭活疫苗的优缺点有哪些（动物灭活疫苗的作用机理）">动物活疫苗和灭活疫苗的优缺点有哪些（动物灭活疫苗的作用机理）</a></li>
-                        <li class="py-2"><a href="/news/article-30763.htm" title="MySQL分组统计-每组各个条件信息条数">MySQL分组统计-每组各个条件信息条数</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-node-subscribe.htm" title="11月28日 | SingBox Github每天更新18.5M/S免费节点订阅链接">11月28日 | SingBox Github每天更新18.5M/S免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-21917.htm" title="Golang错误处理机制（error 与 panic）">Golang错误处理机制（error 与 panic）</a></li>
-                        <li class="py-2"><a href="/news/article-40430.htm" title="动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）">动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）</a></li>
+                        <li class="py-2"><a href="/news/article-62645.htm" title="Vue-跑马灯效果">Vue-跑马灯效果</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-node-share-links.htm" title="3月2日 | SingBox每天更新21.3M/S免费节点链接地址分享">3月2日 | SingBox每天更新21.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-40933.htm" title="宠物用品比较好的牌子（宠物用品排名榜）">宠物用品比较好的牌子（宠物用品排名榜）</a></li>
                     </ul>
     </div>
 </div>
@@ -134,16 +132,13 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                     </ul>
     </div>
@@ -185,7 +180,6 @@
     <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
     <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
     <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/website/js/frontend/singboxgithub/glightbox/js/glightbox.min.js"></script>
     <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
     <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>

