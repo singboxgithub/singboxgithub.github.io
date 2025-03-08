@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-69518.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue中计算属性computed理解说明包括vue侦听器,缓存与computed的区别_vue.js</title>
+        <meta name="description" content="一、计算属性(computed) 1、vue computed 说明  当一些数据需要根据其它数据变化时,需要进行处理才能去展示,虽然vue提供了绑定数据表达式绑定的方式,但是设计它的初衷只是用于简单" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-69518.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="vue中计算属性computed理解说明包括vue侦听器,缓存与computed的区别_vue.js" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/888d569ad8cc9908f9722f4e9ee1b3a3.webp" />
+        <meta property="og:release_date" content="2025-03-08T05:05:37" />
+    <meta property="og:updated_time" content="2025-03-08T05:05:37" />
+        <meta property="og:description" content="一、计算属性(computed) 1、vue computed 说明  当一些数据需要根据其它数据变化时,需要进行处理才能去展示,虽然vue提供了绑定数据表达式绑定的方式,但是设计它的初衷只是用于简单" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue中计算属性computed理解说明包括vue侦听器,缓存与computed的区别_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>vue中计算属性computed理解说明包括vue侦听器,缓存与computed的区别_vue.js</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一、计算属性(computed)</h2> <h3>1、vue computed 说明</h3> <blockquote> <p>当一些数据需要根据其它数据变化时,需要进行处理才能去展示,虽然vue提供了绑定数据表达式绑定的方式,但是设计它的初衷只是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护,对于一些比较复杂和特殊的计算有可能就捉襟见肘了,而且计算的属性写在模板里也不利于项目维护</p> </blockquote> <p><strong>computed主要的作用:</strong></p> <blockquote> <p>分离逻辑(模板和数据分离)</p> <p>缓存值</p> <p>双向绑定(getter,setter)</p> </blockquote> <h3>2、语法格式</h3> <p>格式</p> <div class="ay1code"> <pre class="brush:js;">computed:{ [key: string]: Function | { get: Function, set: Function } }  </pre> </div> <p>参数说明：</p> <blockquote> <p>key：字符串类型</p> <p>值：可以是一个方法,如果是方法默认是get操作,也可以是对象 ,设置get属性或者set属性</p> </blockquote> <h3>3、基础用法</h3> <p><strong>说明</strong></p> <blockquote> <p>在一个计算属性里可以完成各种复杂的逻辑，包括运算、函数调用等，最终返回一个结果,</p> <p>计算属性还可以依赖多个Vue 实例的数据，只要其中任一数据变化，计算属性就会重新执行，视图也会更新,适用于<strong>比较费时</strong>的数据计算</p> </blockquote> <p>示例代码</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div id="app"&gt;      &lt;!--使用表达式的方式--&gt;      &lt;p v-text="originalPrice - discountPrice"&gt;&lt;/p&gt;      &lt;!--使用计算属性的方式--&gt;      &lt;p v-text="currentPrice"&gt;&lt;/p&gt;  &lt;/div&gt;  &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;  &lt;script&gt;      let app = new Vue({          el: '#app',          data: {               id:1,              originalPrice:1200,              discountPrice:200,          },          //计算属性          computed: {              // 把日期换成 常见规格格式的字符串。              currentPrice: function () {                  return "当前价格:" + (this.originalPrice - this.discountPrice);              }          }      });  </pre> </div> <h3>4、setter与getter</h3> <p>说明</p> <blockquote> <p>每一个计算属性都包含一个<strong>getter</strong> 和一个<strong>setter</strong>，上面的示例都是计算属性的默认用法， 只是利用了<strong>getter</strong>来读取</p> <p>如果需要，也可以提供一个<strong>setter</strong> 函数， 当修改计算属性的值就像修改一个普通数据那样时，就会触发<strong>setter</strong> 函数</p> </blockquote> <p>示例代码</p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div id="app1"&gt;      &lt;p v-text="currentPrice"&gt;&lt;/p&gt;  &lt;/div&gt;  &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;  &lt;script&gt;      let app = new Vue({          el: '#app',          data: {              id: 1,              originalPrice: 1200,              discountPrice: 200,          },          //计算属性          computed: {               cache:false,              // 把日期换成 常见规格格式的字符串。              currentPrice: {                  get: function () {                      return "当前价格:" + (this.originalPrice - this.discountPrice);                  },                  // 注意必须要传递参数,否则没有意义                  set: function (value) {                       //执行自定义的一下操作                      this.discountPrice = value                  }              }          }      });  &lt;/script&gt;  &lt;!--   在 console 中 输入 app.currentPrice=300   1&gt; 先执行get方法改变discountPrice的值  2&gt; 因为数据发生改变了 所以会重新计算当前的价格, 执行get方法  --&gt;  </pre> </div> <p>注意</p> <blockquote> <p>绝大多数情况下，我们只会用默认的<code>getter</code>方法来读取一个计算属性，在业务中很少用到<code>setter</code>,所以在声明一个计算属性时，可以直接使用默认的写法</p> </blockquote> <h3>5、缓存</h3> <p>说明</p> <blockquote> <p>计算属性基于它们的依赖进行缓存的，只有相关依赖发生改变的时候才会重新求值，一般为响应式依赖</p> <p>什么是响应式依赖，Vue <strong>不能检测到对象属性的添加或删除</strong>。由于 Vue 会在初始化实例时对属性执行 <code>getter/setter</code> 转化过程，所以属性必须在 <code>data</code> 对象上存在才能让 Vue 转换它，这样才能让它是响应</p> </blockquote> <p>示例代码</p> <div class="ay1code"> <pre class="brush:java;">&lt;!-- 响应式依赖 --&gt;  &lt;script&gt;      var vm = new Vue({        data: {          // 声明 message 为一个空值字符串          message: ''        },      })      // 响应式      vm.message = 'Hello!'        vm.v="非响应式的的值"  &lt;/script&gt;  </pre> </div> <p> </p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div id="app"&gt;      &lt;button @click="getMethodsDate"&gt;methods&lt;/button&gt;      &lt;button @click="getComputedDate"&gt;computed带缓存&lt;/button&gt;  &lt;/div&gt;  &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;  &lt;script type="text/javascript"&gt;      new Vue({          el: '#app',          methods: {              getMethodsDate: function () {                  console.log(new Date().toLocaleTimeString())              },              // 返回computed选项中设置的计算属性——computedDate              getComputedDate: function () {                  console.log("缓存---&gt;" + this.computedDate)              }          },          computed: {              computedDate: function () {                  return new Date().toLocaleTimeString()              }          }      })  &lt;/script&gt;    </pre> </div> <h3>6、与methods的区别</h3> <p>computed 只有符合：存在依赖型数据，依赖型数据发生改变这两个条件，computed才会重新计算。而methods下的数据，是每次都会进行计算的</p> <p>调用方式不一样，<code>computed</code>定义的成员像属性一样访问，而<code>methods</code>定义的成员必须以函数形式调用。</p> <p><code>computed</code>是带缓存的，只有其引用的响应式属性发生改变时才会重新计算，而<code>methods</code>里的函数在每次调用时都要执行。</p> <h2>五、侦听器(watch)</h2> <h3>1、说明</h3> <blockquote> <p>官方:当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的，watch 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态</p> <p><code>watch</code>和我们前面介绍的<code>methods</code>相同的语法，但是有一个关键的区别。虽然嵌套属性的值确实是函数，但键的名称必须对应数据属性中的名称</p> </blockquote> <h3>2、语法格式</h3> <blockquote> <div class="ay1code"> <pre class="brush:js;">watch:{  [key: string]: string | Function | Object }]  </pre> </div> </blockquote> <h3>3、语法说明</h3> <p>key：必须是Vue对象data中定义的属性</p> <p>值：值可以是一个字符串，这个字符串是方法名；值可以是一个函数；值也可以是一个对象，其中包含回调函数可以其他选项：比如是否深度遍历。</p> <h3>4、基础使用</h3> <p>示例代码</p> <div class="ay1code"> <pre class="brush:js;">&lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;    &lt;script&gt;      let vm = new Vue({          data: {              test: "111",              user: {                  name: "码帝",                  address: {                      city: "大武汉"                  }              }          },          methods: {              fun: function (val) {                  alert(val)              }          },          watch: {              // 方法名方式 对应 methods中的函数名              // test: 'fun',              // 函数方式              test: function (v1, v2) {                  alert("新值" + v1 + "====旧值:" + v2)              },              /**               *什么是深度 例如  data: {test: "111", user: {name: "码帝" ,address{city:'大武汉'}}               * user属性对应值就是深层,一次内推               * 如果我们监听的user属性 当user.name属性发生改变的时候 watch监听是不到,所有我们这里需要使用深层监听               */              //              user: {                  handler: function (val) {                      alert(val.name)                  },                  // 是否深度监听 默认是false                  // 如果不设置为true当我们手动设置vm.user.name = "撸帝"的时候,是监听不到的                  deep: true              },              /**               * 或者也可以使用下面的方式来监听               * 注意键值必须是一个字符串，所以用引号括起来               *               */                "user.address.city": function (val) {                  alert(val)              }          }      });      vm.test = '333';      vm.user.name = "撸帝";      vm.user.address.city = '长沙'  </pre> </div> <p> </p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div id="app"&gt;      &lt;input type="text" v-model="search"/&gt;      &lt;ul&gt;          &lt;li v-for="result in results" v-text="result"&gt;&lt;/li&gt;      &lt;/ul&gt;  &lt;/div&gt;  &lt;script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"&gt;&lt;/script&gt;    &lt;script&gt;      let vm = new Vue({          el: "#app",          data: {              user:{                  name:"码帝",              }              search: "",              results: [],                        },          methods: {            fun: function () {              alert("111");            }          }          watch: {           // 使用函数              search: function (v1, v2) {               console.log('新值: %s, 旧值: %s', v1, v2)                  this.results.push(v1)              }          }                })  &lt;/script&gt;  </pre> </div> <h3>5、与computed的区别</h3> <p><strong>触发条件不同</strong></p> <blockquote> <p>computed计算属性会依赖于使用它的data属性，只要是依赖的data属性值有变动，则自定义重新调用计算属性执行一次。</p> <p>watch则是在监控的data属性值发生变动时，其会自动调用watch回调函数。</p> </blockquote> <p><strong>应用场景不同</strong></p> <blockquote> <p>执行异步操作，开销较大的操作，避免堵塞主线程，使用watch。</p> <p>简单且串行返回的，使用computed</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-68875.htm">广州哪里有猫领养的地方呀（广州哪里有猫领养中心）</a></p>
+                                        <p>下一个：<a href="/news/article-69519.htm">青岛比较好的宠物医院（青岛比较好的宠物医院有哪些）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-65075.htm" title="Java中的希尔排序">Java中的希尔排序</a></li>
+                        <li class="py-2"><a href="/news/article-39421.htm" title="炸红薯片怎么炸才会酥脆视频(炸红薯片怎么炸才会酥脆凉了的不软)">炸红薯片怎么炸才会酥脆视频(炸红薯片怎么炸才会酥脆凉了的不软)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-node-subscribe.htm" title="2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享">2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68874.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/news/article-54069.htm" title="被猫抓了一下红色划痕会传染吗（被猫抓了红色划痕有事吗）">被猫抓了一下红色划痕会传染吗（被猫抓了红色划痕有事吗）</a></li>
+                        <li class="py-2"><a href="/news/article-35546.htm" title="2021年河南动物疫苗中标公告公布时间（河南省2021年动物疫苗中标公告）">2021年河南动物疫苗中标公告公布时间（河南省2021年动物疫苗中标公告）</a></li>
+                        <li class="py-2"><a href="/news/article-56285.htm" title="领养宠物需要给钱吗 领养宠物需要给钱吗现在">领养宠物需要给钱吗 领养宠物需要给钱吗现在</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-free-node-subscribe.htm" title="1月10日 | SingBox每天更新23M/S免费节点链接地址分享">1月10日 | SingBox每天更新23M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-sing-box-github.htm" title="1月22日 | SingBox每天更新19.3M/S免费节点链接地址分享">1月22日 | SingBox每天更新19.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-sing-box-node-windows.htm" title="2月22日 | SingBox每天更新21.9M/S免费节点链接地址分享">2月22日 | SingBox每天更新21.9M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
