@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-70163.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>记一次 Nuxt 3 在 Windows 下的打包问题</title>
+        <meta name="description" content="0. 背景 之前用 Nuxt 3 写了公司的官网，包括了样式、字体图标、图片、视频等，其中样式和字体图标放在了assets/styles 和assets/fonts 目录下，而图片和视频则放在了pub" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-70163.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="记一次 Nuxt 3 在 Windows 下的打包问题" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/2ac3ab71c2deef72e43038000c858b2b.webp" />
+        <meta property="og:release_date" content="2025-03-09T09:44:46" />
+    <meta property="og:updated_time" content="2025-03-09T09:44:46" />
+        <meta property="og:description" content="0. 背景 之前用 Nuxt 3 写了公司的官网，包括了样式、字体图标、图片、视频等，其中样式和字体图标放在了assets/styles 和assets/fonts 目录下，而图片和视频则放在了pub" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="记一次 Nuxt 3 在 Windows 下的打包问题">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>记一次 Nuxt 3 在 Windows 下的打包问题</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h3 id="0-背景">0. 背景</h3> <p>之前用 Nuxt 3 写了公司的官网，包括了样式、字体图标、图片、视频等，其中样式和字体图标放在了<code>assets/styles</code> 和<code>assets/fonts</code> 目录下，而图片和视频则放在了<code>public/images</code> 和<code>public/videos</code> 目录下。</p> <h3 id="1-起因">1. 起因</h3> <p>在不改变任何<code>nuxt.config.ts</code> 打包配置的情况下，直接执行<code>npm run build</code>，会生成一个<code>.output</code> 目录，结构如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d5298ba9fd107b6357ad83ad1a2d0cf1.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>我们再展开<code>_nuxt</code> 文件夹，结构如下</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7564338203de1449ccba94010afa7f77.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>这里有个问题就是<code>.output/public/</code> 下和<code>.output/public/_nuxt/</code> 下都有<code>images</code> 和<code>videos</code> 文件夹，而且里面的内容完全一样，这就造成了<mark>发布包体积变大</mark>。</p> <h3 id="2-经过">2. 经过</h3> <p>然后查阅了<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://v3.nuxtjs.org/docs/directory-structure/nuxt.config"  target="_blank" rel="nofollow">官网的配置文档</a>，发现<code>app.buildAssetsDir</code> 可以改变静态资源的输出路径（默认值也的确是<code>_nuxt</code>），于是将其改成<code>/</code> 后再次打包，然而并没有任何变化 ????‍。在仔细看了两遍文档无果后，只能撸起袖子从代码入手，最后在<code>.output/server/chunks/render.mjs</code> 里发现代码关心的其实是下面的三个配置</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/377fb8ff5253e0ea57c910d2b486632e.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>因此应该调整的是<code>assetsPath</code>，而不是文档上写的<code>buildAssetsDir</code>。</p> <p>改完再次打包，发现已成功将<code>_nuxt</code> 里的内容移到了外面，见下图</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bb8fd476fa13b573694947494a477297.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>接着<code>npm start</code> 启动项目，不出所料的出现了问题 ????，大大的 404 欢迎我</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/dfafc208c333444ccef3b5f47ada0798.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>继续查代码，发现在<code>.output/server/chunks/static.mjs</code> 里有这么一段代码</p> <pre><code class="language-javascript">if (!asset) {   if (id.startsWith(PUBLIC_PATH) &amp;&amp; !id.startsWith(STATIC_ASSETS_BASE)) {     throw createError({       statusMessage: "Cannot find static asset " + id,       statusCode: 404     });   }   return }</code></pre> <p>偏偏我们现在的<code>PUBLIC_PATH</code> 是<code>/</code>，这样一来所有不是静态资源且以<code>/</code> 开头的请求都被拦截到 404 去了 ????‍。</p> <p>手工注释掉这段代码，重启服务，再次刷新页面，ok 了。</p> <p>原以为到这里就结束了，但又发现所有<code>.mjs</code> 的请求又都变成了 404</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/701d23084dcb9fd9519fbccf942975f8.jpg" alt="记一次 Nuxt 3 在 Windows 下的打包问题"></p> <p>这种批量出问题的，估摸着又是哪里的配置有问题。</p> <p>再次查看文档，比对代码，发现有个<code>vite.base</code> 的配置默认是指向<code>_nuxt</code> 的，赶紧改成<code>/</code>。</p> <p>再次 build，重启服务，刷新页面，成了！</p> <hr/> <h3 id="3-写在最后">3. 写在最后</h3> <p>这次排查经历告诉我 ... nuxt 3 真的还没有达到生产环境使用的标准，而且我之前有次在 Linux 下 build，出来的结果和 Windows 下还不一样，这个就以后再讨论了。</p> <p>拜拜，下次见。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-69519.htm">青岛比较好的宠物医院（青岛比较好的宠物医院有哪些）</a></p>
+                                        <p>下一个：<a href="/news/article-70164.htm">妙三多猫疫苗打完有什么不良反应（妙三多猫疫苗打两针还是三针）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-sing-box-node-github.htm" title="2月21日 | SingBox每天更新19.6M/S免费节点链接地址分享">2月21日 | SingBox每天更新19.6M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-40933.htm" title="宠物用品比较好的牌子（宠物用品排名榜）">宠物用品比较好的牌子（宠物用品排名榜）</a></li>
+                        <li class="py-2"><a href="/news/article-68874.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-free-node-subscribe.htm" title="1月11日 | SingBox每天更新18M/S免费节点链接地址分享">1月11日 | SingBox每天更新18M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68234.htm" title="养猫都要打什么针（养猫需要打什么针）">养猫都要打什么针（养猫需要打什么针）</a></li>
+                        <li class="py-2"><a href="/news/article-48288.htm" title="宠物领养市场现状 宠物领养市场现状分析">宠物领养市场现状 宠物领养市场现状分析</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-node-share.htm" title="3月8日 | SingBox每天更新22.7M/S免费节点链接地址分享">3月8日 | SingBox每天更新22.7M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-latest-sing-box-node.htm" title="2月5日 | SingBox每天更新18.1M/S免费节点链接地址分享">2月5日 | SingBox每天更新18.1M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-36486.htm" title="Spring boot 注解@Async不生效 无效 不起作用">Spring boot 注解@Async不生效 无效 不起作用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-4-free-subscribe-node.htm" title="2月4日 | SingBox每天更新20.1M/S免费节点链接地址分享">2月4日 | SingBox每天更新20.1M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

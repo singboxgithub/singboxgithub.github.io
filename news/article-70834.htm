@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-70834.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？</title>
+        <meta name="description" content="在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。 除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-70834.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/3505ee9d02b6294ee554fe15f9259efa.webp" />
+        <meta property="og:release_date" content="2025-03-10T04:36:13" />
+    <meta property="og:updated_time" content="2025-03-10T04:36:13" />
+        <meta property="og:description" content="在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。 除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>在MySQL中，SERIAL和AUTO_INCREMENT有什么区别？</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>在MySQL中，SERIAL和AUTO_INCREMENT均用于将序列定义为字段的默认值。但是它们在技术上彼此不同。</p> <p>除BIT和DECIMAL之外，所有数字数据类型均支持AUTO_INCREMENT属性。每个表只能有一个AUTO_INCREMENT字段，并且一个表中的AUTO_INCREMENT字段生成的序列不能在其他任何表中使用。</p> <p>此属性要求字段上存在UNIQUE索引，以确保序列不重复。默认情况下，序列从1开始，每次插入都以1递增。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;Student(Student_id&nbsp;INT&nbsp;PRIMARY&nbsp;KEY&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT,&nbsp;Name&nbsp;Varchar(20));</pre> <p>上面的查询声明了Student_id AUTO_INCREMENT。</p> <pre>mysql&gt;&nbsp;Insert&nbsp;Into&nbsp;Student(Name)&nbsp;values('RAM'),('SHYAM'); Records:&nbsp;2&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0  mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;Student; +------------+-------+ |&nbsp;Student_id&nbsp;|&nbsp;Name&nbsp;&nbsp;| +------------+-------+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;|&nbsp;RAM&nbsp;&nbsp;&nbsp;| |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;SHYAM&nbsp;| +------------+-------+ 2&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)  mysql&gt;&nbsp;Show&nbsp;Create&nbsp;Table&nbsp;Student\G ***************************&nbsp;1.&nbsp;row&nbsp;*************************** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table:&nbsp;Student Create&nbsp;Table:&nbsp;CREATE&nbsp;TABLE&nbsp;`student`&nbsp;( &nbsp;&nbsp;&nbsp;`Student_id`&nbsp;int(11)&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT, &nbsp;&nbsp;&nbsp;`Name`&nbsp;varchar(20)&nbsp;DEFAULT&nbsp;NULL, &nbsp;&nbsp;&nbsp;PRIMARY&nbsp;KEY&nbsp;(`Student_id`) )&nbsp;ENGINE=InnoDB&nbsp;AUTO_INCREMENT=3&nbsp;DEFAULT&nbsp;CHARSET=latin1 1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <p>另一方面，SERIAL DEFAULT VALUE是NOT NULL AUTO_INCREMENT UNIQUE KEY的简写。整数数值类型（如TINYINT，SMALLINT，MEDIUMINT，INT和BIGINT）支持SERIAL DEFAULT VALUE关键字。</p> <h2>示例</h2> <pre>mysql&gt;&nbsp;Create&nbsp;Table&nbsp;Student_serial(Student_id&nbsp;SERIAL,&nbsp;Name&nbsp;VArchar(20));  mysql&gt;&nbsp;Insert&nbsp;into&nbsp;Student_serial(Name)&nbsp;values('RAM'),('SHYAM'); Records:&nbsp;2&nbsp;Duplicates:&nbsp;0&nbsp;Warnings:&nbsp;0  mysql&gt;&nbsp;Select&nbsp;*&nbsp;from&nbsp;Student_serial; +------------+-------+ |&nbsp;Student_id&nbsp;|&nbsp;Name&nbsp;| +------------+-------+ |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;|&nbsp;RAM&nbsp;&nbsp;&nbsp;| |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;|&nbsp;SHYAM&nbsp;| +------------+-------+ 2&nbsp;rows&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)  mysql&gt;&nbsp;Show&nbsp;Create&nbsp;Table&nbsp;Student_serial\G ***************************&nbsp;1.&nbsp;row&nbsp;*************************** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table:&nbsp;Student_serial Create&nbsp;Table:&nbsp;CREATE&nbsp;TABLE&nbsp;`student_serial`&nbsp;( &nbsp;&nbsp;&nbsp;`Student_id`&nbsp;bigint(20)&nbsp;unsigned&nbsp;NOT&nbsp;NULL&nbsp;AUTO_INCREMENT, &nbsp;&nbsp;&nbsp;`Name`&nbsp;varchar(20)&nbsp;DEFAULT&nbsp;NULL, &nbsp;&nbsp;&nbsp;UNIQUE&nbsp;KEY&nbsp;`Student_id`&nbsp;(`Student_id`) )&nbsp;ENGINE=InnoDB&nbsp;AUTO_INCREMENT=3&nbsp;DEFAULT&nbsp;CHARSET=latin1 1&nbsp;row&nbsp;in&nbsp;set&nbsp;(0.00&nbsp;sec)</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-70164.htm">妙三多猫疫苗打完有什么不良反应（妙三多猫疫苗打两针还是三针）</a></p>
+                                        <p>下一个：<a href="/news/article-70835.htm">基于java的宠物领养系统（基于java的宠物领养系统的研究目的）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-54633.htm" title="被猫咬了一个小孔有点红肿痛（被猫咬了一个小孔出血）">被猫咬了一个小孔有点红肿痛（被猫咬了一个小孔出血）</a></li>
+                        <li class="py-2"><a href="/news/article-57419.htm" title="上海宠物领养中心真假鉴定电话（上海宠物领养救助站是真的吗）">上海宠物领养中心真假鉴定电话（上海宠物领养救助站是真的吗）</a></li>
+                        <li class="py-2"><a href="/news/article-53005.htm" title="使用 docker-compose 部署 golang 的 Athens 私有代理">使用 docker-compose 部署 golang 的 Athens 私有代理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-13-free-node-subscribe.htm" title="2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享">2月13日 | SingBox每天更新19.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-3-sing-box-node-github.htm" title="3月3日 | SingBox每天更新19M/S免费节点链接地址分享">3月3日 | SingBox每天更新19M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-62646.htm" title="react事件类型">react事件类型</a></li>
+                        <li class="py-2"><a href="/news/article-63859.htm" title="动物医院前台个人总结怎么写（动物医院前台个人总结怎么写范文）">动物医院前台个人总结怎么写（动物医院前台个人总结怎么写范文）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-free-sing-box-node.htm" title="2月11日 | SingBox每天更新20.3M/S免费节点链接地址分享">2月11日 | SingBox每天更新20.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-70163.htm" title="记一次 Nuxt 3 在 Windows 下的打包问题">记一次 Nuxt 3 在 Windows 下的打包问题</a></li>
+                        <li class="py-2"><a href="/news/article-48854.htm" title="动物接种疫苗的好处有哪些方面的内容和方法（动物疫苗的作用）">动物接种疫苗的好处有哪些方面的内容和方法（动物疫苗的作用）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
