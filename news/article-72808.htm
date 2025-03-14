@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-72808.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MySQL 视图简介</title>
+        <meta name="description" content="概述 数据库中关于数据的查询有时非常复杂，例如表连接、子查询等，这种查询编写难度大，很容易出错。另外，在具体操作表时，有时候要求只能操作部分字段。 为了提高复杂 SQL 语句的复用性和表的操作的安全性" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-72808.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="MySQL 视图简介" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/54cdd2fced040deb9b98a07fce5a0040.webp" />
+        <meta property="og:release_date" content="2025-03-13T09:21:17" />
+    <meta property="og:updated_time" content="2025-03-13T09:21:17" />
+        <meta property="og:description" content="概述 数据库中关于数据的查询有时非常复杂，例如表连接、子查询等，这种查询编写难度大，很容易出错。另外，在具体操作表时，有时候要求只能操作部分字段。 为了提高复杂 SQL 语句的复用性和表的操作的安全性" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL 视图简介">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>MySQL 视图简介</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p></p> <h2 id="概述">概述</h2> <p>数据库中关于数据的查询有时非常复杂，例如表连接、子查询等，这种查询编写难度大，很容易出错。另外，在具体操作表时，有时候要求只能操作部分字段。</p> <p>为了提高复杂 SQL 语句的复用性和表的操作的安全性，MySQL 提供了视图特性。所谓视图，本质上是一种虚拟表，同样包含一系列带有名称的列和行数据。行和列的数据来自自定义视图的查询所引用的基本表，并在具体引用视图时动态生成</p> <p>视图的特点如下：</p> <ul> <li>视图的列可以来自不同的表，是表的抽象和逻辑意义上建立的新关系</li> <li>视图是由基本表（实表）产生的表（虚表）</li> <li>视图的建立和删除不影响基本表</li> <li>对视图内容的更新（增删改）直接影响基本表</li> <li>当视图来自多个基本表，不允许添加和删除数据</li> </ul> <p></p> <h2 id="创建视图">创建视图</h2> <h4 id="1-创建视图的语法形式">1. 创建视图的语法形式</h4> <pre><code class="language-sql">CREATE [OR REPLACE] [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]   VIEW view_name [column_list]   AS SELECT statement [WITH [CASCADED | LOCAL] CHECK OPTION]</code></pre> <ul> <li>CREATE 表示创建新的视图，REPLACE 表示替换已经创建的视图</li> <li>ALGORITHM 表示视图选择的算法，取值有三种： <ul> <li>UNDEFINED：MySQL 自动选择算法</li> <li>MERGE：将使用的视图语句与视图定义合并起来，使得视图定义的某一部分取代语句对应的部分</li> <li>TEMPLATE：表示将视图的结果放入临时表，然后用临时表来执行语句</li> </ul> </li> <li>view_name 表示视图的名称</li> <li>column_list 为属性列</li> <li>SELECT statement 表示 SELECT 语句</li> <li>参数 [WITH [CASCADED | LOCAL] CHECK OPTION] 表示视图在更新时保证在视图的权限范围内，CASCADED 与 LOCAL 为可选参数： <ul> <li>CASCADED 为默认值，表示更新视图时要满足所有相关视图和表的条件</li> <li>LOCAL 表示更新视图时满足该视图本身定义的条件即可</li> </ul> </li> </ul> <p>该语句要求具有针对视图的 CREATE VIEW 权限，以及针对由 SELECT 语句选择的每一列上的某些权限。对于在 SELECT 语句中其他地方使用的列，必须具有 SELECT 权限，如果还有 OR REPLACE 子句，就必须在视图上具有 DROP 权限</p> <h4 id="2-在单表创建视图">2. 在单表创建视图</h4> <p>示例：在数据库 company 中，由员工表 t_employee 创建出隐藏工资字段 salary 的视图 view_selectemployee</p> <pre><code class="language-sql">CREATE VIEW view_selectemployee AS SELECT id,name,gender,age,deptno FROM t_employee;</code></pre> <p>查询视图</p> <pre><code class="language-sql">SELECT * FROM view_selectemployee;</code></pre> <h4 id="3-在多表创建视图">3. 在多表创建视图</h4> <p>示例：在数据库 company 中，由部门表 t_dept 和员工表 t_employee 创建一个名为 view_dept_employee 的视图</p> <pre><code class="language-sql">CREATE ALGORITHM=MERGE VIEW view_dept_employee(name,dept,gender,age,loc) AScSELECT iname,t_dept.deptname,gender,age,t_dept.location FROM t_employee, t_dept WHERE t_employee.deptno = t_dept.deptno WITH LOCAL CHECK OPTION;</code></pre> <p></p> <h2 id="查看视图">查看视图</h2> <p>使用 DESCRIBE | DESC 语句查看视图基本信息，因为视图也是一张表，只不过比较特殊</p> <pre><code class="language-sql">DESCRIBE | DESC viewname</code></pre> <p>在 MySQL 中，所有视图的定义都存在数据库 information_schema 中的表 views 中，查询 views 表可以得到数据库中所有视图的详细信息</p> <pre><code class="language-sql">SELECT * FROM information_schema.views WHERE table_name = 'viewname' \G</code></pre> <p></p> <h2 id="修改视图">修改视图</h2> <p>修改视图是指修改数据库中存在的视图，当基本表的某些字段发生变化时，可以通过修改视图来保持与基本表的一致</p> <p>在 MySQL 中，<code>CREATE OR REPLACE VIEW</code> 语句可以用来修改视图。当视图已经存在，对视图进行修改，否则创建视图</p> <pre><code class="language-sql">CREATE OR REPLACE [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]   VIEW view_name [column_list]   AS SELECT statement [WITH [CASCADED | LOCAL] CHECK OPTION]</code></pre> <p>也可以使用 ALTER 语句修改视图，其语法中的关键字和参数都与创建视图是一样的</p> <pre><code class="language-sql">ALTER [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]   VIEW view_name [column_list]   AS SELECT statement [WITH [CASCADED | LOCAL] CHECK OPTION]</code></pre> <p></p> <h2 id="更新视图">更新视图</h2> <p>更新视图是指通过视图来插入、更新和删除表中的数据。可以使用 SQL 语句更新视图，达到更新基本表数据。反过来，更新基本表的数据，也会更新视图的数据</p> <p>但实际上，并不是所有视图都可以更新，以下几种情况是不能更新视图的：</p> <ul> <li>视图中包含 SUM()、COUNT()、MAX() 和 MIN() 函数</li> <li>视图中包含 UNION、UNION ALL、DISTINCT、GROUP BY 和 HAVING 等关键字</li> <li>常量视图，例如：<code>CREATE VIEW view_1 AS SELECT 'Rebecca' AS name;</code></li> <li>包含子查询的视图</li> <li>由不可更新的视图导出的视图</li> <li>创建视图时，ALGORITHM 为 TEMPTABLE 类型</li> <li>视图对应的列存在没有默认值的列，而且该列没有包含在视图里</li> <li>设置了 [WITH [CASCADED | LOCAL] CHECK OPTION] 参数，需要符合对应条件才能更新</li> </ul> <p></p> <h2 id="删除视图">删除视图</h2> <p>删除视图是指删除数据库中已存在的视图，不会删除数据</p> <p>在 MySQL 中，可以使用<code>DROP VIEW</code> 语句来删除视图，但是用户必须拥有 DROP 权限</p> <pre><code class="language-sql">DROP VIEW viewname [viewname1,viewname2,...]</code></pre> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-72145.htm">宠物粮食品牌前十名排行榜有哪些呢图片及价格（宠物粮生产厂家排名）</a></p>
+                                        <p>下一个：<a href="/news/article-72809.htm">动物疫苗接种证书怎么查询（动物疫苗查询真伪）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-68233.htm" title="猫三联一共几针,多少钱天津（猫三联到底是两针还是三针）">猫三联一共几针,多少钱天津（猫三联到底是两针还是三针）</a></li>
+                        <li class="py-2"><a href="/news/article-59127.htm" title="开宠物店利润高吗知乎（开宠物店利润大吗）">开宠物店利润高吗知乎（开宠物店利润大吗）</a></li>
+                        <li class="py-2"><a href="/news/article-66316.htm" title="CommonsCollection6反序列化链学习">CommonsCollection6反序列化链学习</a></li>
+                        <li class="py-2"><a href="/news/article-63238.htm" title="新疆和田哪里有宠物医院呀（和田哪里有宠物店）">新疆和田哪里有宠物医院呀（和田哪里有宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-58641.htm" title="appium入门">appium入门</a></li>
+                        <li class="py-2"><a href="/news/article-68874.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/news/article-63862.htm" title="吉娃娃转让100元左右（吉娃娃市场价格多少钱一只）">吉娃娃转让100元左右（吉娃娃市场价格多少钱一只）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-free-node-subscribe.htm" title="1月16日 | SingBox每天更新22M/S免费节点链接地址分享">1月16日 | SingBox每天更新22M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-sing-box-node-github.htm" title="1月27日 | SingBox每天更新23M/S免费节点链接地址分享">1月27日 | SingBox每天更新23M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-71478.htm" title="养狗得什么病（养狗得什么病会死）">养狗得什么病（养狗得什么病会死）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
