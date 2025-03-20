@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-77534.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>关于JS中一维数组和二维数组互转问题_javascript技巧</title>
+        <meta name="description" content="一维数组转二维数组   arr1to2(arr, number) {        var arr2 = [];        let len = arr.length;        for (le" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-77534.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="关于JS中一维数组和二维数组互转问题_javascript技巧" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/0b80890cb86c57d8a9b3ca9150969bd6.webp" />
+        <meta property="og:release_date" content="2025-03-20T10:00:31" />
+    <meta property="og:updated_time" content="2025-03-20T10:00:31" />
+        <meta property="og:description" content="一维数组转二维数组   arr1to2(arr, number) {        var arr2 = [];        let len = arr.length;        for (le" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="关于JS中一维数组和二维数组互转问题_javascript技巧">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>关于JS中一维数组和二维数组互转问题_javascript技巧</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>一维数组转二维数组</h2> <div class="ay1code"> <pre class="brush:js;"> arr1to2(arr, number) {        var arr2 = [];        let len = arr.length;        for (let i = 0, j = 0; i &lt; len; i += number, j++) {          arr2[j] = arr.splice(0, number);        }        return arr2;      },</pre> </div> <p> 使用：</p> <div class="ay1code"> <pre class="brush:js;">let arr1 = [        103.743896484375, 21.48374090716327, 101.05224609374999,        20.550508894195637, 103.60107421874999, 17.518344187852218      ];      console.log('一维数组:', arr1);      let arr2 = this.arr1to2(arr1, 2);      console.log('二维数组:', arr2);</pre> </div> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/1baf150e7eececcbfad24b1f770dc1c6.jpg"></p> <p>如果arr1to2第二个参数为3，效果如下：</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/3b03e311b605820648fa05f08e5ab946.jpg"></p> <h2> 二维数组转一维数组</h2> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/ef9e6fde883aa7e12bfb7ca4c785b684.jpg"></p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220420/4308275e95008a694ac9d8405159e524.jpg"></p> <div class="ay1code"> <pre class="brush:js;">    //二维数组转一维数组      let arr = [        [103.743896484375, 21.48374090716327],        [101.05224609374999, 20.550508894195637],        [103.60107421874999, 17.518344187852218]      ];      console.log('二维数组:', arr);      let newarr = [];      for (const item of arr) {        newarr = [...newarr, ...item];      }      console.log('一维数组：', newarr);</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-76837.htm">怎么能去除猫身上的跳蚤（怎样才能去除猫身上的跳蚤）</a></p>
+                                        <p>下一个：<a href="/news/article-77535.htm">领养狗协议有法律效应吗（狗领养协议有没有法律效应）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-14-sing-box-github.htm" title="2月14日 | SingBox每天更新20.2M/S免费节点链接地址分享">2月14日 | SingBox每天更新20.2M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-56285.htm" title="领养宠物需要给钱吗 领养宠物需要给钱吗现在">领养宠物需要给钱吗 领养宠物需要给钱吗现在</a></li>
+                        <li class="py-2"><a href="/news/article-51408.htm" title="被猫咬了怎样判断用不用打狂犬疫苗（被猫咬了怎样判断用不用打狂犬疫苗了）">被猫咬了怎样判断用不用打狂犬疫苗（被猫咬了怎样判断用不用打狂犬疫苗了）</a></li>
+                        <li class="py-2"><a href="/news/article-76171.htm" title="Android开发基础——Fragment">Android开发基础——Fragment</a></li>
+                        <li class="py-2"><a href="/news/article-67597.htm" title="ViewPager倒序并分页功能的显示">ViewPager倒序并分页功能的显示</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-node-subscribe-links.htm" title="1月7日 | SingBox每天更新18.4M/S免费节点链接地址分享">1月7日 | SingBox每天更新18.4M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-sing-box-github.htm" title="3月20日 | SingBox每天更新18.2M/S免费节点链接地址分享">3月20日 | SingBox每天更新18.2M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-43401.htm" title="冬至冬至大如年人间小团圆(冬至如小年,人间小团圆)">冬至冬至大如年人间小团圆(冬至如小年,人间小团圆)</a></li>
+                        <li class="py-2"><a href="/news/article-57982.htm" title="一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析">一个 Java8 的线程池 BUG 引发线上偶发 Bug 重现分析</a></li>
+                        <li class="py-2"><a href="/news/article-45388.htm" title="宠物猫多贵（宠物猫贵的品种）">宠物猫多贵（宠物猫贵的品种）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">60</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
