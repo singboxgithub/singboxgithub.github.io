@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-80255.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>vue实现横屏滚动公告效果_vue.js</title>
+        <meta name="description" content="本文实例为大家分享了vue实现横屏滚动公告效果的具体代码，供大家参考，具体内容如下  HTML文件  &lt;template&gt;    &lt;div id="box" ref="box"&gt" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-80255.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="vue实现横屏滚动公告效果_vue.js" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/8dde4f792fac2b6664aa2a6deb23c710.webp" />
+        <meta property="og:release_date" content="2025-03-24T08:20:25" />
+    <meta property="og:updated_time" content="2025-03-24T08:20:25" />
+        <meta property="og:description" content="本文实例为大家分享了vue实现横屏滚动公告效果的具体代码，供大家参考，具体内容如下  HTML文件  &lt;template&gt;    &lt;div id="box" ref="box"&gt" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue实现横屏滚动公告效果_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>vue实现横屏滚动公告效果_vue.js</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>本文实例为大家分享了vue实现横屏滚动公告效果的具体代码，供大家参考，具体内容如下</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220424/a2fc76e8a1a7354df5d229b07a38fd50.jpg"></p> <p><strong>HTML文件</strong></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;template&gt;    &lt;div id="box" ref="box"&gt;      &lt;div class="marquee-box" ref="marquee" @mouseover="menter" @mouseleave="mleave"&gt;        &lt;p ref="cmdlist" id="pWidth"&gt;          &lt;img style="width: 12px;height: 12px" src="../assets/logo.png" alt="vue实现横屏滚动公告效果_vue.js" alt=""&gt;累计练习时长1小时，可以获得1次抽奖机会，奖品有。。。。。        &lt;/p&gt;      &lt;/div&gt;    &lt;/div&gt;  &lt;/template&gt;</pre> </div> <p><strong>JS文件内容</strong></p> <div class="ay1code"> <pre class="brush:js;">export default {    name: 'HelloWorld',    data () {      return {        value: 0,        timer: '',//计时器        pwidth:0,//公告文本的宽度        windowWidth:document.documentElement.clientWidth,// 设备屏幕的宽度        }      },      mounted() {      let element = this.$refs.cmdlist;      this.pwidth = document.defaultView.getComputedStyle(element,'').width.split('px');      this.timer = setInterval(this.clickCommend, 20);    },        watch:{      value(newValue, oldValue) {        let allWidth= parseInt(this.windowWidth)+parseInt(this.pwidth[0]);        if(newValue &lt;= -allWidth){          this.$refs.cmdlist.style.marginLeft = this.windowWidth+"px";          this.value = 0;        }      },    },        methods:{      clickCommend(e) {        let _this = this;        this.$nextTick(() =&gt; {          this.value -=1;          this.$refs.cmdlist.style.marginLeft = _this.windowWidth+this.value+"px";        });      },      menter(){        clearInterval(this.timer);      },      mleave(){        this.timer = setInterval(this.clickCommend, 20);      },    },    beforeDestroy() {      clearInterval(this.timer);    }  }</pre> </div> <p><strong>CSS样式</strong></p> <div class="ay1code"> <pre class="brush:css;">&lt;style scoped&gt;  #box {    width: 100%;    height: 50px;    margin-top: 50px;    position: relative;  }  .marquee-box  {    position: relative;    width: 100%;    height: 100%;    overflow:auto;    background-color: #f8f8f8;  }  #pWidth{    width: 100%;    height: 50px;    padding: 0;    margin: 0;    line-height: 50px;    display: block;    word-break: keep-all;    white-space: nowrap;    overflow:hidden;    font-family: 微软雅黑; fontSize:14px;    background-color: #f8f8f8  }  ::-webkit-scrollbar {    width: 0 !important;  }  ::-webkit-scrollbar {    width: 0 !important;height: 0;  }  &lt;/style&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-80254.htm">Nuxt3 rc.11 填坑 配置 element-plus</a></p>
+                                        <p>下一个：<a href="/news/article-80979.htm">学美容美发的正规学校推荐上海（上海学美容美发到哪个学校好）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-49338.htm" title="宠物美容师真实现状（宠物美容师的发展前景怎么样）">宠物美容师真实现状（宠物美容师的发展前景怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-60867.htm" title="对进程、线程和协程的理解以及它们的区别">对进程、线程和协程的理解以及它们的区别</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-node-share-links.htm" title="3月2日 | SingBox每天更新21.3M/S免费节点链接地址分享">3月2日 | SingBox每天更新21.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-60274.htm" title="动物防疫站给猫打疫苗多少钱啊（动物防疫站可以给猫看病吗）">动物防疫站给猫打疫苗多少钱啊（动物防疫站可以给猫看病吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-25-sing-box-node.htm" title="1月25日 | SingBox每天更新18.1M/S免费节点链接地址分享">1月25日 | SingBox每天更新18.1M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-36964.htm" title="Python3通过字符串访问与修改局部变量">Python3通过字符串访问与修改局部变量</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-21-sing-box-node-github.htm" title="2月21日 | SingBox每天更新19.6M/S免费节点链接地址分享">2月21日 | SingBox每天更新19.6M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-66960.htm" title="北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）">北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-sing-box-node-windows.htm" title="2月15日 | SingBox每天更新21.8M/S免费节点链接地址分享">2月15日 | SingBox每天更新21.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-56848.htm" title="宠物饲料加工厂加盟费多少钱 宠物饲料加工厂加盟费多少钱一个月">宠物饲料加工厂加盟费多少钱 宠物饲料加工厂加盟费多少钱一个月</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
