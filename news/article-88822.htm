@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-88822.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>@ResponseBody详解</title>
+        <meta name="description" content="@ResponseBody的作用其实是将java对象转为json格式的数据。 @responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到r" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-88822.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="@ResponseBody详解" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/83e55ea3206443730d1a185d766e22ee.webp" />
+        <meta property="og:release_date" content="2025-04-05T08:17:32" />
+    <meta property="og:updated_time" content="2025-04-05T08:17:32" />
+        <meta property="og:description" content="@ResponseBody的作用其实是将java对象转为json格式的数据。 @responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到r" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="@ResponseBody详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>@ResponseBody详解</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>@ResponseBody的作用其实是将java对象转为json格式的数据。</p> <p>@responseBody注解的作用是将controller的方法返回的对象通过适当的转换器转换为指定的格式之后，写入到response对象的body区，通常用来返回JSON数据或者是XML数据。<br /> 注意：在使用此注解之后不会再走视图处理器，而是直接将数据写入到输入流中，他的效果等同于通过response对象输出指定格式的数据。</p> <p>@ResponseBody是作用在方法上的，@ResponseBody 表示该方法的返回结果直接写入 HTTP response body 中，一般在异步获取数据时使用【也就是AJAX】。<br /> 注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。@RequestBody 将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。</p> <pre class="has"><code class="hljs">后台 Controller类中对应的方法： @RequestMapping("/login.do") @ResponseBody public Object login(String name, String password, HttpSession session) { 	user = userService.checkLogin(name, password); 	session.setAttribute("user", user); 	return new JsonResult(user); }  @RequestBody是作用在形参列表上，用于将前台发送过来固定格式的数据【xml格式 或者 json等】封装为对应的 JavaBean 对象， 封装时使用到的一个对象是系统默认配置的 HttpMessageConverter进行解析，然后封装到形参上。 如上面的登录后台代码可以改为： @RequestMapping("/login.do") @ResponseBody public Object login(@RequestBody User loginUuser, HttpSession session) { 	user = userService.checkLogin(loginUser); 	session.setAttribute("user", user); 	return new JsonResult(user); }</code></pre> <p>=========================================================================================</p> </h1> <p>@RequestBody 注解则是将 HTTP 请求正文插入方法中，使用适合的 HttpMessageConverter 将请求体写入某个对象。<br /> 作用：</p> <pre class="has"><code class="hljs">1) 该注解用于读取Request请求的body部分数据，使用系统默认配置的HttpMessageConverter进行解析，然后把相应的数据绑定     到要返回的对象上；&nbsp; 2) 再把HttpMessageConverter返回的对象数据绑定到 controller中方法的参数上。</code></pre> <p>使用时机：</p> <p>A) GET、POST方式提时， 根据request header Content-Type的值来判断:</p> <pre class="has"><code class="hljs">    application/x-www-form-urlencoded， 可选（即非必须，因为这种情况的数据@RequestParam, @ModelAttribute 也可以处理，当然@RequestBody也能处理）；&nbsp;     multipart/form-data, 不能处理（即使用@RequestBody不能处理这种格式的数据）；&nbsp;     其他格式， 必须（其他格式包括application/json, application/xml等。这些格式的数据，必须使用@RequestBody来处理）；</code></pre> <p>B) PUT方式提交时， 根据request header Content-Type的值来判断:</p> <pre class="has"><code class="hljs">application/x-www-form-urlencoded， 必须；multipart/form-data, 不能处理；其他格式， 必须；</code></pre> <p>说明：request的body部分的数据编码格式由header部分的Content-Type指定；</p> <p><strong>例如：</strong></p> <pre class="has"><code class="hljs">@RequestMapping(value = "user/login") @ResponseBody // 将ajax（datas）发出的请求写入 User 对象中 public User login(@RequestBody User user) {    // 这样就不会再被解析为跳转路径，而是直接将user对象写入 HTTP 响应正文中     return user;     }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-88092.htm">动物医院实践个人总结报告 动物医院实践个人总结报告怎么写</a></p>
+                                        <p>下一个：<a href="/news/article-88823.htm">梦见自己抱着别的女人睡觉（梦见自己抱着别的女人睡觉好不好）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-86635.htm" title="Eureka包含两个组件：Eureka Server 和 Eureka Client">Eureka包含两个组件：Eureka Server 和 Eureka Client</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-free-high-speed-nodes.htm" title="4月6日 | SingBox每天更新18.8M/S免费节点链接地址分享">4月6日 | SingBox每天更新18.8M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68233.htm" title="猫三联一共几针,多少钱天津（猫三联到底是两针还是三针）">猫三联一共几针,多少钱天津（猫三联到底是两针还是三针）</a></li>
+                        <li class="py-2"><a href="/news/article-82353.htm" title="宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）">宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）</a></li>
+                        <li class="py-2"><a href="/news/article-73467.htm" title="我所在的城市里有一家宠物医院用英语怎么说 我所在的城市里有一家宠物医院用英语怎么说">我所在的城市里有一家宠物医院用英语怎么说 我所在的城市里有一家宠物医院用英语怎么说</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-subscribe-node.htm" title="3月19日 | SingBox每天更新19.9M/S免费节点链接地址分享">3月19日 | SingBox每天更新19.9M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-76836.htm" title="动物疫苗价格排行前十的有哪些品种呢视频（动物疫苗多少钱一支）">动物疫苗价格排行前十的有哪些品种呢视频（动物疫苗多少钱一支）</a></li>
+                        <li class="py-2"><a href="/news/article-76172.htm" title="猫3针疫苗多少钱一针（猫猫3针疫苗多少钱）">猫3针疫苗多少钱一针（猫猫3针疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-88823.htm" title="梦见自己抱着别的女人睡觉（梦见自己抱着别的女人睡觉好不好）">梦见自己抱着别的女人睡觉（梦见自己抱着别的女人睡觉好不好）</a></li>
+                        <li class="py-2"><a href="/news/article-65709.htm" title="宠物粮食排名榜最新（宠物粮食排名榜最新）">宠物粮食排名榜最新（宠物粮食排名榜最新）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
