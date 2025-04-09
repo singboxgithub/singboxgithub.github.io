@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-90291.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU</title>
+        <meta name="description" content="一、驱动软件准备：从nvidia网站下载驱动，注意，和普通显卡下载驱动地址不同。  按照ESXi对应版本不同下载不同的安装包。安装包内含ESXi主机驱动和虚拟机驱动。 GPU显卡和物理服务器兼容查询：" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-90291.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/154365a0041b8469491971d011c2a320.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:01:52" />
+    <meta property="og:updated_time" content="2025-04-07T09:01:52" />
+        <meta property="og:description" content="一、驱动软件准备：从nvidia网站下载驱动，注意，和普通显卡下载驱动地址不同。  按照ESXi对应版本不同下载不同的安装包。安装包内含ESXi主机驱动和虚拟机驱动。 GPU显卡和物理服务器兼容查询：" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p data-track="1" data-pm-slice="0 0 []">一、驱动软件准备：从nvidia网站下载驱动，注意，和普通显卡下载驱动地址不同。</p> <div class="pgc-img"><img decoding="async" src="https://p6.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/60b670d5529340429e61dd9b75609df7~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="2041" data-height="1329" data-ic-uri=""/></div> <p data-track="2">按照ESXi对应版本不同下载不同的安装包。安装包内含ESXi主机驱动和虚拟机驱动。</p> <p data-track="3">GPU显卡和物理服务器兼容查询：（重要：一定要查兼容，最近遇到一客户反馈安装驱动后运行nvidia-smi各种报错，最后查询是因为不兼容导致。）<br />https://www.nvidia.com/zh-cn/data-center/resources/vgpu-certified-servers/</p> <p data-track="4">二、安装显卡驱动</p> <p data-track="5">1、将驱动vib上传到主机的/tmp目录下，开启SSH服务，并将主机进入维护模式，使用如下命令</p> <pre><code>esxcli software vib install -v /tmp/****.vib #安装驱动注意使用绝对路径</code></pre> <div class="pgc-img"><img decoding="async" src="https://p3.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/696909f4ea8442b2b88b3a6f5fc850d8~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1322" data-height="836" data-ic-uri=""/></div> <p data-track="7">虽然安装完毕后提示Reboot required: false，但是还是建议在这个时候将主机重启一下，使主机启动后正确的加载驱动程序文件。重启后将主机退出维护模式。</p> <p data-track="8">2、正确的安装并加载驱动程序以后，我们需要启动主机的xorg服务，xorg服务是ESXi主机为虚拟机提供3D硬件加速的服务，我们必须启动该服务后才能使GPU正常工作。</p> <p data-track="9">3、以下命令可以查看主机是否正确加载了驱动程序：</p> <pre><code>vmkload_mod -l | grep nvidia</code></pre> <p data-track="11">4、如下图所示：通过命令nvidia-smi来验证GPU卡是否正常工作，无报错，如图：</p> <div class="pgc-img"><img decoding="async" src="https://p6.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/45728f0d79814fd281642e345ba276de~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1354" data-height="1124" data-ic-uri=""/></div> <p data-track="12">5、修改图形设备活动类型：配置-图形-编辑</p> <div class="pgc-img"><img decoding="async" src="https://p26.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/388d4a7cf15848c0b947a72c2449cfb6~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1156" data-height="900" data-ic-uri=""/></div> <p data-track="13">默认为共享，修改成直接共享，并重启xorg服务。</p> <p data-track="14">6、编辑虚拟机</p> <div class="pgc-img"><img decoding="async" src="https://p26.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/88f1e460c6e24834a92e75720fe1b4eb~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1202" data-height="1256" data-ic-uri=""/></div> <div class="pgc-img"><img decoding="async" src="https://p6.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/cb319a49c48847c3b89f104e697e6d4f~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1204" data-height="1244" data-ic-uri=""/></div> <div class="pgc-img"><img decoding="async" src="https://p3.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/1006d0433ce044d9b4ac76b838eaa5af~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1484" data-height="542" data-ic-uri=""/></div> <p data-track="22">GPU配置文件为GPU显存大小，具体显存大小参考说明文档。并勾选预留所有内存。</p> <p data-track="16">7、安装虚拟机驱动，注意一定要使用安装包内对应版本的驱动（使用不同版本可能会有问题）</p> <div class="pgc-img"><img decoding="async" src="https://p3.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/351b781a44ed440ea206daa5ba7af311~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1366" data-height="670" data-ic-uri=""/></div> <p data-track="17">安装驱动后，重启虚拟机，在控制台界面，看到“黑屏”，这是正常的。使用远程桌面RDP协议登录，或者Horizon连接服务器的方式登录。</p> <div class="pgc-img"><img decoding="async" src="https://p26.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/a7c687ef1f0a4cf08c335e27d99b57bd~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="786" data-height="555" data-ic-uri=""/></div> <p data-track="18">设备管理器里面也能看到显卡已经安装成功了。</p> <p data-track="19">三、由于M60、RTX6000/RTX8000/A40显卡特殊，正式使用时，还需要额外安装许可证服务器，具体如下图所示！</p> <div class="pgc-img"><img decoding="async" src="https://p26.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/05de6cd1d1a8455492e67c9a7ff64dd4~tplv-obj.jpg" alt="VMware ESXi安装NVIDIA GPU显卡硬件驱动和配置vGPU" data-ic="false" data-width="1915" data-height="451" data-ic-uri=""/></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-89542.htm">经营动物疫苗药品需要什么手续办理流程（动物疫苗经营许可证如何办）</a></p>
+                                        <p>下一个：<a href="/news/article-90292.htm">宠物粮食行业发展前景分析报告总结范文怎么写（宠物粮食销售好做吗）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-84500.htm" title="动物疫苗官网查询系统网址（动物疫苗批签发查询）">动物疫苗官网查询系统网址（动物疫苗批签发查询）</a></li>
+                        <li class="py-2"><a href="/news/article-66316.htm" title="CommonsCollection6反序列化链学习">CommonsCollection6反序列化链学习</a></li>
+                        <li class="py-2"><a href="/news/article-82353.htm" title="宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）">宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）</a></li>
+                        <li class="py-2"><a href="/news/article-72144.htm" title="SpringBoot 注解 + 反射优雅的实现Excel导入导出，通用加强版！">SpringBoot 注解 + 反射优雅的实现Excel导入导出，通用加强版！</a></li>
+                        <li class="py-2"><a href="/news/article-65709.htm" title="宠物粮食排名榜最新（宠物粮食排名榜最新）">宠物粮食排名榜最新（宠物粮食排名榜最新）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-5-sing-box-node-windows.htm" title="4月5日 | SingBox每天更新19M/S免费节点链接地址分享">4月5日 | SingBox每天更新19M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-free-subscribe-node.htm" title="4月9日 | SingBox每天更新19.1M/S免费节点链接地址分享">4月9日 | SingBox每天更新19.1M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-68874.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/news/article-88823.htm" title="梦见自己抱着别的女人睡觉（梦见自己抱着别的女人睡觉好不好）">梦见自己抱着别的女人睡觉（梦见自己抱着别的女人睡觉好不好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-sing-box-node.htm" title="3月18日 | SingBox每天更新18.6M/S免费节点链接地址分享">3月18日 | SingBox每天更新18.6M/S免费节点链接地址分享</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

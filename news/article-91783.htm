@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-91783.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SpringBoot/Cloud项目-前台上传图片文件，Java转成Base64保存到数据库完整代码</title>
+        <meta name="description" content="业务需求： html页面上传图片到后台&nbsp; ，后台用Java转换成Base64 ，然后把数据存到数据库。 -------------------------------------------" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-91783.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="SpringBoot/Cloud项目-前台上传图片文件，Java转成Base64保存到数据库完整代码" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/2ac3ab71c2deef72e43038000c858b2b.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:16:42" />
+    <meta property="og:updated_time" content="2025-04-09T09:16:42" />
+        <meta property="og:description" content="业务需求： html页面上传图片到后台&nbsp; ，后台用Java转换成Base64 ，然后把数据存到数据库。 -------------------------------------------" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="SpringBoot/Cloud项目-前台上传图片文件，Java转成Base64保存到数据库完整代码">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>SpringBoot/Cloud项目-前台上传图片文件，Java转成Base64保存到数据库完整代码</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h3>业务需求：</h3> <p>html页面上传图片到后台&nbsp; ，后台用Java转换成Base64 ，然后把数据存到数据库。</p> <p>---------------------------------------------------------------------------------------------------------------------</p> <p>不了解图片与Base64互转的 ，可以看看下面这篇博客</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/buguge/p/12177895.html"  rel="nofollow">https://www.cnblogs.com/buguge/p/12177895.html</a></p> <h3>前端</h3> <p>我用的是模态框，使用的是Ajax上传方式</p> <pre><code class="language-html"> &lt;label class="control-label" for="img"&gt;图例：&lt;/label&gt;     &lt;input type="file" class="form-control" id="img" placeholder=""&gt;</code></pre> <pre><code class="language-javascript"> $("#add").click(function() {                var file = $('#img')[0].files[0];         var formData = new FormData();         formData.append("id", "007");         formData.append("name", "007");         formData.append("img", file);          $.ajax({             url: url + 'mibs/zzjgs/getZzjgAdd',             data: formData,             type:'post',             cache: false,             processData: false,             contentType: false,             async : false,             dataType:'json',             success: function (data) {                 if ((data.msg) == "成功" ){                     alert("操作成功！");                     $('#modify').modal('hide');                     getSearch();                 }else {                     alert("操作失败！");                 }                        }         })     });</code></pre> <h3>后台Springcloud</h3> <p>先看一下项目结构：</p> <p style="text-align:center;"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220603/4d487d4bc02548fe6f193e6d2fb4175d.jpg"></p> <p>feign（网关）</p> <p>Controller代码：</p> <pre><code class="language-java">          @RequestMapping(value = "/zzjgs/getZzjgAdd", method = RequestMethod.POST)     @CrossOrigin     public String addzzjg(@RequestParam("id") String id, @RequestParam("name") String name,@RequestParam("img")MultipartFile imgFile) throws UnsupportedEncodingException {          R r_ = new R(0, null, "");           r_ = SysZzjgService.addzzjg(id,name,imgFile);//调用service代码          String strv = JSONObject.toJSONString(r_);          return strv;     }</code></pre> <p>service代码：</p> <p>需要一个注解&nbsp;&nbsp;consumes = MediaType.MULTIPART_FORM_DATA_VALUE)</p> <p>没有这个注解无法传文件（MultipartFile&nbsp;）到后面的 Cloud</p> <pre><code class="language-java">  @PostMapping(value = "/addZzjg", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)     R addzzjg(@RequestParam String id, @RequestParam String name, @RequestPart("img") MultipartFile img);</code></pre> <p>Cloud</p> <p>处理图片，操作数据库</p> <p>先来俩工具类</p> <p>1.这个就是上面那个链接里的代码</p> <pre><code class="language-java">package com.zhongjia.system.util;  import sun.misc.BASE64Decoder; import sun.misc.BASE64Encoder;  import java.io.*;  public class ImageBase64Converter {     /**      * 本地文件（图片、excel等）转换成Base64字符串      *      * @param imgPath &nbsp;&nbsp; &nbsp;      */     public static String convertFileToBase64(String imgPath) {         byte[] data = null;         // 读取图片字节数组         try {             InputStream in = new FileInputStream(imgPath);             System.out.println("文件大小（字节）="+in.available());             data = new byte[in.available()];             in.read(data);             in.close();         } catch (IOException e) {             e.printStackTrace();         }         // 对字节数组进行Base64编码，得到Base64编码的字符串         BASE64Encoder encoder = new BASE64Encoder();         String base64Str = encoder.encode(data);         return base64Str;     }      /**      * 将base64字符串，生成文件      */     public static File convertBase64ToFile(String fileBase64String, String filePath, String fileName) {          BufferedOutputStream bos = null;         FileOutputStream fos = null;         File file = null;         try {             File dir = new File(filePath);             if (!dir.exists() &amp;&amp; dir.isDirectory()) {//判断文件目录是否存在                 dir.mkdirs();             }              BASE64Decoder decoder = new BASE64Decoder();             byte[] bfile = decoder.decodeBuffer(fileBase64String);              file = new File(filePath + File.separator + fileName);             fos = new FileOutputStream(file);             bos = new BufferedOutputStream(fos);             bos.write(bfile);             return file;         } catch (Exception e) {             e.printStackTrace();             return null;         } finally {             if (bos != null) {                 try {                     bos.close();                 } catch (IOException e1) {                     e1.printStackTrace();                 }             }             if (fos != null) {                 try {                     fos.close();                 } catch (IOException e1) {                     e1.printStackTrace();                 }             }         }     }  }</code></pre> <p>2.这个是获取项目根目录的，图片就上传到项目根目录中就OK</p> <pre><code class="language-java">package com.zhongjia.system.util;  import java.io.File;  public class UploadUtils {      // 项目根路径下的目录  -- SpringBoot static 目录相当于是根路径下（SpringBoot 默认）     public final static String IMG_PATH_PREFIX = "static/uploadImgs";      public static File getImgDirFile(){          // 构建上传文件的存放 "文件夹" 路径         String fileDirPath = new String("src/main/resources/" + IMG_PATH_PREFIX);          File fileDir = new File(fileDirPath);         if(!fileDir.exists()){             // 递归生成文件夹             fileDir.mkdirs();         }         return fileDir;     } }</code></pre> <p>Controller代码：</p> <p>图片上传到项目根目录（本地）后，开始处理</p> <pre><code class="language-java">  @PostMapping(value = "/addZzjg", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)     public R getzzjgadd(@RequestParam(value = "zzid",required = true)int zzid, @RequestParam(@RequestParam(value = "id",required = true)String parid,@RequestParam(value = "name",required = true)String remark,@RequestPart(value = "img",required = true) MultipartFile imgFile) throws Exception {         try {             String img64="";                        // 拿到文件名             String filename = imgFile.getOriginalFilename();              //拿到文件后缀名             String fileTyle =filename.substring(filename.lastIndexOf(".")+1,filename.length());              // 存放上传图片的文件夹             File fileDir = UploadUtils.getImgDirFile();              // 输出文件夹绝对路径  -- 这里的绝对路径是相当于当前项目的路径而不是“容器”路径             //System.out.println(fileDir.getAbsolutePath());              try {                 // 构建真实的文件路径                 File newFile = new File(fileDir.getAbsolutePath() + File.separator + filename);                 //System.out.println(newFile.getAbsolutePath());                  // 上传图片到 -》 “绝对路径”                 imgFile.transferTo(newFile);                  //图片转换成Base64                 String imgBase64Str= ImageBase64Converter.convertFileToBase64(newFile.getAbsolutePath());                  //前台直接这样就可以显示 base64类型的图片  &lt;img src=“data:image/png;base64,***********************************"/&gt;                 //所以要把数据组合起来 ,fileTyle是后缀名     imgBase64Str是图片转换的Base64                 img64 = "data:image/"+fileTyle+";base64,"+imgBase64Str;                      //删除存放图片的文件夹  既然base64都存到数据库了 上传的图片就可以删除了                 FileUtils.deleteDirectory(fileDir);              } catch (IOException e) {                 e.printStackTrace();             }              int  m  = sysZzjgService.getzzjgedit(id,name,img64);//根据SQL语句修改              return R.result(m, (Object) m, ExceptionCode.SUCCESS.getMsg());          } catch (Exception ex) {              return R.result(ExceptionCode.JSON_PARSE_ERROR.getCode(),(Object)"[{}]",ex.getMessage());          }     }</code></pre> <p>OK了 剩下的Service 、Mapper的代码就看你们自己的需求来写。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91503.htm">动物疫苗行业排名榜（动物疫苗企业名单）</a></p>
+                                        <p>下一个：<a href="/news/article-91785.htm">动物打疫苗注意事项有哪些方面（动物打疫苗有什么作用）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-66960.htm" title="北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）">北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）</a></li>
+                        <li class="py-2"><a href="/news/article-79584.htm" title="宠物粮食加工厂设备有哪些品牌好一点 宠物粮食加工厂设备有哪些品牌好一点的">宠物粮食加工厂设备有哪些品牌好一点 宠物粮食加工厂设备有哪些品牌好一点的</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-node-subscribe-links.htm" title="4月1日 | SingBox每天更新19.3M/S免费节点链接地址分享">4月1日 | SingBox每天更新19.3M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-78896.htm" title="狗粮加工生产线（狗粮加工设备多少钱一台）">狗粮加工生产线（狗粮加工设备多少钱一台）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-free-high-speed-nodes.htm" title="3月22日 | SingBox每天更新19.2M/S免费节点链接地址分享">3月22日 | SingBox每天更新19.2M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-71478.htm" title="养狗得什么病（养狗得什么病会死）">养狗得什么病（养狗得什么病会死）</a></li>
+                        <li class="py-2"><a href="/news/article-78194.htm" title="护肤品牌排行榜10强有哪些（护肤品牌排名榜）">护肤品牌排行榜10强有哪些（护肤品牌排名榜）</a></li>
+                        <li class="py-2"><a href="/news/article-88822.htm" title="@ResponseBody详解">@ResponseBody详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-29-free-subscribe-node.htm" title="3月29日 | SingBox每天更新19.4M/S免费节点链接地址分享">3月29日 | SingBox每天更新19.4M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-83757.htm" title="Vue利用js实现点击菜单导航栏实现平滑滚动定位">Vue利用js实现点击菜单导航栏实现平滑滚动定位</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
