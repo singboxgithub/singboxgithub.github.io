@@ -1,4 +1,4 @@
-# 4月18日 | SingBox每天更新19.9M/S免费节点链接地址分享  更新时间 2025-04-18 09:57:06
+# 4月22日 | SingBox每天更新18.2M/S免费节点链接地址分享  更新时间 2025-04-22 08:44:41
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://singboxgithub.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://singboxgithub.github.io/uploads/2025/04/0-20250418.yaml
-- https://singboxgithub.github.io/uploads/2025/04/1-20250418.yaml
-- https://singboxgithub.github.io/uploads/2025/04/2-20250418.yaml
-- https://singboxgithub.github.io/uploads/2025/04/3-20250418.yaml
-- https://singboxgithub.github.io/uploads/2025/04/4-20250418.yaml
+- https://singboxgithub.github.io/uploads/2025/04/0-20250422.yaml
+- https://singboxgithub.github.io/uploads/2025/04/1-20250422.yaml
+- https://singboxgithub.github.io/uploads/2025/04/2-20250422.yaml
+- https://singboxgithub.github.io/uploads/2025/04/3-20250422.yaml
+- https://singboxgithub.github.io/uploads/2025/04/4-20250422.yaml
 
 ### V2ray订阅链接
 
-- https://singboxgithub.github.io/uploads/2025/04/0-20250418.txt
-- https://singboxgithub.github.io/uploads/2025/04/1-20250418.txt
-- https://singboxgithub.github.io/uploads/2025/04/2-20250418.txt
-- https://singboxgithub.github.io/uploads/2025/04/3-20250418.txt
-- https://singboxgithub.github.io/uploads/2025/04/4-20250418.txt
+- https://singboxgithub.github.io/uploads/2025/04/0-20250422.txt
+- https://singboxgithub.github.io/uploads/2025/04/1-20250422.txt
+- https://singboxgithub.github.io/uploads/2025/04/2-20250422.txt
+- https://singboxgithub.github.io/uploads/2025/04/3-20250422.txt
+- https://singboxgithub.github.io/uploads/2025/04/4-20250422.txt
 
 ### Sing-box订阅链接
 
-- https://singboxgithub.github.io/uploads/2025/04/20250418.json
+- https://singboxgithub.github.io/uploads/2025/04/20250422.json
 
 ## 更多clash节点订阅 ：
 
