@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-104579.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</title>
+        <meta name="description" content="首先新建项目  项目名随便取，这里就叫它GuiH.ClassLibrary  默认即可，需要改目标版本时，等创建好再改  项目创建好了  随便写个接口方法 namespace GuiH.ClassLi" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-104579.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/888d569ad8cc9908f9722f4e9ee1b3a3.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:39:11" />
+    <meta property="og:updated_time" content="2025-04-26T07:39:11" />
+        <meta property="og:description" content="首先新建项目  项目名随便取，这里就叫它GuiH.ClassLibrary  默认即可，需要改目标版本时，等创建好再改  项目创建好了  随便写个接口方法 namespace GuiH.ClassLi" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				</h1> <h2 id="首先新建项目">首先新建项目</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/956082d0c7de0c69d91d833e92051993.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <h2 id="项目名随便取这里就叫它guihclasslibrary">项目名随便取，这里就叫它<code>GuiH.ClassLibrary</code></h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c0b46d05393a8832c8c64c0b628b6ea3.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <h2 id="默认即可需要改目标版本时等创建好再改">默认即可，需要改目标版本时，等创建好再改</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/63ee1507c9f9b5e0a86fe4102b7b9aa5.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <h2 id="项目创建好了">项目创建好了</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f4a4bdbf3c79967ca43a40edf0bbfcf2.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <h2 id="随便写个接口方法">随便写个接口方法</h2> <pre><code class="language-C#">namespace GuiH.ClassLibrary {     public class Class1     {         public static void Test()         {             Console.WriteLine("Hello Nuget！！！");         }     } }</code></pre> <h2 id="接下来修改工程文件默认情况是这样的">接下来修改工程文件，默认情况是这样的</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/e9d3249f549b96d1a84cd1c00b2ddd68.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"><br /> 我们添加下面一些配置</p> <pre><code class="language-xml">&lt;Project Sdk="Microsoft.NET.Sdk"&gt;  	&lt;PropertyGroup&gt; 		&lt;TargetFramework&gt;net6.0&lt;/TargetFramework&gt; 		&lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt; 		&lt;Nullable&gt;enable&lt;/Nullable&gt;  		&lt;!--以下是我们自己添加的--&gt; 		&lt;!--版本号，重要性不必多说--&gt; 		&lt;Version&gt;1.0.0&lt;/Version&gt; 		&lt;!--添加该配置，在编译时进行打包--&gt; 		&lt;GeneratePackageOnBuild&gt;true&lt;/GeneratePackageOnBuild&gt; 		&lt;!--添加该配置才会生成注释文件，默认无注释--&gt; 		&lt;GenerateDocumentationFile&gt;true&lt;/GenerateDocumentationFile&gt; 	&lt;/PropertyGroup&gt;  &lt;/Project&gt;</code></pre> <h2 id="执行编译命令根据上面的配置编译后会自动进行打包">执行编译命令，根据上面的配置，编译后会自动进行打包</h2> <pre><code>// 该命令在GuiH.ClassLibrary项目根目录下执行 dotnet build -c=Release</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/480ad757600fd0db3b92432a54685e27.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"><br /> 命令行中也提示了<code>已成功创建包“E:\工作区\GuiH.ClassLibrary\GuiH.ClassLibrary\bin\Release\GuiH.ClassLibrary.1.0.0.nupkg”</code></p> <h2 id="将guihclasslibrary100nupkg推送至nuget仓库可以自己搭建也可以是微软官方nuget仓库">将<code>GuiH.ClassLibrary.1.0.0.nupkg</code>推送至nuget仓库，可以自己搭建，也可以是微软官方nuget仓库</h2> <h3 id="在wwwnugetorg注册一个账号然后获取apikey">在www.nuget.org注册一个账号，然后获取<code>apikey</code></h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/47a493d99c836f9d60cefe52e980afbf.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/26dbcf008194d9abeb15e1762a8f188c.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <p>详细发布nuget命令参考：dotnet-nuget-push</p> <pre><code>// $apikey 替换为你的apikey dotnet nuget push ./bin/Release/GuiH.ClassLibrary.1.0.0.nupkg -k $apikey -s https://api.nuget.org/v3/index.json --skip-duplicate  正在将 GuiH.ClassLibrary.1.0.0.nupkg 推送到 'https://www.nuget.org/api/v2/package'...   PUT https://www.nuget.org/api/v2/package/ warn : All published packages should have license information specified. Learn more: https://aka.ms/deprecateLicenseUrl.   Created https://www.nuget.org/api/v2/package/ 1404 毫秒 已推送包。</code></pre> <h2 id="搜索发布的包一般会短暂延迟几分钟才能搜到在项目中使用应该创建一个控制台测试知道就好">搜索发布的包(一般会短暂延迟几分钟才能搜到),在项目中使用（应该创建一个控制台测试，知道就好~）</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/865b06961b78a419db286cad578c3b45.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/4a26e8f0e6fb68b1a8ba64d9a57a9696.jpg" alt="发布nuget包的正确姿势---cicd自动打包发布nuget包"></p> <h2 id="多种目标平台支持">多种目标平台支持</h2> <p>例如兼容<code>framwork4.6.1</code>，修改工程文件如下,注意单词<code>TargetFrameworks</code>的单复数</p> <pre><code>// 修改前 &lt;TargetFramework&gt;net6.0&lt;/TargetFramework&gt; // 修改后 &lt;TargetFrameworks&gt;net6.0;net461&lt;/TargetFrameworks&gt;</code></pre> <p>或只支持net461</p> <pre><code>&lt;TargetFrameworks&gt;net461&lt;/TargetFrameworks&gt;</code></pre> <h2 id="cicd">CICD</h2> <p>cicd脚本中核心的两条命令就是上述两个，运行环境安装相应的sdk(.net5/.net6)即可。</p> <h2 id="关于如何多平台兼容的详细内容下篇文章介绍">关于如何多平台兼容的详细内容，下篇文章介绍。</h2> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-103703.htm">宠物粮食加工设备有哪些厂家 宠物粮食加工设备有哪些厂家生产</a></p>
+                                        <p>下一个：<a href="/news/article-104581.htm">猫咬了我第二天就死了（猫咬了我第二天就死了多长时间没发作就没事）</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70164.htm" title="妙三多猫疫苗打完有什么不良反应（妙三多猫疫苗打两针还是三针）">妙三多猫疫苗打完有什么不良反应（妙三多猫疫苗打两针还是三针）</a></li>
+                        <li class="py-2"><a href="/news/article-86635.htm" title="Eureka包含两个组件：Eureka Server 和 Eureka Client">Eureka包含两个组件：Eureka Server 和 Eureka Client</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-sing-box-node.htm" title="3月18日 | SingBox每天更新18.6M/S免费节点链接地址分享">3月18日 | SingBox每天更新18.6M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-101361.htm" title="哈尔滨王允海宠物医院怎么样呀多少钱一个月（哈尔滨王春华宠物医院）">哈尔滨王允海宠物医院怎么样呀多少钱一个月（哈尔滨王春华宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-102130.htm" title="动物疫苗打到人身上有事吗会传染吗视频（动物打的疫苗）">动物疫苗打到人身上有事吗会传染吗视频（动物打的疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-80979.htm" title="学美容美发的正规学校推荐上海（上海学美容美发到哪个学校好）">学美容美发的正规学校推荐上海（上海学美容美发到哪个学校好）</a></li>
+                        <li class="py-2"><a href="/news/article-68875.htm" title="广州哪里有猫领养的地方呀（广州哪里有猫领养中心）">广州哪里有猫领养的地方呀（广州哪里有猫领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-82353.htm" title="宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）">宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-22-sing-box-github.htm" title="4月22日 | SingBox每天更新18.5M/S免费节点链接地址分享">4月22日 | SingBox每天更新18.5M/S免费节点链接地址分享</a></li>
+                        <li class="py-2"><a href="/news/article-97735.htm" title="宠物粮食品牌取名字大全集 宠物粮食品牌取名字大全集图片">宠物粮食品牌取名字大全集 宠物粮食品牌取名字大全集图片</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">74</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
