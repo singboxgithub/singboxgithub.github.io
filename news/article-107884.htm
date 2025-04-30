@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://singboxgithub.github.io/news/article-107884.htm" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>python 中yield的使用</title>
+        <meta name="description" content="yield在函数中的功能类似于return，不同的是yield每次返回结果之后函数并没有退出，而是 每次遇到yield关键字后返回相应结果，并保留函数当前的运行状态，等待下一次的调用。如果 一个函数需" />
+        <link rel="icon" href="/assets/website/img/singboxgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="SingBox Github免费节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://singboxgithub.github.io/news/article-107884.htm" />
+    <meta property="og:site_name" content="SingBox Github免费节点分享站" />
+    <meta property="og:title" content="python 中yield的使用" />
+    <meta property="og:image" content="https://singboxgithub.github.io/uploads/20240802/7082db2cbffb1697b7c755f343496cc5.webp" />
+        <meta property="og:release_date" content="2025-04-30T09:33:29" />
+    <meta property="og:updated_time" content="2025-04-30T09:33:29" />
+        <meta property="og:description" content="yield在函数中的功能类似于return，不同的是yield每次返回结果之后函数并没有退出，而是 每次遇到yield关键字后返回相应结果，并保留函数当前的运行状态，等待下一次的调用。如果 一个函数需" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="python 中yield的使用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="/assets/website/js/frontend/singboxgithub/aos/aos.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/remixicon/remixicon.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/assets/website/css/singboxgithub/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR1XS4LQCV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QR1XS4LQCV');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+            <a href="/">
+                        <p class="logo me-auto">SingBox <span>Github</span></p>
+                        </a>
+            <nav id="navbar" class="navbar">
+                <ul>
+                                        <li><a class="nav-link" href="/">首页</a></li>
+                                        <li><a class="nav-link" href="/free-nodes/">免费节点</a></li>
+                                        <li><a class="nav-link" href="/paid-subscribe/">推荐机场</a></li>
+                                        <li><a class="nav-link" href="/client.htm">客户端</a></li>
+                                        <li><a class="nav-link" href="/news/">新闻资讯</a></li>
+                                    </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/news/">新闻资讯</a></li>
+                    <li>正文</li>
+                </ol>
+                <h1>python 中yield的使用</h1>
+            </div>
+        </section><!-- End Breadcrumbs -->
+        <!-- ======= Tabs Section ======= -->
+        <section id="tabs" class="tabs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                                        <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>yield在函数中的功能类似于return，不同的是yield每次返回结果之后函数并没有退出，而是 每次遇到yield关键字后返回相应结果，并保留函数当前的运行状态，等待下一次的调用。如果 一个函数需要多次循环执行一个动作，并且每次执行的结果都是需要的，这种场景很适合使用yield实现。<br /> 包含yield的函数成为一个生成器，生成器同时也是一个迭代器，支持通过next方法获取下一个值。</p> <p><strong>迭代(Iterables)：</strong><br /> 当您创建一个列表时，您可以逐个阅读它的项目。逐个读取它的项称为迭代:</p> <pre><code class="prism language-python">mylist<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token keyword">for</span> i<span class="token keyword">in</span> mylist<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre> <p>任何可以用“for…in“都是一个可迭代对象;列表、字符串…<br /> 这些可迭代对象非常方便，因为您可以根据自己的需要读取它们，<strong>但是您需要将所有值存储在内存中</strong>，当您有很多值时，可能就不合理。</p> <p><strong>生成器(Generators):</strong><br /> 生成器是迭代器，<strong>一种只能迭代一次的可迭代对象</strong>。生成器不会将所有的值存储在内存中，它们会动态地生成值:</p> <pre><code class="prism language-python">mygenerator<span class="token operator">=</span><span class="token punctuation">(</span>x<span class="token operator">*</span>x<span class="token keyword">for</span> x<span class="token keyword">in</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">for</span> i<span class="token keyword">in</span> mygenerator<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token keyword">for</span> i<span class="token keyword">in</span> mygenerator<span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></code></pre> <p>It is just the same except you used () instead of []. BUT, you cannot perform for i in mygenerator a second time since generators can only be used once: they calculate 0, then forget about it and calculate 1, and end calculating 4, one by one.</p> <p>Yield是一个与return类似的关键字，只不过函数将返回一个生成器。：</p> <pre><code class="prism language-python"><span class="token keyword">def</span><span class="token function">yieldTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">for</span> item<span class="token keyword">in</span><span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">yield</span> item<span class="token keyword">for</span> value<span class="token keyword">in</span> yieldTest<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token keyword">print</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span></code></pre> <p>对于大批量的数据处理，推荐使用yield来提高处理效率，因为yield是一个一个返回的，返回一个处理一个即可</p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-107086.htm">宠物粮在哪里买好一点（买宠物粮食去哪个网站比较好）</a></p>
+                                        <p>下一个：<a href="/news/article-107888.htm">Feign优化之Client选择</a></p>
+                                    </div>
+                
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-82353.htm" title="宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）">宠物买卖交易合法吗（宠物买卖交易合法吗安全吗）</a></li>
+                        <li class="py-2"><a href="/news/article-72809.htm" title="动物疫苗接种证书怎么查询（动物疫苗查询真伪）">动物疫苗接种证书怎么查询（动物疫苗查询真伪）</a></li>
+                        <li class="py-2"><a href="/news/article-107081.htm" title="猫咪三针疫苗间隔多久打第三针疫苗（猫咪的三针疫苗要相隔多久）">猫咪三针疫苗间隔多久打第三针疫苗（猫咪的三针疫苗要相隔多久）</a></li>
+                        <li class="py-2"><a href="/news/article-91503.htm" title="动物疫苗行业排名榜（动物疫苗企业名单）">动物疫苗行业排名榜（动物疫苗企业名单）</a></li>
+                        <li class="py-2"><a href="/news/article-104579.htm" title="发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包">发布nuget包的正确姿势&#8212;cicd自动打包发布nuget包</a></li>
+                        <li class="py-2"><a href="/news/article-93263.htm" title="穷人家养什么狗（人穷养什么宠物好呢）">穷人家养什么狗（人穷养什么宠物好呢）</a></li>
+                        <li class="py-2"><a href="/news/article-104581.htm" title="猫咬了我第二天就死了（猫咬了我第二天就死了多长时间没发作就没事）">猫咬了我第二天就死了（猫咬了我第二天就死了多长时间没发作就没事）</a></li>
+                        <li class="py-2"><a href="/news/article-96970.htm" title="HCNP Routing&amp;Switching之MUX VLAN">HCNP Routing&amp;Switching之MUX VLAN</a></li>
+                        <li class="py-2"><a href="/news/article-68874.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/news/article-66960.htm" title="北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）">北京有鹦鹉的公园在哪里（北京大兴鹦鹉公园）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">86</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Tabs Section -->
+    </main><!-- End #main -->
+        <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    SingBox Github免费节点分享站 版权所有 Powered by WordPress
+                </div>
+            </div>
+            <div class="social-links text-center text-md-end pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- Vendor JS Files -->
+    <script src="/assets/website/js/frontend/singboxgithub/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/aos/aos.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/php-email-form/validate.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/purecounter/purecounter.js"></script>
+    <script src="/assets/website/js/frontend/singboxgithub/swiper/swiper-bundle.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/assets/website/js/frontend/singboxgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
