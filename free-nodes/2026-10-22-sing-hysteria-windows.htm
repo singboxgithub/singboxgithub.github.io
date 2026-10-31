@@ -247,6 +247,26 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 如何实现按域名分流？</h5></div>
+    <div class="panel-body">
+        PassWall2 可通过域名规则匹配请求，将流量分流至指定节点。结合策略组和自动测速，可让不同网站走不同节点，实现加速和优化访问速度的效果。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Trojan 的伪装域名为什么重要？</h5></div>
+    <div class="panel-body">
+        伪装域名必须真实可访问且证书有效，以使流量看起来像普通 HTTPS 请求。正确配置可以降低被封锁和 DPI 检测风险，提高节点安全性和长期可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 混淆方式如何提升抗封锁能力？</h5></div>
+    <div class="panel-body">
+        混淆方式可将流量伪装成正常 HTTPS 或 HTTP 数据，降低被 DPI 检测风险。合理选择协议和混淆组合，可以提升节点稳定性和长期可用性，确保科学上网顺畅。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray 的策略组如何根据节点延迟自动切换？</h5></div>
+    <div class="panel-body">
+        策略组会根据节点延迟和丢包率自动选择最优节点。结合路由规则，可保证国内流量直连、海外流量走最佳节点，提高访问速度和连接稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Potatso Lite 是否支持 Vless？</h5></div>
     <div class="panel-body">
         目前 Potatso Lite 仅支持 Shadowsocks 和 Vmess 协议，不支持 Vless。但开发者正在逐步扩展功能，未来可能加入更多现代代理协议支持。<hr />    </div>
@@ -257,29 +277,14 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
         AEAD 加密可防止数据篡改和流量特征泄露，降低被封锁和 DPI 检测风险。保证节点长期可用，提高数据传输安全性和访问可靠性，优化用户科学上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 支持规则分流功能吗？</h5></div>
-    <div class="panel-body">
-        支持。Surfboard 可通过规则文件和策略组将不同类型流量分配到指定节点。保证网页浏览、视频和游戏走最优线路，提高访问速度和整体网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 是否比 Clash 更省资源？</h5></div>
-    <div class="panel-body">
-        Sing-box 在性能优化上比 Clash 更出色。它采用 Go 语言重构核心模块，并对并发模型进行了优化，内存占用更低，启动速度更快，适合低配置设备或嵌入式环境。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 如何实现按域名分流？</h5></div>
-    <div class="panel-body">
-        PassWall2 可通过域名规则匹配请求，将流量分流至指定节点。结合策略组和自动测速，可让不同网站走不同节点，实现加速和优化访问速度的效果。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray 的策略组如何根据节点延迟自动切换？</h5></div>
-    <div class="panel-body">
-        策略组会根据节点延迟和丢包率自动选择最优节点。结合路由规则，可保证国内流量直连、海外流量走最佳节点，提高访问速度和连接稳定性，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Hiddify Next 如何管理用户流量配额？</h5></div>
     <div class="panel-body">
         管理员可以为每个用户设置上传和下载带宽以及总流量上限。超出限制可自动降速或阻止访问，保证服务器资源合理分配，提高整体网络公平性和用户体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 支持规则分流功能吗？</h5></div>
+    <div class="panel-body">
+        支持。Surfboard 可通过规则文件和策略组将不同类型流量分配到指定节点。保证网页浏览、视频和游戏走最优线路，提高访问速度和整体网络稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Quantumult X 的自动策略组如何工作？</h5></div>
@@ -287,14 +292,9 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
         Quantumult X 的自动策略组可根据延迟、可用性或测速结果自动选择最优节点，用户无需手动切换。可在策略组设置中开启“延迟优先”或“可用性优先”模式以优化体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名为什么重要？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 是否比 Clash 更省资源？</h5></div>
     <div class="panel-body">
-        伪装域名必须真实可访问且证书有效，以使流量看起来像普通 HTTPS 请求。正确配置可以降低被封锁和 DPI 检测风险，提高节点安全性和长期可用性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 混淆方式如何提升抗封锁能力？</h5></div>
-    <div class="panel-body">
-        混淆方式可将流量伪装成正常 HTTPS 或 HTTP 数据，降低被 DPI 检测风险。合理选择协议和混淆组合，可以提升节点稳定性和长期可用性，确保科学上网顺畅。    </div>
+        Sing-box 在性能优化上比 Clash 更出色。它采用 Go 语言重构核心模块，并对并发模型进行了优化，内存占用更低，启动速度更快，适合低配置设备或嵌入式环境。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -325,11 +325,11 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
     <div class="panel-body">
         <div class="row">
             <div class="text-center">
-                <a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">
+                <a href="javascript:;" class="js_to" data-url="https://xc1.luniu8.com/?code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">
                     <img src="/assets/website/img/G/xingchen.webp" class="avatar" alt="星辰机场">
                 </a>
                 <dl>
-                    <dt><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></dt>
+                    <dt><a href="javascript:;" class="js_to" data-url="https://xc1.luniu8.com/?code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></dt>
                     <dd>
                         <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p>                    </dd>
                 </dl>
@@ -343,16 +343,16 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/sing-box-node-windows-2026-9-5.htm" title="9月5日 | SingBox每天更新19.2M/S免费节点链接地址分享">9月5日 | SingBox每天更新19.2M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-22-today-sing-box-node.htm" title="9月22日 | SingBox每天更新19.1M/S免费节点链接地址分享">9月22日 | SingBox每天更新19.1M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-10-22-sing-hysteria-windows.htm" title="10月22日 | SingBox每天更新22.8M/S免费节点链接地址分享">10月22日 | SingBox每天更新22.8M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-21.htm" title="9月21日 | SingBox每天更新22.9M/S免费节点链接地址分享">9月21日 | SingBox每天更新22.9M/S免费节点链接地址分享</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/sing-box-node-share-2026-10-3.htm" title="10月3日 | SingBox每天更新18.6M/S免费节点链接地址分享">10月3日 | SingBox每天更新18.6M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/sing-box-node-share-2026-10-7.htm" title="10月7日 | SingBox每天更新18.4M/S免费节点链接地址分享">10月7日 | SingBox每天更新18.4M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-9-25.htm" title="9月25日 | SingBox每天更新22.4M/S免费节点链接地址分享">9月25日 | SingBox每天更新22.4M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-node-subscribe-links-2026-9-19.htm" title="9月19日 | SingBox每天更新21.8M/S免费节点链接地址分享">9月19日 | SingBox每天更新21.8M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/node-share-links-2026-9-17.htm" title="9月17日 | SingBox每天更新19M/S免费节点链接地址分享">9月17日 | SingBox每天更新19M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-10-sing-hysteria-windows.htm" title="9月10日 | SingBox每天更新19.1M/S免费节点链接地址分享">9月10日 | SingBox每天更新19.1M/S免费节点链接地址分享</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/sing-box-node-windows-2026-10-23.htm" title="10月23日 | SingBox每天更新22.7M/S免费节点链接地址分享">10月23日 | SingBox每天更新22.7M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/latest-sing-box-node-2026-9-23.htm" title="9月23日 | SingBox每天更新20M/S免费节点链接地址分享">9月23日 | SingBox每天更新20M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/sing-box-node-windows-2026-9-11.htm" title="9月11日 | SingBox每天更新21.9M/S免费节点链接地址分享">9月11日 | SingBox每天更新21.9M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-30-sing-box-node.htm" title="10月30日 | SingBox每天更新22.7M/S免费节点链接地址分享">10月30日 | SingBox每天更新22.7M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/sing-box-node-windows-2026-10-27.htm" title="10月27日 | SingBox每天更新20.9M/S免费节点链接地址分享">10月27日 | SingBox每天更新20.9M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-10-28-node-share.htm" title="10月28日 | SingBox每天更新20.4M/S免费节点链接地址分享">10月28日 | SingBox每天更新20.4M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-30-node-share.htm" title="9月30日 | SingBox每天更新22M/S免费节点链接地址分享">9月30日 | SingBox每天更新22M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-20-sing-box-github.htm" title="9月20日 | SingBox每天更新18.5M/S免费节点链接地址分享">9月20日 | SingBox每天更新18.5M/S免费节点链接地址分享</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-12-node-share.htm" title="9月12日 | SingBox每天更新18.2M/S免费节点链接地址分享">9月12日 | SingBox每天更新18.2M/S免费节点链接地址分享</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -364,7 +364,7 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2026-10/" title="2026-10 归档">2026-10</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
@@ -395,7 +395,7 @@ V2Ray本身具备多种加密和流量混淆机制，保障数据隐私安全。
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://c.kilxs.cn/?path=register&code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></b> <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p></div>
+                                        <div>特别推荐：<b><a href="javascript:;" class="js_to" data-url="https://xc1.luniu8.com/?code=" data-type="Xingchen" data-code="tlc6gYYx" target="_blank">星辰机场</a></b> <p>【包年送2个月】</p><p>1、购买入门版年付套餐额外送2个月，共14个月，只要99元！！！</p><p>2、购买“至尊天皇”年付套餐，额外送2个月，只要299元！！！</p><p>3、购买其他包月类套餐中的年付，同样送2个月！！！</p><p>错过要再等一年！！</p></div>
                                         SingBox Github免费节点分享站 版权所有 Powered by WordPress
                 </div>
             </div>
